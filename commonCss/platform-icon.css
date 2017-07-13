@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+.basic {
+  width: 980px;
+  background: url('https://www.ehanlin.com.tw/images/body_bg.jpg') repeat;
+  color: #898989;
+  font-size: 12px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+  font-family: "微軟正黑體", Arial, sans-serif;
+}
+
+@font-face {
+  font-family: "platformIcon";
+  src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/platformIcon.eot");
+  src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/platformIcon.eot#iefix") format("embedded-opentype"),
+  url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/platformIcon.woff") format("woff"),
+  url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/platformIcon.ttf") format("truetype"),
+  url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/platformIcon.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#ehanlin-menu.nav {
+  background: #009ac9;
+  font-family: "微軟正黑體", Arial, sans-serif;
+  margin: 10px auto;
+  border: solid 3px #FFF;
+  border-radius: 6px;
+  box-shadow: 1px 1px 4px 1px #CCC;
+}
+
+#ehanlin-menu.nav a {
+  color: #ecf0f1;
+}
+
+#ehanlin-menu.nav li {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 10px;
+  font-size: 18px;
+  color: #ecf0f1;
+  width: 165px;
+  cursor: pointer;
+}
+
+#ehanlin-menu.nav li :hover {
+  color: #ffffff;
+}
+
+#ehanlin-menu.nav li :hover a {
+  color: #ffffff;
+}
+
+#ehanlin-menu.nav li + li {
+  border-left: #ffffff dashed 1px;
+}
+
+#ehanlin-menu [class^="platformIcon-"]:before, #ehanlin-menu [class*=" platformIcon-"]:before,
+#ehanlin-menu [class^="platformIcon-"]:after, #ehanlin-menu [class*=" platformIcon-"]:after {
+  font-family: platformIcon;
+  font-size: 20px;
+  font-style: normal;
+}
+
+#ehanlin-menu .platformIcon-header_news:before {
+  content: "\e000";
+}
+
+#ehanlin-menu .platformIcon-header_event:before {
+  content: "\e003";
+}
+
+#ehanlin-menu .platformIcon-header_mycourses:before {
+  content: "\e006";
+}
+
+@font-face {
+  font-family: "parents";
+  src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/parentsicon.eot");
+  src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/parentsicon.eot#iefix") format("embedded-opentype"),
+  url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/parentsicon.woff") format("woff"),
+  url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/parentsicon.ttf") format("truetype"),
+  url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/parentsicon.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#ehanlin-menu [class^="parents-"]:before, #ehanlin-menu [class*=" parents-"]:before,
+#ehanlin-menu [class^="parents-"]:after, #ehanlin-menu [class*=" parents-"]:after {
+  font-family: parents;
+  font-size: 20px;
+  font-style: normal;
+}
+
+#ehanlin-menu .parents-5:before {
+  content: "\e000";
+}
+
+@font-face {
+  font-family: "shoppingcart";
+  src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.eot");
+  src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.eot#iefix") format("embedded-opentype"),
+  url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.woff") format("woff"),
+  url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.ttf") format("truetype"),
+  url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="shoppingcart-"]:before, [class*=" shoppingcart-"]:before,
+[class^="shoppingcart-"]:after, [class*=" shoppingcart-"]:after {
+  font-family: shoppingcart;
+  font-size: 20px;
+  font-style: normal;
+}
+
+#ehanlin-menu .shoppingcart-shop20:before {
+  content: "\e000";
+}
+
+#ehanlin-menu .glyph-icon a {
+  font-family: "微軟正黑體", Arial, sans-serif;
+  font-size: 18px;
+}
+
+#ehanlin-menu .glyph-icon > a:visited, .glyph-icon > a:active, .glyph-icon > a:link, .glyph-icon > a:hover {
+  text-decoration: none;
+}
+
+#ehanlin-menu .glyph-icon {
+  font-family: "微軟正黑體", Arial, sans-serif;
+  font-size: 20px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  text-align: center;
+}
