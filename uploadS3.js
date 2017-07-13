@@ -5,6 +5,8 @@ const path = require("path"); // from node.js
 var keyId = process.env.keyId
 var pwd = process.env.pwd
 
+console.log(keyId);
+
 AWS.config.update({
   accessKeyId: keyId,
   secretAccessKey: pwd
