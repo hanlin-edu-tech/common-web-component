@@ -2,13 +2,13 @@ const AWS = require("aws-sdk"); // from AWS SDK
 const fs = require("fs"); // from node.js
 const path = require("path"); // from node.js
 
-var keyId = process.env.EHANLIN_S3_ID
+var EHANLIN_S3_ID = process.env.EHANLIN_S3_ID
 var pwd = process.env.EHANLIN_S3_KEY
 
-console.log('=========>>>>>' + keyId);
+console.log('>>>>>' + EHANLIN_S3_ID);
 
 AWS.config.update({
-  accessKeyId: keyId,
+  accessKeyId: EHANLIN_S3_ID,
   secretAccessKey: pwd
 });
 
