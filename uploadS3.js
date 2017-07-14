@@ -22,14 +22,14 @@ var findDist = dir => {
     files.forEach(fileName => {
       entireFilePath = PATH.join(dir, fileName);
 
-      if (fileName !== 'dist') {
+      if (fileName !== 'destination') {
         if (FS.statSync(entireFilePath).isDirectory()) {
           findDist(entireFilePath);
           return;
         }
       }
       else {
-        // dist 的前一層目錄
+        // destination 的前一層目錄
         var saveDir = PATH.basename(dir);
         upload(dir, saveDir);
       }
@@ -52,7 +52,7 @@ var upload = (dir, saveDir) => {
       }
 
       // 將當前路徑到 dist 的位置，以前一層目錄取代
-      var savePATH = entireFilePath.replace(/[\w\/-]*(dist)/, saveDir);
+      var savePATH = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
       
       AWS_S3.putObject({
         Bucket: 'ehanlin-web-resource',
