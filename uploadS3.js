@@ -70,6 +70,7 @@ var upload = (dir, saveDir) => {
   });
 };
 
+// 判斷檔案是否為空
 var determineFileEmpty = files => {
   if (!files || files.length === 0) {
     console.log(`${files} is not found or empty...`);
