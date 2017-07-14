@@ -51,7 +51,7 @@ var upload = (dir, saveDir) => {
         return;
       }
 
-      // 把路徑到 dist 的位置，以前一層目錄取代
+      // 將當前路徑到 dist 的位置，以前一層目錄取代
       var savePATH = entireFilePath.replace(/[\w\/-]*(dist)/, saveDir);
       
       AWS_S3.putObject({
