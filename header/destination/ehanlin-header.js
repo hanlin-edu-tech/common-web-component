@@ -1,5 +1,5 @@
 (function() {
-  fetch('http://52.68.131.82/ehanlin_header.html', {
+  fetch('https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/v0.0.1/menu/ehanlin_menu.html', {
       method: 'get',
       mode: 'cors'
     })
