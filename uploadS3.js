@@ -4,6 +4,7 @@ const PATH = require("path");
 const EHANLIN_S3_ID = process.env.EHANLIN_S3_ID
 const EHANLIN_S3_KEY = process.env.EHANLIN_S3_KEY
 const TRAVIS_TAG = process.env.TRAVIS_TAG
+const TRAVIS_BUILD_DIR = process.env.TRAVIS_BUILD_DIR
 
 AWS.config.update({
   accessKeyId: EHANLIN_S3_ID,
@@ -61,4 +62,4 @@ var recursiveUpload = dir => {
   });
 };
 
-recursiveUpload(__dirname);
+recursiveUpload(TRAVIS_BUILD_DIR);
