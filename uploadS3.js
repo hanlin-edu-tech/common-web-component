@@ -1,59 +1,64 @@
-const AWS = require("aws-sdk"); // from AWS SDK
-const fs = require("fs"); // from node.js
-const path = require("path"); // from node.js
-
-var EHANLIN_S3_ID = process.env.EHANLIN_S3_ID
-var pwd = process.env.EHANLIN_S3_KEY
-
-console.log('>>>>>' + EHANLIN_S3_ID);
+const AWS = require("aws-sdk");
+const FS = require("fs");
+const PATH = require("path");
+const EHANLIN_S3_ID = process.env.EHANLIN_S3_ID
+const EHANLIN_S3_KEY = process.env.EHANLIN_S3_KEY
+const TRAVIS_TAG = process.env.TRAVIS_TAG
 
 AWS.config.update({
   accessKeyId: EHANLIN_S3_ID,
-  secretAccessKey: pwd
+  secretAccessKey: EHANLIN_S3_KEY
 });
 
-var awsS3 = new AWS.S3();
+const AWS_S3 = new AWS.S3();
 
-// resolve full folder path
-const distFolderPath = path.join(__dirname, './menu');
-console.log("====" + distFolderPath);
+// 遞迴上傳檔案
+var recursiveUpload = dir => {
+  FS.readdir(dir, (err, files) => {
+    // 不上傳的檔案
+    var isNotUpload = (FS, entireFilePath, fileName) => {
+      if (FS.lstatSync(entireFilePath).isDirectory()) {
+        recursiveUpload(entireFilePath);
+        return true;
+      }
+      
+      var notUploadFiles = ['README.md', '.travis.yml', 'uploadS3.js', 'package.json']
+      for (var notUploadFile of notUploadFiles) {
+        if (fileName === notUploadFile)
+          return true;
+      }
 
-// get of list of files from 'dist' directory
-fs.readdir(distFolderPath, (err, files) => {
-  if(!files || files.length === 0) {
-    console.log(`provided folder '${distFolderPath}' is empty or does not exist.`);
-    console.log('Make sure your project was compiled!');
-    return;
-  }
-
-  var entireFilePath;
-  console.log(files);
-  // for each file in the directory
-  for (var fileName of files) {
-    entireFilePath = path.join(distFolderPath, fileName);
-    console.log('entire->' + entireFilePath);
-
-    // ignore if directory
-    if (fs.lstatSync(entireFilePath).isDirectory()) {
-      continue;
+      return false;
     }
 
-    // read file contents
-    fs.readFile(entireFilePath, (error, fileContent) => {
-      // if unable to read file contents, throw exception
-      if (error) { throw error; }
+    var entireFilePath;
 
-      awsS3.upload({
+    if (!files || files.length === 0) {
+      console.log(`${files} is not found or empty...`);
+      return;
+    }
+
+    files.forEach(fileName => {
+      entireFilePath = PATH.join(dir, fileName);
+      console.log('before->' + entireFilePath);
+      if (isNotUpload(FS, entireFilePath, fileName)) {
+        return;
+      }
+
+      AWS_S3.putObject({
         Bucket: 'ehanlin-web-resource',
-        Body: fileContent,
-        Key: 'common_webcomponent/' + fileName
-      }).on('httpUploadProgress', function(evt) {
-        console.log('progress -->' + evt);
-        console.log(evt);
-      }).
-      send((err, data) => {
-        console.log('err ==> ' + err);
+        Body: FS.readFileSync(entireFilePath),
+        Key: `common_webcomponent/${TRAVIS_TAG}/${fileName}`,
+        ACL: 'public-read'
+      }).on('httpUploadProgress', function (progress) {
+        // 上傳的進程
+        console.log(`upload ${progress.loaded} of ${progress.total} bytes`);
+      }).send((err, data) => {
+        if (err)
+          console.log('err is ' + err);
       });
     });
-  }
-});
+  });
+};
+
+recursiveUpload(__dirname);
