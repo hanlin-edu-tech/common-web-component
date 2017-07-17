@@ -59,19 +59,14 @@ var findDist = dir => {
 }
 
 var fileToBuffer = (filename) => {
-  let readStream = fs.createReadStream(filename);
-  let chunks = [];
+  var readStream = FS.createReadStream(filename);
+  var chunks = [];
 
-  readStream.on('error', err => {
-    console.log(err, err.stack);
-  });
-
-  // Listen for data
   readStream.on('data', chunk => {
     chunks.push(chunk);
-  });
-
-  readStream.on('close', () => {
+  }).on('error', err => {
+    console.log(err, err.stack);
+  }).on('close', () => {
     return Buffer.concat(chunks);
   });
 }
@@ -125,4 +120,3 @@ else {
   prefixPath = `common_webcomponent/${TRAVIS_TAG}/`;
   findDist(__dirname);
 }
-
