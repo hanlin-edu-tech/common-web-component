@@ -76,7 +76,7 @@ var upload = (dir, saveDir) => {
       var key = `${prefixPath}${suffixPath}`;
       AWS_S3.putObject({
         Bucket: 'ehanlin-web-resource',
-        Body: fs.readFileSync(entireFilePath),
+        Body: FS.readFileSync(entireFilePath),
         Key: key,
         ACL: 'public-read'
       }).on('httpUploadProgress', function (progress) {
