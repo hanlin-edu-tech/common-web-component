@@ -12,7 +12,7 @@
       }
       response.text().then(function(text) {
         var banner = document.createRange().createContextualFragment(text);
-        var parent = document.body;
+        var parent = document.getElementById("ehanlin-header");
         parent.insertBefore(banner, parent.firstChild);
       });
     })
