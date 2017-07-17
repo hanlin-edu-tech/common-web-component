@@ -75,11 +75,12 @@ var upload = (dir, saveDir) => {
       var suffixPath = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
       var key = `${prefixPath}${suffixPath}`;
       var valueKey = { Bucket: "ehanlin-web-resource", Body: FS.readFileSync(entireFilePath), Key: key, ACL: "public-read" };
-      var fileExtension = fileName.slice(lastIndexOf(".js"));
+      var fileExtension1 = fileName.substr(-3);
+      var fileExtension2 = fileName.substr(-4);
 
-      if (fileExtension === ".js") {
+      if (fileExtension1 === ".js") {
         valueKey.ContentType = "application/x-javascript";
-      } else if (fileExtension === ".css") {
+      } else if (fileExtension2 === ".css") {
         valueKey.ContentType = "text/css";
       }
 
