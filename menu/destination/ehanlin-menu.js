@@ -11,7 +11,7 @@
     response.text().then(function (text) {
       //var banner = parser.parseFromString(text, "text/xml");
       var banner = document.createRange().createContextualFragment(text);
-      var parent = document.getElementById("eh-menu");
+      var parent = document.getElementById("ehanlin-menu");
       parent.insertBefore(banner, parent.firstChild);
     });
     //return response.blob();
