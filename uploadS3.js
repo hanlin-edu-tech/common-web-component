@@ -21,14 +21,17 @@ var findExistedLastVersionDir = () => {
     Delimiter: '/'
   };
 
-  AWS_S3.listObjectVersions(params, (err, data) => {
+  var retrieve = (err, data) => {
     if (err)
       console.log(err, err.stack);
     else {
-      // 返回 common_webcomponent/vX.X.X
-      return data.CommonPrefixes[data.CommonPrefixes.length - 1].Prefix;
+      // targetDir = common_webcomponent/vX.X.X
+      prefixPath = data.CommonPrefixes[data.CommonPrefixes.length - 1].Prefix;
+      findDist(__dirname);
     }
-  });
+  };
+
+  AWS_S3.listObjectVersions(params, retrieve);
 };
 
 // 尋找目標資料夾
@@ -40,7 +43,6 @@ var findDist = dir => {
 
     files.forEach(fileName => {
       entireFilePath = PATH.join(dir, fileName);
-
       if (fileName !== 'destination') {
         if (FS.statSync(entireFilePath).isDirectory()) {
           findDist(entireFilePath);
@@ -71,7 +73,7 @@ var upload = (dir, saveDir) => {
 
       // 將當前路徑到 dist 的位置，以前一層目錄取代
       var suffixPath = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
-      var key = `${prefixPath }${suffixPath}`;
+      var key = `${prefixPath}${suffixPath}`;
       AWS_S3.putObject({
         Bucket: 'ehanlin-web-resource',
         Body: FS.readFileSync(entireFilePath),
@@ -100,8 +102,9 @@ var determineFileEmpty = files => {
 
 var prefixPath;
 if (!TRAVIS_TAG)
-  prefixPath = findExistedLastVersionDir();
-else
+  findExistedLastVersionDir();
+else {
   prefixPath = `common_webcomponent/${TRAVIS_TAG}/`;
+  findDist(__dirname);
+}
 
-findDist(__dirname);
