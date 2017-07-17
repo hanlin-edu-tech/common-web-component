@@ -1,9 +1,9 @@
 const AWS = require("aws-sdk");
 const FS = require("fs");
 const PATH = require("path");
-const EHANLIN_S3_ID = process.env.EHANLIN_S3_ID
-const EHANLIN_S3_KEY = process.env.EHANLIN_S3_KEY
-const TRAVIS_TAG = process.env.TRAVIS_TAG
+const EHANLIN_S3_ID = process.env.EHANLIN_S3_ID;
+const EHANLIN_S3_KEY = process.env.EHANLIN_S3_KEY;
+const TRAVIS_TAG = process.env.TRAVIS_TAG;
 
 AWS.config.update({
   accessKeyId: EHANLIN_S3_ID,
@@ -35,32 +35,33 @@ var findExistedLastVersionDir = () => {
 var findDist = dir => {
   FS.readdir(dir, (err, files) => {
     var entireFilePath;
-    if (determineFileEmpty(files))
-      return;
+    if (determineFileEmpty(files)) return;
 
     files.forEach(fileName => {
       entireFilePath = PATH.join(dir, fileName);
 
-      if (fileName !== 'destination') {
+      if (fileName !== "destination") {
         if (FS.statSync(entireFilePath).isDirectory()) {
           findDist(entireFilePath);
           return;
         }
-      }
-      else {
+      } else {
         // destination 的前一層目錄
         var saveDir = PATH.basename(dir);
         upload(dir, saveDir);
       }
     });
   });
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> 645d8a70877e956a724efea12dadd9aaed263783
 
 // 上傳檔案
 var upload = (dir, saveDir) => {
   FS.readdir(dir, (err, files) => {
-    if (determineFileEmpty(files))
-      return;
+    if (determineFileEmpty(files)) return;
 
     files.forEach(fileName => {
       entireFilePath = PATH.join(dir, fileName);
@@ -73,8 +74,9 @@ var upload = (dir, saveDir) => {
       var suffixPath = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
 
       AWS_S3.putObject({
-        Bucket: 'ehanlin-web-resource',
+        Bucket: "ehanlin-web-resource",
         Body: FS.readFileSync(entireFilePath),
+<<<<<<< HEAD
         Key: `${prefixPath}${suffixPath}`,
         ACL: 'public-read'
       }).on('httpUploadProgress', function (progress) {
@@ -84,6 +86,18 @@ var upload = (dir, saveDir) => {
         if (err)
           console.log('err is ' + err);
       });
+=======
+        Key: `common_webcomponent/${TRAVIS_TAG}/${savePATH}`,
+        ACL: "public-read"
+      })
+        .on("httpUploadProgress", function(progress) {
+          // 上傳的進程
+          console.log(`upload ${progress.loaded} of ${progress.total} bytes`);
+        })
+        .send((err, data) => {
+          if (err) console.log("err is " + err);
+        });
+>>>>>>> 645d8a70877e956a724efea12dadd9aaed263783
     });
   });
 };
@@ -96,8 +110,9 @@ var determineFileEmpty = files => {
   }
 
   return false;
-}
+};
 
+<<<<<<< HEAD
 var prefixPath;
 if (!TRAVIS_TAG)
   prefixPath = findExistedLastVersionDir();
@@ -105,3 +120,6 @@ else
   prefixPath = `common_webcomponent/${TRAVIS_TAG }/`;
  
 findDist(__dirname);
+=======
+findDist(__dirname);
+>>>>>>> 645d8a70877e956a724efea12dadd9aaed263783
