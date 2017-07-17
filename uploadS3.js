@@ -16,7 +16,7 @@ const AWS_S3 = new AWS.S3();
 var findDist = dir => {
   FS.readdir(dir, (err, files) => {
     var entireFilePath;
-    if(determineFileEmpty(files))
+    if (determineFileEmpty(files))
       return;
 
     files.forEach(fileName => {
@@ -41,7 +41,7 @@ var findDist = dir => {
 // 上傳檔案
 var upload = (dir, saveDir) => {
   FS.readdir(dir, (err, files) => {
-    if(determineFileEmpty(files))
+    if (determineFileEmpty(files))
       return;
 
     files.forEach(fileName => {
@@ -53,7 +53,7 @@ var upload = (dir, saveDir) => {
 
       // 將當前路徑到 dist 的位置，以前一層目錄取代
       var savePATH = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
-      
+
       AWS_S3.putObject({
         Bucket: 'ehanlin-web-resource',
         Body: FS.readFileSync(entireFilePath),
