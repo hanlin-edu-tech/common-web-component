@@ -12,6 +12,25 @@ AWS.config.update({
 
 const AWS_S3 = new AWS.S3();
 
+// 尋找存在於 S3 common_webcomponent 的最新版本目錄
+var findExistedLastVersionDir = () => {
+  var params = {
+    Bucket: 'ehanlin-web-resource',
+    KeyMarker: 'common_webcomponent',
+    Prefix: 'common_webcomponent/v',
+    Delimiter: '/'
+  };
+
+  AWS_S3.listObjectVersions(params, (err, data) => {
+    if (err)
+      console.log(err, err.stack);
+    else {
+      // 返回 common_webcomponent/vX.X.X
+      return data.CommonPrefixes[data.CommonPrefixes.length - 1].Prefix;
+    }
+  });
+};
+
 // 尋找目標資料夾
 var findDist = dir => {
   FS.readdir(dir, (err, files) => {
@@ -37,7 +56,6 @@ var findDist = dir => {
   });
 }
 
-
 // 上傳檔案
 var upload = (dir, saveDir) => {
   FS.readdir(dir, (err, files) => {
@@ -52,12 +70,12 @@ var upload = (dir, saveDir) => {
       }
 
       // 將當前路徑到 dist 的位置，以前一層目錄取代
-      var savePATH = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
+      var suffixPath = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
 
       AWS_S3.putObject({
         Bucket: 'ehanlin-web-resource',
         Body: FS.readFileSync(entireFilePath),
-        Key: `common_webcomponent/${TRAVIS_TAG}/${savePATH}`,
+        Key: `${prefixPath}${suffixPath}`,
         ACL: 'public-read'
       }).on('httpUploadProgress', function (progress) {
         // 上傳的進程
@@ -80,4 +98,10 @@ var determineFileEmpty = files => {
   return false;
 }
 
+var prefixPath;
+if (!TRAVIS_TAG)
+  prefixPath = findExistedLastVersionDir();
+else
+  prefixPath = `common_webcomponent/${TRAVIS_TAG }/`;
+ 
 findDist(__dirname);
