@@ -58,6 +58,24 @@ var findDist = dir => {
   });
 }
 
+var fileToBuffer = (filename) => {
+  let readStream = fs.createReadStream(filename);
+  let chunks = [];
+
+  readStream.on('error', err => {
+    console.log(err, err.stack);
+  });
+
+  // Listen for data
+  readStream.on('data', chunk => {
+    chunks.push(chunk);
+  });
+
+  readStream.on('close', () => {
+    return Buffer.concat(chunks);
+  });
+}
+
 // 上傳檔案
 var upload = (dir, saveDir) => {
   FS.readdir(dir, (err, files) => {
@@ -76,7 +94,7 @@ var upload = (dir, saveDir) => {
       var key = `${prefixPath}${suffixPath}`;
       AWS_S3.putObject({
         Bucket: 'ehanlin-web-resource',
-        Body: FS.readFileSync(entireFilePath),
+        Body: fileToBuffer(entireFilePath),
         Key: key,
         ACL: 'public-read'
       }).on('httpUploadProgress', function (progress) {
