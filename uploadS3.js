@@ -71,15 +71,15 @@ var upload = (dir, saveDir) => {
 
       // 將當前路徑到 dist 的位置，以前一層目錄取代
       var suffixPath = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
-
+      var key = `${prefixPath }${suffixPath}`;
       AWS_S3.putObject({
         Bucket: 'ehanlin-web-resource',
         Body: FS.readFileSync(entireFilePath),
-        Key: `${prefixPath}${suffixPath}`,
+        Key: key,
         ACL: 'public-read'
       }).on('httpUploadProgress', function (progress) {
         // 上傳的進程
-        console.log(`upload ${progress.loaded} of ${progress.total} bytes`);
+        console.log(`upload to ${key}, ${progress.loaded} of ${progress.total} bytes`);
       }).send((err, data) => {
         if (err)
           console.log('err is ' + err);
