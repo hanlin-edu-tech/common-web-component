@@ -74,18 +74,23 @@ var upload = (dir, saveDir) => {
       // 將當前路徑到 dist 的位置，以前一層目錄取代
       var suffixPath = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
       var key = `${prefixPath}${suffixPath}`;
-      AWS_S3.putObject({
-        Bucket: 'ehanlin-web-resource',
-        Body: FS.readFileSync(entireFilePath),
-        Key: key,
-        ACL: 'public-read'
-      }).on('httpUploadProgress', function (progress) {
-        // 上傳的進程
-        console.log(`upload to ${key}, ${progress.loaded} of ${progress.total} bytes`);
-      }).send((err, data) => {
-        if (err)
-          console.log('err is ' + err);
-      });
+      var valueKey = { Bucket: "ehanlin-web-resource", Body: FS.readFileSync(entireFilePath), Key: key, ACL: "public-read" };
+      var fileExtension = fileName.slice(lastIndexOf(".js"));
+
+      if (fileExtension === ".js") {
+        valueKey.ContentType = "application/x-javascript";
+      } else if (fileExtension === ".css") {
+        valueKey.ContentType = "text/css";
+      }
+
+      AWS_S3.putObject(valueKey)
+        .on("httpUploadProgress", function(progress) {
+          // 上傳的進程
+          console.log(`upload to ${key}, ${progress.loaded} of ${progress.total} bytes`);
+        })
+        .send((err, data) => {
+          if (err) console.log("err is " + err);
+        });
     });
   });
 };
