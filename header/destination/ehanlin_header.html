@@ -1,169 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>eh</title>
 </head>
+
 <body id="ehanlin-header" class="basic">
 
-<style> @import "./font-awesome/css/font-awesome.min.css"; </style>
-<style type="text/css" rel="stylesheet">
-  .basic {
-    width: 980px;
-    background: url('https://www.ehanlin.com.tw/images/body_bg.jpg') repeat;
-    color: #898989;
-    font-size: 12px;
-    text-align: center;
-    margin: 0 auto;
-    padding: 0;
-    font-family: "微軟正黑體", Arial, sans-serif;
-  }
+  <style>
+    @import "./font-awesome/css/font-awesome.min.css";
+  </style>
+  <style type="text/css" rel="stylesheet">
+    .basic {
+      width: 980px;
+      background: url('https://www.ehanlin.com.tw/images/body_bg.jpg') repeat;
+      color: #898989;
+      font-size: 12px;
+      text-align: center;
+      margin: 0 auto;
+      padding: 0;
+      font-family: "微軟正黑體", Arial, sans-serif;
+    }
 
-  @font-face {
-    font-family: "shoppingcart";
-    src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.eot");
-    src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.eot#iefix") format("embedded-opentype"),
-    url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.woff") format("woff"),
-    url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.ttf") format("truetype"),
-    url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.svg") format("svg");
-    font-weight: normal;
-    font-style: normal;
-  }
+    @font-face {
+      font-family: "shoppingcart";
+      src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.eot");
+      src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.eot#iefix") format("embedded-opentype"),
+      url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.woff") format("woff"),
+      url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.ttf") format("truetype"),
+      url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.svg") format("svg");
+      font-weight: normal;
+      font-style: normal;
+    }
 
-  [class^="shoppingcart-"]:before, [class*=" shoppingcart-"]:before,
-  [class^="shoppingcart-"]:after, [class*=" shoppingcart-"]:after {
-    font-family: shoppingcart;
-    font-size: 20px;
-    font-style: normal;
-  }
+    [class^="shoppingcart-"]:before,
+    [class*=" shoppingcart-"]:before,
+    [class^="shoppingcart-"]:after,
+    [class*=" shoppingcart-"]:after {
+      font-family: shoppingcart;
+      font-size: 20px;
+      font-style: normal;
+    }
 
-  #ehanlin-header {
-    margin: 0 auto 10px auto;
-    padding: 10px 5px 0 5px;
-    text-align: right;
-    line-height: 1.6em;
-  }
+    #ehanlin-header {
+      margin: 0 auto 10px auto;
+      padding: 10px 5px 0 5px;
+      text-align: right;
+      line-height: 1.6em;
+    }
 
-  #ehanlin-header a.logo {
-    float: left;
-    display: inline-block;
-    width: 304px;
-    height: 35px;
-    background: url("https://www.ehanlin.com.tw/images/ehanlin_logo.png");
-  }
+    #ehanlin-header a.logo {
+      float: left;
+      display: inline-block;
+      width: 304px;
+      height: 35px;
+      background: url("https://www.ehanlin.com.tw/images/ehanlin_logo.png");
+    }
 
-  #ehanlin-header a {
-    color: #3498db;
-    text-decoration: none;
-    cursor: pointer;
-  }
+    #ehanlin-header a {
+      color: #3498db;
+      text-decoration: none;
+      cursor: pointer;
+    }
 
-  #ehanlin-header * {
-    padding: 0;
-    margin: 0;
-  }
+    #ehanlin-header * {
+      padding: 0;
+      margin: 0;
+    }
 
-  #ehanlin-header div {
-    border: 0;
-    margin: 0;
-    padding: 0;
-  }
+    #ehanlin-header div {
+      border: 0;
+      margin: 0;
+      padding: 0;
+    }
 
-  #ehanlin-header div {
-    display: block;
-  }
+    #ehanlin-header div {
+      display: block;
+    }
 
-  #ehanlin-header ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
+    #ehanlin-header ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
 
-  #ehanlin-header #car_sum {
-    display: inline-block;
-    min-width: 20px;
-    padding: 1px;
-    background: #b52d32;
-    color: #fff;
-    border-radius: 3px;
-    cursor: pointer;
-    text-align: center;
-  }
+    #ehanlin-header #car_sum {
+      display: inline-block;
+      min-width: 20px;
+      padding: 1px;
+      background: #b52d32;
+      color: #fff;
+      border-radius: 3px;
+      cursor: pointer;
+      text-align: center;
+    }
 
-  #ehanlin-header .header-menu li {
-    display: inline-block;
-  }
+    #ehanlin-header .header-menu li {
+      display: inline-block;
+    }
 
-  #ehanlin-header .header-menu li + li:before {
-    content: "|";
-    margin: 0 5px;
-  }
+    #ehanlin-header .header-menu li+li:before {
+      content: "|";
+      margin: 0 5px;
+    }
 
-  #ehanlin-header a.fb-fans {
-    display: inline-block;
-    min-width: 12px;
-    text-align: center;
-    border-radius: 100%;
-    background: #3b5998;
-    padding: 5px;
-    color: white;
-  }
+    #ehanlin-header a.fb-fans {
+      display: inline-block;
+      min-width: 12px;
+      text-align: center;
+      border-radius: 100%;
+      background: #3b5998;
+      padding: 5px;
+      color: white;
+    }
 
-  #ehanlin-header a.fb-fans:hover {
-    color: white !important;
-    text-decoration: none;
-  }
+    #ehanlin-header a.fb-fans:hover {
+      color: white !important;
+      text-decoration: none;
+    }
 
-  #ehanlin-header a.fa-facebook:before {
-    content: "\f09a";
-  }
-  #ehanlin-header i.shoppingcart-shop20:before {
-    content: "\e000";
-  }
+    #ehanlin-header a.fa-facebook:before {
+      content: "\f09a";
+    }
 
-</style>
-<div>
-  <a class="logo" href="/index.html" title="ehanlin - 翰林雲端學苑 - 首頁"></a>
-  <div>免費諮詢專線：0800-0088-11</div>
-  <ul class="header-menu">
-    <li>
-      <a href="" title="購物車">
+    #ehanlin-header i.shoppingcart-shop20:before {
+      content: "\e000";
+    }
+  </style>
+  <div>
+    <a class="logo" href="/index.html" title="ehanlin - 翰林雲端學苑 - 首頁"></a>
+    <div>免費諮詢專線：0800-0088-11</div>
+    <ul class="header-menu">
+      <li>
+        <a href="" title="購物車">
         <i class="shoppingcart-shop20"> 購物車 </i>
         <span id="car_sum">0</span>
       </a>
-    </li>
+      </li>
 
-    <li>
-      <a href="" title="課程開通">課程開通</a>
-    </li>
+      <li>
+        <a href="" title="課程開通">課程開通</a>
+      </li>
 
-    <li>
-      <a href="" title="免費試用">免費試用</a>
-    </li>
+      <li>
+        <a href="" title="免費試用">免費試用</a>
+      </li>
 
-    <li>
-      <a href="" title="使用幫手">使用幫手</a>
-    </li>
+      <li>
+        <a href="" title="使用幫手">使用幫手</a>
+      </li>
 
-    <li>
-      <iframe src="/ms_message/msgapi_test.html" frameborder="0" allowtransparency="true"
-              style="width: 20px; height: 22px; margin-bottom: -7px;">
-      </iframe>
-    </li>
+      <li>
+        <iframe src="/ms_message/msgapi_test.html" frameborder="0" allowtransparency="true" style="width: 20px; height: 22px; margin-bottom: -7px;">
+        </iframe>
+      </li>
 
-    <li>
-      <a href="" title="會員註冊">立即註冊</a>
-    </li>
+      <li>
+        <a href="" title="會員註冊">立即註冊</a>
+      </li>
 
-    <li>
-      <a href="" title="會員登入">會員登入</a>
-    </li>
+      <li>
+        <a href="" title="會員登入">會員登入</a>
+      </li>
 
-    <li>
-      <a class="fa fa-facebook fb-fans" href="https://www.facebook.com/ehanlin.com.tw/" target="_blank">
+      <li>
+        <a class="fa fa-facebook fb-fans" href="https://www.facebook.com/ehanlin.com.tw/" target="_blank">
       </a>
-    </li>
-  </ul>
-</div>
+      </li>
+    </ul>
+  </div>
 </body>
+
 </html>
