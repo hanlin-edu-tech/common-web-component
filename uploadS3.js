@@ -49,7 +49,7 @@ var findDist = dir => {
       } else {
         // destination 的前一層目錄
         var saveDir = PATH.basename(dir);
-        upload(dir, saveDir);
+        firstUpload(dir, saveDir);
       }
     });
   });
