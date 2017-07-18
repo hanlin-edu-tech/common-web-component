@@ -56,24 +56,17 @@ var findDist = dir => {
 };
 
 // 上傳檔案
-var upload = (dir, saveDir) => {
+var firstUpload = (dir, saveDir) => {
   FS.readdir(dir, (err, files) => {
     if (determineFileEmpty(files)) return;
 
     files.forEach(fileName => {
-      entireFilePath = PATH.join(dir, fileName);
-      if (FS.statSync(entireFilePath).isDirectory()) {
-        upload(entireFilePath, saveDir);
-        return;
-      }
-
-      var pathKey = key => {
+      var pathKey = upload => {
         // 將當前路徑到 dist 的位置，以前一層目錄取代
         var suffixPath = entireFilePath.replace(
           /[\w\/-]*(destination)/,
           saveDir
         );
-        var prefixPath = `common_webcomponent/current/`;
         var key = `${prefixPath}${suffixPath}`;
         var params = {
           Bucket: "ehanlin-web-resource",
@@ -83,9 +76,9 @@ var upload = (dir, saveDir) => {
         };
 
         if (fileName.substr(-3) === ".js") {
-          valueKey.ContentType = "application/x-javascript";
+          params.ContentType = "application/x-javascript";
         } else if (fileName.substr(-4) === ".css") {
-          valueKey.ContentType = "text/css";
+          params.ContentType = "text/css";
         }
 
         AWS_S3.putObject(params)
@@ -99,6 +92,14 @@ var upload = (dir, saveDir) => {
             if (err) console.log("err is " + err);
           });
       };
+
+      entireFilePath = PATH.join(dir, fileName);
+      if (FS.statSync(entireFilePath).isDirectory()) {
+        upload(entireFilePath, saveDir);
+        return;
+      }
+      pathKey(upload);
+      pathKey(upload);
     });
   });
 };
@@ -117,5 +118,6 @@ var prefixPath;
 if (!TRAVIS_TAG) findExistedLastVersionDir();
 else {
   prefixPath = `common_webcomponent/${TRAVIS_TAG}/`;
+  prefixPath = `common_webcomponent/current/`;
   findDist(__dirname);
 }
