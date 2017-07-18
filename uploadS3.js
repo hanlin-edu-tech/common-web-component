@@ -55,53 +55,65 @@ var findDist = dir => {
   });
 };
 
-// 上傳檔案
+// 上傳檔案的前置作業
 var leadUpload = (dir, saveDir) => {
   FS.readdir(dir, (err, files) => {
-    if (determineFileEmpty(files)) return;
-
-    files.forEach(fileName => {
-      var prefixPath = `common_webcscomponent/current/`;
-      var upload = prefixPath => {
-        // 將當前路徑到 dist 的位置，以前一層目錄取代
-        var suffixPath = entireFilePath.replace(
-          /[\w\/-]*(destination)/,
-          saveDir
-        );
-        var key = `${prefixPath}${suffixPath}`;
-        var params = {
-          Bucket: "ehanlin-web-resource",
-          Body: FS.readFileSync(entireFilePath),
-          Key: key,
-          ACL: "public-read"
-        };
-
-        if (fileName.substr(-3) === ".js") {
-          params.ContentType = "application/x-javascript";
-        } else if (fileName.substr(-4) === ".css") {
-          params.ContentType = "text/css";
-        }
-
-        AWS_S3.putObject(params)
-          .on("httpUploadProgress", function(progress) {
-            // 上傳的進程
-            console.log(
-              `upload to ${key}, ${progress.loaded} of ${progress.total} bytes`
-            );
-          })
-          .send((err, data) => {
-            if (err) console.log("err is " + err);
-          });
+    var upload = (fileName, prefixPath, entireFilePath) => {
+      // 將當前路徑到 dist 的位置，以前一層目錄取代
+      // test/xxx/hh-hh/destination => test/xxx/hhhh/
+      var suffixPath = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
+      var key = `${prefixPath}${suffixPath}`;
+      var params = {
+        Bucket: "ehanlin-web-resource",
+        Body: FS.readFileSync(entireFilePath),
+        Key: key,
+        ACL: "public-read"
       };
 
-      entireFilePath = PATH.join(dir, fileName);
-      if (FS.statSync(entireFilePath).isDirectory()) {
-        leadUpload(entireFilePath, saveDir);
-        return;
+      if (fileName.substr(-3) === ".js") {
+        params.ContentType = "application/x-javascript";
+      } else if (fileName.substr(-4) === ".css") {
+        params.ContentType = "text/css";
       }
-      upload(prefixPath);
-      upload();
-    });
+
+      AWS_S3.putObject(params)
+        .on("httpUploadProgress", function(progress) {
+          // 上傳的進程
+          console.log(
+            `upload to ${key}, ${progress.loaded} of ${progress.total} bytes`
+          );
+        })
+        .send((err, data) => {
+          if (err) console.log("err is " + err);
+        });
+    };
+
+    if (determineFileEmpty(files)) return;
+
+    if (!TRAVIS_TAG) {
+      files.forEach(fileName => {
+        entireFilePath = PATH.join(dir, fileName);
+        if (FS.statSync(entireFilePath).isDirectory()) {
+          leadUpload(entireFilePath, saveDir);
+          return;
+        }
+        upload(fileName, prefixPath, entireFilePath);
+      });
+    } else {
+      for (var i = 0; i < files.length; i++) {
+        console.log("prefixPath");
+        var fileName = files[i];
+        entireFilePath = PATH.join(dir, fileName);
+        if (FS.statSync(entireFilePath).isDirectory()) {
+          leadUpload(entireFilePath, saveDir);
+          return;
+        }
+        upload(fileName, prefixPath, entireFilePath);
+
+        var currentDir = `common_webcomponent/current/`;
+        upload(fileName, currentDir, entireFilePath);
+      }
+    }
   });
 };
 
