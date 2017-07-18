@@ -61,7 +61,7 @@ var firstUpload = (dir, saveDir) => {
     if (determineFileEmpty(files)) return;
 
     files.forEach(fileName => {
-      var pathKey = upload => {
+      var pathKey = keyUpload => {
         // 將當前路徑到 dist 的位置，以前一層目錄取代
         var suffixPath = entireFilePath.replace(
           /[\w\/-]*(destination)/,
@@ -98,8 +98,8 @@ var firstUpload = (dir, saveDir) => {
         firstUpload(entireFilePath, saveDir);
         return;
       }
-      pathKey(upload);
-      pathKey(upload);
+      pathKey(keyUpload);
+      pathKey(keyUpload);
     });
   });
 };
