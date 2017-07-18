@@ -49,19 +49,20 @@ var findDist = dir => {
       } else {
         // destination 的前一層目錄
         var saveDir = PATH.basename(dir);
-        firstUpload(dir, saveDir);
+        leadUpload(dir, saveDir);
       }
     });
   });
 };
 
 // 上傳檔案
-var firstUpload = (dir, saveDir) => {
+var leadUpload = (dir, saveDir) => {
   FS.readdir(dir, (err, files) => {
     if (determineFileEmpty(files)) return;
 
     files.forEach(fileName => {
-      var pathKey = keyUpload => {
+      var prefixPath = `common_webcscomponent/current/`;
+      var upload = prefixPath => {
         // 將當前路徑到 dist 的位置，以前一層目錄取代
         var suffixPath = entireFilePath.replace(
           /[\w\/-]*(destination)/,
@@ -95,11 +96,11 @@ var firstUpload = (dir, saveDir) => {
 
       entireFilePath = PATH.join(dir, fileName);
       if (FS.statSync(entireFilePath).isDirectory()) {
-        firstUpload(entireFilePath, saveDir);
+        leadUpload(entireFilePath, saveDir);
         return;
       }
-      pathKey(key);
-      pathKey(key);
+      upload(prefixPath);
+      upload();
     });
   });
 };
@@ -118,6 +119,5 @@ var prefixPath;
 if (!TRAVIS_TAG) findExistedLastVersionDir();
 else {
   prefixPath = `common_webcomponent/${TRAVIS_TAG}/`;
-  prefixPath = `common_webcomponent/current/`;
   findDist(__dirname);
 }
