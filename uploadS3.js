@@ -1,9 +1,9 @@
 const AWS = require("aws-sdk");
 const FS = require("fs");
 const PATH = require("path");
-const EHANLIN_S3_ID = process.env.EHANLIN_S3_ID
-const EHANLIN_S3_KEY = process.env.EHANLIN_S3_KEY
-const TRAVIS_TAG = process.env.TRAVIS_TAG
+const EHANLIN_S3_ID = process.env.EHANLIN_S3_ID;
+const EHANLIN_S3_KEY = process.env.EHANLIN_S3_KEY;
+const TRAVIS_TAG = process.env.TRAVIS_TAG;
 
 AWS.config.update({
   accessKeyId: EHANLIN_S3_ID,
@@ -15,15 +15,14 @@ const AWS_S3 = new AWS.S3();
 // 尋找存在於 S3 common_webcomponent 的最新版本目錄
 var findExistedLastVersionDir = () => {
   var params = {
-    Bucket: 'ehanlin-web-resource',
-    KeyMarker: 'common_webcomponent',
-    Prefix: 'common_webcomponent/v',
-    Delimiter: '/'
+    Bucket: "ehanlin-web-resource",
+    KeyMarker: "common_webcomponent",
+    Prefix: "common_webcomponent/v",
+    Delimiter: "/"
   };
 
   var retrieve = (err, data) => {
-    if (err)
-      console.log(err, err.stack);
+    if (err) console.log(err, err.stack);
     else {
       // targetDir = common_webcomponent/vX.X.X
       prefixPath = data.CommonPrefixes[data.CommonPrefixes.length - 1].Prefix;
@@ -38,31 +37,28 @@ var findExistedLastVersionDir = () => {
 var findDist = dir => {
   FS.readdir(dir, (err, files) => {
     var entireFilePath;
-    if (determineFileEmpty(files))
-      return;
+    if (determineFileEmpty(files)) return;
 
     files.forEach(fileName => {
       entireFilePath = PATH.join(dir, fileName);
-      if (fileName !== 'destination') {
+      if (fileName !== "destination") {
         if (FS.statSync(entireFilePath).isDirectory()) {
           findDist(entireFilePath);
           return;
         }
-      }
-      else {
+      } else {
         // destination 的前一層目錄
         var saveDir = PATH.basename(dir);
         upload(dir, saveDir);
       }
     });
   });
-}
+};
 
 // 上傳檔案
 var upload = (dir, saveDir) => {
   FS.readdir(dir, (err, files) => {
-    if (determineFileEmpty(files))
-      return;
+    if (determineFileEmpty(files)) return;
 
     files.forEach(fileName => {
       entireFilePath = PATH.join(dir, fileName);
@@ -71,27 +67,38 @@ var upload = (dir, saveDir) => {
         return;
       }
 
-      // 將當前路徑到 dist 的位置，以前一層目錄取代
-      var suffixPath = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
-      var key = `${prefixPath}${suffixPath}`;
-      var valueKey = { Bucket: "ehanlin-web-resource", Body: FS.readFileSync(entireFilePath), Key: key, ACL: "public-read" };
-      var fileExtension1 = fileName.substr(-3);
-      var fileExtension2 = fileName.substr(-4);
+      var pathKey = key => {
+        // 將當前路徑到 dist 的位置，以前一層目錄取代
+        var suffixPath = entireFilePath.replace(
+          /[\w\/-]*(destination)/,
+          saveDir
+        );
+        var prefixPath = `common_webcomponent/current/`;
+        var key = `${prefixPath}${suffixPath}`;
+        var params = {
+          Bucket: "ehanlin-web-resource",
+          Body: FS.readFileSync(entireFilePath),
+          Key: key,
+          ACL: "public-read"
+        };
 
-      if (fileExtension1 === ".js") {
-        valueKey.ContentType = "application/x-javascript";
-      } else if (fileExtension2 === ".css") {
-        valueKey.ContentType = "text/css";
-      }
+        if (fileName.substr(-3) === ".js") {
+          valueKey.ContentType = "application/x-javascript";
+        } else if (fileName.substr(-4) === ".css") {
+          valueKey.ContentType = "text/css";
+        }
 
-      AWS_S3.putObject(valueKey)
-        .on("httpUploadProgress", function(progress) {
-          // 上傳的進程
-          console.log(`upload to ${key}, ${progress.loaded} of ${progress.total} bytes`);
-        })
-        .send((err, data) => {
-          if (err) console.log("err is " + err);
-        });
+        AWS_S3.putObject(params)
+          .on("httpUploadProgress", function(progress) {
+            // 上傳的進程
+            console.log(
+              `upload to ${key}, ${progress.loaded} of ${progress.total} bytes`
+            );
+          })
+          .send((err, data) => {
+            if (err) console.log("err is " + err);
+          });
+      };
     });
   });
 };
@@ -104,11 +111,10 @@ var determineFileEmpty = files => {
   }
 
   return false;
-}
+};
 
 var prefixPath;
-if (!TRAVIS_TAG)
-  findExistedLastVersionDir();
+if (!TRAVIS_TAG) findExistedLastVersionDir();
 else {
   prefixPath = `common_webcomponent/${TRAVIS_TAG}/`;
   findDist(__dirname);
