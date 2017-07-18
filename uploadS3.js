@@ -95,7 +95,7 @@ var firstUpload = (dir, saveDir) => {
 
       entireFilePath = PATH.join(dir, fileName);
       if (FS.statSync(entireFilePath).isDirectory()) {
-        upload(entireFilePath, saveDir);
+        firstUpload(entireFilePath, saveDir);
         return;
       }
       pathKey(upload);
