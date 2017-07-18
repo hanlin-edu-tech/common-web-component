@@ -98,8 +98,8 @@ var firstUpload = (dir, saveDir) => {
         firstUpload(entireFilePath, saveDir);
         return;
       }
-      pathKey(keyUpload);
-      pathKey(keyUpload);
+      pathKey(key);
+      pathKey(key);
     });
   });
 };
