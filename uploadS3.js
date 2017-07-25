@@ -47,20 +47,23 @@ var findDist = dir => {
           return;
         }
       } else {
-        // destination 的前一層目錄
+        // 讀取路徑含有 destination 的目錄
         var saveDir = PATH.basename(dir);
-        leadUpload(dir, saveDir);
+        listDestinationPath(dir, saveDir);
       }
     });
   });
 };
 
-// 上傳檔案的前置作業
-var leadUpload = (dir, saveDir) => {
+/* 
+ 一一列舉讀取含有 destination 路徑的所有目錄與檔案
+ 並將檔案上傳至 AWS S3
+ */
+var listDestinationPath = (dir, saveDir) => {
   FS.readdir(dir, (err, files) => {
     var upload = (fileName, prefixPath, entireFilePath) => {
       // 將當前路徑到 dist 的位置，以前一層目錄取代
-      // test/xxx/hh-hh/destination => test/xxx/hhhh/
+      // firstDir/second/third/destination => firstDir/second/third
       var suffixPath = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
       var key = `${prefixPath}${suffixPath}`;
       var params = {
@@ -94,23 +97,26 @@ var leadUpload = (dir, saveDir) => {
       files.forEach(fileName => {
         entireFilePath = PATH.join(dir, fileName);
         if (FS.statSync(entireFilePath).isDirectory()) {
-          leadUpload(entireFilePath, saveDir);
+          listDestinationPath(entireFilePath, saveDir);
           return;
         }
+
         upload(fileName, prefixPath, entireFilePath);
       });
     } else {
       for (var i = 0; i < files.length; i++) {
-        console.log("prefixPath");
         var fileName = files[i];
+        var currentDir;
         entireFilePath = PATH.join(dir, fileName);
+
         if (FS.statSync(entireFilePath).isDirectory()) {
-          leadUpload(entireFilePath, saveDir);
+          listDestinationPath(entireFilePath, saveDir);
           return;
         }
+
         upload(fileName, prefixPath, entireFilePath);
 
-        var currentDir = `common_webcomponent/current/`;
+        currentDir = `common_webcomponent/current/`;
         upload(fileName, currentDir, entireFilePath);
       }
     }
