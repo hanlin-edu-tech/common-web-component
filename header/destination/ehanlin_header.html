@@ -4,13 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <title>eh</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body id="ehanlin-header" class="basic">
 
-  <style>
-    @import "./font-awesome/css/font-awesome.min.css";
-  </style>
+  <!-- <style>
+    @import "../../commonCss/destination/font-awesome.min.css";
+  </style> -->
   <style type="text/css" rel="stylesheet">
     #ehanlin-header.basic {
       width: 980px;
@@ -43,7 +45,7 @@
       font-style: normal;
     }
 
-    #ehanlin-header.basic{
+    #ehanlin-header.basic {
       margin: 0 auto 10px auto;
       padding: 10px 5px 0 5px;
       text-align: right;
@@ -96,6 +98,24 @@
       text-align: center;
     }
 
+    #ehanlin-header.fa {
+      padding: 20px;
+      font-size: 30px;
+      width: 50px;
+      text-align: center;
+      text-decoration: none;
+      margin: 5px 2px;
+    }
+
+    #ehanlin-header.fa:hover {
+      opacity: 0.7;
+    }
+
+    #ehanlin-header.fa-facebook {
+      background: #3B5998;
+      color: white;
+    }
+
     #ehanlin-header .header-menu li {
       display: inline-block;
     }
@@ -105,31 +125,13 @@
       margin: 0 5px;
     }
 
-    #ehanlin-header a.fb-fans {
-      display: inline-block;
-      min-width: 12px;
-      text-align: center;
-      border-radius: 100%;
-      background: #3b5998;
-      padding: 5px;
-      color: white;
-    }
-
-    #ehanlin-header a.fb-fans:hover {
-      color: white !important;
-      text-decoration: none;
-    }
-
-    #ehanlin-header a.fa-facebook:before {
-      content: "\f09a";
-    }
-
     #ehanlin-header i.shoppingcart-shop20:before {
       content: "\e000";
     }
   </style>
+
   <div>
-    <a class="logo" href="/index.html" title="ehanlin - 翰林雲端學苑 - 首頁"></a>
+    <a class="logo" href="./ehanlin_header.html" title="ehanlin - 翰林雲端學苑 - 首頁"></a>
     <div>免費諮詢專線：0800-0088-11</div>
     <ul class="header-menu">
       <li>
@@ -140,36 +142,106 @@
       </li>
 
       <li>
-        <a href="" title="課程開通">課程開通</a>
+        <a href="http://www.ehanlin.com.tw/inputsn.html" title="課程開通">課程開通</a>
       </li>
 
       <li>
-        <a href="" title="免費試用">免費試用</a>
+        <a href="http://www.ehanlin.com.tw/type/TRIAL/SalesPlans.html" title="免費試用">免費試用</a>
       </li>
 
       <li>
-        <a href="" title="使用幫手">使用幫手</a>
+        <a href="http://www.ehanlin.com.tw/qa.html" title="使用幫手">使用幫手</a>
       </li>
 
       <li>
-        <iframe src="/ms_message/msgapi_test.html" frameborder="0" allowtransparency="true" style="width: 20px; height: 22px; margin-bottom: -7px;">
+        <iframe src="http://www.ehanlin.com.tw/ms_message/msgapi_test.html" frameborder="0" allowtransparency="true" style="width: 20px; height: 22px; margin-bottom: -7px;">
         </iframe>
       </li>
 
       <li>
-        <a href="" title="會員註冊">立即註冊</a>
+        <a id="userStatus" class="userName"></a>
+      </li>
+
+      <li id="register">
+        <a href="http://www.ehanlin.com.tw/Users/register.html" title="會員註冊">立即註冊</a>
+      </li>
+
+      <li id="loginBotton">
+        <a>會員登入</a>
       </li>
 
       <li>
-        <a href="" title="會員登入">會員登入</a>
+        <a href="#" class="fa fa-facebook"></a>
       </li>
-
-      <li>
-        <a class="fa fa-facebook fb-fans" href="https://www.facebook.com/ehanlin.com.tw/" target="_blank">
-      </a>
-      </li>
-    </ul>
   </div>
+
+  <script type="text/javascript">
+    $(function () {
+      get = function (url, success, error) {
+        return $.ajax({
+          type: "GET",
+          contentType: "application/json",
+          dataType: "json",
+          cache: false,
+          crossDomain: true,
+          success: success,
+          error: error,
+          url: url,
+          xhrFields: { withCredentials: true }
+        })
+      }
+
+      $('#loginBotton').click(function () {
+        get("http://test.ehanlin.com.tw/ms-user-status/login?user=" + "521d946be4b0d765448570bd")
+        get("http://test.ehanlin.com.tw/ms-user-status/userStatus", function (data) {
+          if ($("#userStatus").length) {
+            $(".userName").text(`${data.name}${data.studentCard}`).append(`| <li><a id="logoutButton">登出</a></li>`);
+            $("#loginBotton").remove()
+            $("#register").remove()
+            alert("successful");
+            html();
+          } else {
+            alert("empty data");
+          }
+        })
+
+      })
+
+
+      var html = function () {
+        $('#logoutButton').on('click', function () {
+          logoutPut("http://test.ehanlin.com.tw", null, "Users", "521d946be4b0d765448570bd/!logout", null, null, function (data) {
+            window.location = "./ehanlin_header.html";
+          });
+          return false;
+        });
+      }
+
+      var logoutPut = function (host, filter, resource, attribute, option, body, success, error) {
+        return $.ajax({
+          type: "PUT",
+          contentType: "application/json",
+          dataType: "json",
+          cache: false,
+          crossDomain: true,
+          success: success,
+          error: error,
+          url: "http://test.ehanlin.com.tw/Users/521d946be4b0d765448570bd/!logout",
+          data: bodyVal(body),
+          xhrFields: { withCredentials: true }
+        });
+      };
+
+      var bodyVal = function (body) {
+        var bodyVal = "";
+        if (body != null) {
+          bodyVal = JSON.stringify({ value: body });
+        }
+        return bodyVal;
+      }
+    })
+  </script>
+
 </body>
 
 </html>
