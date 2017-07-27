@@ -1,6 +1,6 @@
 (function() {
   fetch(
-    "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/v0.0.4/eventLeftSide/ehanlin_event_left_side.html",
+    "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/v0.0.5/footer/ehanlin_footer.html",
     {
       method: "get",
       mode: "cors"
@@ -12,7 +12,7 @@
       }
       response.text().then(function(text) {
         var banner = document.createRange().createContextualFragment(text);
-        var parent = document.getElementById("event-left-side");
+        var parent = document.getElementById("ehanlin-footer");
         parent.insertBefore(banner, parent.firstChild);
       });
     })
