@@ -186,7 +186,7 @@
         get("http://test.ehanlin.com.tw/ms-user-status/login?user=" + "521d946be4b0d765448570bd")
         get("http://test.ehanlin.com.tw/ms-user-status/userStatus", function (data) {
           if ($("#userStatus").length) {
-            $(".userName").text(`${data.name}${data.studentCard}`).append(`<li><a id="logoutButton">登出</a></li>`);
+            $(".userName").text(`${data.studentCard}  ${data.name}`).append(`    |    <li><a id="logoutButton">登出</a></li>`);
             $("#loginBotton").remove()
             $("#register").remove()
             alert("successful");
