@@ -13,6 +13,14 @@ common-web-component
 | |____destination
 | | |____ehanlin-menu.js
 | | |____ehanlin_menu.html
+|____eventLeftSide
+| |____destination
+| | |____ehanlin-event-left-side.js
+| | |____ehanlin_event_left_side.html
+|____infoLeftSide
+| |____destination
+| | |____ehanlin-info-left-side.js
+| | |____ehanlin_info_left_side.html
 |____package.json
 |____README.md
 |____uploadS3.js
