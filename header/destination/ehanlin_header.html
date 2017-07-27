@@ -18,7 +18,7 @@
       width: 980px;
       background: url('https://www.ehanlin.com.tw/images/body_bg.jpg') repeat;
       color: #898989;
-      font-size: 12px;
+      font-size: 13px;
       text-align: center;
       margin: 0 auto;
       padding: 0;
@@ -53,10 +53,16 @@
     }
 
     #ehanlin-header a.logo {
+      float: left;
       display: inline-block;
       width: 304px;
       height: 35px;
       background: url("https://www.ehanlin.com.tw/images/ehanlin_logo.png");
+    }
+
+    #ehanlin-header i.fa {
+      color: #3b5998;
+      font-size: 24px;
     }
 
     #ehanlin-header a {
@@ -95,24 +101,6 @@
       border-radius: 3px;
       cursor: pointer;
       text-align: center;
-    }
-
-    #ehanlin-header.fa {
-      padding: 20px;
-      font-size: 30px;
-      width: 50px;
-      text-align: center;
-      text-decoration: none;
-      margin: 5px 2px;
-    }
-
-    #ehanlin-header.fa:hover {
-      opacity: 0.7;
-    }
-
-    #ehanlin-header.fa-facebook {
-      background: #3B5998;
-      color: white;
     }
 
     #ehanlin-header .header-menu li {
@@ -170,7 +158,11 @@
       </li>
 
       <li>
-        <a href="#" class="fa fa-facebook"></a>
+        <a href="https://www.facebook.com/ehanlin.com.tw/"><i class="fa">&#xf082;</i></a>
+      </li>
+
+      <li>
+        <a href="http://line.me/R/ti/p/MtsRQz_Hn5"><i class="fa fa-share-alt-square" style="font-size:24px;color:green"></i></a>
       </li>
   </div>
 
@@ -194,7 +186,7 @@
         get("http://test.ehanlin.com.tw/ms-user-status/login?user=" + "521d946be4b0d765448570bd")
         get("http://test.ehanlin.com.tw/ms-user-status/userStatus", function (data) {
           if ($("#userStatus").length) {
-            $(".userName").text(`${data.name}${data.studentCard}`).append(`| <li><a id="logoutButton">登出</a></li>`);
+            $(".userName").text(`${data.name}${data.studentCard}`).append(`<li><a id="logoutButton">登出</a></li>`);
             $("#loginBotton").remove()
             $("#register").remove()
             alert("successful");
