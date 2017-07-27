@@ -1,6 +1,6 @@
 (function() {
   fetch(
-    "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/v0.0.4/eventLeftSide/ehanlin_event_left_side.html",
+    "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current/eventLeftSide/ehanlin_event_left_side.html",
     {
       method: "get",
       mode: "cors"
