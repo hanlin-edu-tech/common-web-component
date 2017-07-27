@@ -16,6 +16,11 @@ common-web-component
 | | |____ehanlin-menu.js
 | | |____ehanlin_menu.html
 |
+|____footer
+| |____destination
+| | |____ehanlin-footer.js
+| | |____ehanlin_footer.html
+|
 |____eventLeftSide
 | |____destination
 | | |____ehanlin-event-left-side.js
