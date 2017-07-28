@@ -8,7 +8,7 @@ common-web-component
 |
 |____commonCss
 | |____destination
-|   |___ _mixins.scss
+|   |____ _mixins.scss
 |   |____font-awesome.min.css
 |   |____font-face.css
 |   |____font-face.css.map
@@ -16,28 +16,33 @@ common-web-component
 |
 |____header
 | |____destination
-|   |____ehanlin-header.js
+|   |____ehanlin_header.css
 |   |____ehanlin_header.html
+|   |____ehanlin-header.js
 |
 |____menu
 | |____destination
-|   |____ehanlin-menu.js
+|   |____ehanlin_menu.css
 |   |____ehanlin_menu.html
+|   |____ehanlin-menu.js
 |
 |____footer
 | |____destination
-|   |____ehanlin-footer.js
+|   |____ehanlin_footer.css
 |   |____ehanlin_footer.html
+|   |____ehanlin-footer.js
 |
 |____eventLeftSide
 | |____destination
-|   |____ehanlin-event-left-side.js
+|   |____ehanlin_event_left_side.css
 |   |____ehanlin_event_left_side.html
+|   |____ehanlin-event-left-side.js
 |
 |____infoLeftSide
 | |____destination
-|   |____ehanlin-info-left-side.js
+|   |____ehanlin_info_left_side.css
 |   |____ehanlin_info_left_side.html
+|   |____ehanlin-info-left-side.js
 |
 |____package.json
 |____README.md
