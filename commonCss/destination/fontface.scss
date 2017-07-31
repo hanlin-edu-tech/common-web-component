@@ -2,19 +2,20 @@
 @import 'mixins';
 
 $platformIcon: platformIcon;
-$platformIconPath: 'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/platformIcon';
+$platformIconPath: 'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/current/resource/font/platformIcon';
 
 $parentsicon: parentsicon;
-$parentsPath: 'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/parentsicon';
+$parentsPath: 'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/current/resource/font/parentsicon';
 
 $shoppingcart: shoppingcart;
-$shoppingcartPath: 'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart';
+$shoppingcartPath: 'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/current/resource/font/shoppingcart';
 
 @include font-face($platformIcon, $platformIconPath, normal, normal, eot woff ttf svg);
 @include font-face($parentsicon, $parentsPath, normal, normal, eot woff ttf svg);
 @include font-face($shoppingcart, $shoppingcartPath, normal, normal, eot woff ttf svg);
 
-#ehanlin-menu.nav [class^="platformIcon-"]:before, #ehanlin-menu [class*=" platformIcon-"]:before {
+#ehanlin-menu.nav [class^="platformIcon-"]:before,
+#ehanlin-menu [class*=" platformIcon-"]:before {
   font-family: platformIcon;
   font-size: 20px;
 }
@@ -31,7 +32,8 @@ $shoppingcartPath: 'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource
   content: "\e006";
 }
 
-#ehanlin-menu.nav [class^="parents-"]:before, #ehanlin-menu.nav [class*=" parents-"]:before {
+#ehanlin-menu.nav [class^="parents-"]:before,
+#ehanlin-menu.nav [class*=" parents-"]:before {
   font-family: parentsicon;
   font-size: 20px;
 }
@@ -40,7 +42,8 @@ $shoppingcartPath: 'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource
   content: "\e000";
 }
 
-#ehanlin-menu.nav [class^="shoppingcart-"]:before, #ehanlin-menu.nav [class*=" shoppingcart-"]:before {
+#ehanlin-menu.nav [class^="shoppingcart-"]:before,
+#ehanlin-menu.nav [class*=" shoppingcart-"]:before {
   font-family: shoppingcart;
   font-size: 20px;
 }
