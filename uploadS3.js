@@ -100,8 +100,8 @@ var listDestinationPath = (dir, saveDir) => {
           listDestinationPath(entireFilePath, saveDir);
           return;
         }
+
         var currentDir;
-        upload(fileName, prefixPath, entireFilePath);
 
         currentDir = `common_webcomponent/current.SNAPSHOT/`;
         upload(fileName, currentDir, entireFilePath);
