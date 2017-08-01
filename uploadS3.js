@@ -101,15 +101,13 @@ var listDestinationPath = (dir, saveDir) => {
           return;
         }
 
-        var currentDir;
-
-        currentDir = `common_webcomponent/current.SNAPSHOT/`;
-        upload(fileName, currentDir, entireFilePath);
+        var currentSnapshot;
+        currentSnapshot = `common_webcomponent/current.SNAPSHOT/`;
+        upload(fileName, currentSnapshot, entireFilePath); //上current.SNAPSHOT
       });
     } else {
       for (var i = 0; i < files.length; i++) {
         var fileName = files[i];
-        var currentDir;
         entireFilePath = PATH.join(dir, fileName);
 
         if (FS.statSync(entireFilePath).isDirectory()) {
@@ -117,10 +115,23 @@ var listDestinationPath = (dir, saveDir) => {
           return;
         }
 
-        upload(fileName, prefixPath, entireFilePath);
+        var uploadS3CurrentPath = () => {
+          var linkPath = document.getElementById("headerLink");
+          linkPath.forEach(function() {
+            var strLinkPath = linkPath;
+            strLinkPath.replace("current", "current.SNAPSHOT");
+          });
+        };
 
+        uploadS3CurrentPath();
+        upload(fileName, prefixPath, entireFilePath); //上tag
+
+        var currentDir;
         currentDir = `common_webcomponent/current/`;
-        upload(fileName, currentDir, entireFilePath);
+        upload(fileName, currentDir, entireFilePath); //上current
+        var currentSnapshot;
+        currentSnapshot = `common_webcomponent/current.SNAPSHOT/`;
+        upload(fileName, currentSnapshot, entireFilePath); //上current.SNAPSHOT
       }
     }
   });
