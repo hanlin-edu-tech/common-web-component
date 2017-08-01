@@ -119,7 +119,7 @@ var listDestinationPath = (dir, saveDir) => {
           var linkPath = document.getElementById("headerLink");
           linkPath.forEach(function() {
             var strLinkPath = linkPath;
-            strLinkPath.replace("current", "current.SNAPSHOT");
+            strLinkPath.replace("current.SNAPSHOT", "current");
           });
         };
 
