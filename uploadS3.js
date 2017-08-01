@@ -115,7 +115,7 @@ var listDestinationPath = (dir, saveDir) => {
           return;
         }
 
-        var uploadS3CurrentPath = () => {
+        var uploadS3CurrentPath = strLinkPath => {
           var linkPath = document.getElementById("headerLink");
           linkPath.forEach(function() {
             var strLinkPath = linkPath;
@@ -123,15 +123,16 @@ var listDestinationPath = (dir, saveDir) => {
           });
         };
 
-        uploadS3CurrentPath();
-        upload(fileName, prefixPath, entireFilePath); //上tag
+        uploadS3CurrentPath(function() {
+          upload(fileName, prefixPath, entireFilePath); //上tag
 
-        var currentDir;
-        currentDir = `common_webcomponent/current/`;
-        upload(fileName, currentDir, entireFilePath); //上current
-        var currentSnapshot;
-        currentSnapshot = `common_webcomponent/current.SNAPSHOT/`;
-        upload(fileName, currentSnapshot, entireFilePath); //上current.SNAPSHOT
+          var currentDir;
+          currentDir = `common_webcomponent/current/`;
+          upload(fileName, currentDir, entireFilePath); //上current
+          var currentSnapshot;
+          currentSnapshot = `common_webcomponent/current.SNAPSHOT/`;
+          upload(fileName, currentSnapshot, entireFilePath); //上current.SNAPSHOT
+        });
       }
     }
   });
