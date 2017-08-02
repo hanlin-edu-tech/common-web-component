@@ -60,10 +60,10 @@ destination 可以再新增任何子目錄來存不同類別的檔案，
 ```
 若想要指定呼叫的元件，則在 data-module attribute 指定即可。元件名稱：
 
-**ehanlin-header**
-**ehanlin-menu**
-**ehanlin-event-left-side**
-**ehanlin-info-left-side**
+**ehanlin-header**,
+**ehanlin-menu**,
+**ehanlin-event-left-side**,
+**ehanlin-info-left-side**,
 **ehanlin-footer**
 
 呼叫複數元件時，元件以 ',' 分隔，EX: `data-module="ehanlin-header, ehanlin-menu, ehanlin-footer"`
@@ -81,5 +81,7 @@ destination 可以再新增任何子目錄來存不同類別的檔案，
 
 - ehanlin-event-left-side
 - ehanlin-info-left-side
-```<section id="ehanlin-event-left-side"></section>
-<section id="ehanlin-info-left-side"></section>```
+```
+<section id="ehanlin-event-left-side"></section>
+<section id="ehanlin-info-left-side"></section>
+```
