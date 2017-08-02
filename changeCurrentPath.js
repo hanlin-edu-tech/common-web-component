@@ -1,42 +1,35 @@
-//const READ = require("node-read");
+const READ = require("node-read");
 const FS = require("fs");
 const PATH = require("path");
-const FILEPATH = PATH.join(
-  __dirname,
-  "./header/destination/ehanlin_header.html"
-);
-var $ = require("jQuery");
-console.log($);
+var $ = require("jquery");
 
-// fs.readFile(FILEPATH, { encoding: "utf-8" }, function(err, data) {
-//   if (!err) {
-//     console.log("received data: " + data);
-//     response.writeHead(200, { "Content-Type": "text/html" });
-//     response.write(data);
-//     response.end();
-//   } else {
-//     console.log(err);
-//   }
-// });
+var m = new Map();
+m.set("header", "ehanlin_header.html");
+m.set("footer", "ehanlin_footer.html");
+m.set("eventLeftSide", "ehanlin_event_left_side.html");
+m.set("infoLeftSide", "ehanlin_info_left_side.html");
+m.set("menu", "ehanlin_menu.html");
 
-// $.read(
-//   "/Users/hl/Downloads/common-web-component/header/destination/ehanlin_header.html",
-//   "/Users/hl/Downloads/common-web-component/menu/destination/ehanlin_menu.html",
-//   "/Users/hl/Downloads/common-web-component/footer/destination/ehanlin_footer.html",
-//   "/Users/hl/Downloads/common-web-component/infoLeftSide/destination/ehanlin_info_left_side.html",
-//   "/Users/hl/Downloads/common-web-component/eventLeftSide/destination/ehanlin_event_left_side.html",
-//   function(err, data) {
-//     if (err) {
-//       return console.log(err);
-//     }
-//     console.log(data);
-//   }
-// );
+m.forEach(function(item, key, mapObj) {
+  var fileName = key.toString();
+  var fileHtmlName = item.toString();
 
-// $("link").each(function() {
-//   console.log(jQuery(this).attr("href"));
-// });
-
-// $.getJSON("package.json", function(data) {
-//   console.log(data);
-// });
+  for (var x = 0; x < fileName.length; x++) {
+    var changeFilePath = `./${fileName}/destination/${fileHtmlName}`;
+    var currentPath = PATH.join(__dirname, `${changeFilePath}`);
+    var settingHrefPath = () => {
+      FS.readFile(currentPath, { encoding: "utf-8" }, function(err, data) {
+        if (!err) {
+          var changePath = data.replace(
+            /common_webcomponent\/current\.SNAPSHOT/g,
+            "common_webcomponent/current"
+          );
+          console.log(changePath);
+        } else {
+          console.log(err);
+        }
+      });
+    };
+  }
+  settingHrefPath();
+});
