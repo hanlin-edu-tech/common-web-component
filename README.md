@@ -51,3 +51,37 @@ common-web-component
 
 destination 可以再新增任何子目錄來存不同類別的檔案，
 元件大部分會上傳至 AWS S3，上傳時會再將 destination 的名稱取代為元件名。
+***
+
+## 呼叫元件方式：
+1. 在 platform、平台或相關靜態活動頁引入 ehanlin-loader.js，js 會直接呼叫元件
+```
+<script type="text/javascript" data-module="ehanlin-header, ehanlin-menu" src="./js/ehanlin-loader.js"></script>
+```
+若想要指定呼叫的元件，則在 data-module attribute 指定即可。元件名稱：
+
+**ehanlin-header**,
+**ehanlin-menu**,
+**ehanlin-event-left-side**,
+**ehanlin-info-left-side**,
+**ehanlin-footer**
+
+呼叫複數元件時，元件以 ',' 分隔，EX: `data-module="ehanlin-header, ehanlin-menu, ehanlin-footer"`
+
+2. 在 html body 中的 element，給定與元件名稱相同的 id，元件內容就會嵌入在此 element 中；在呼叫相關元件時，期待是能符合 HTML5 的語意化結構，可增加 google 搜尋引擎的分數，EX：
+
+- ehanlin-header
+`<header id="ehanlin-header"></header>`
+
+- ehanlin-menu
+`<nav id="ehanlin-menu"></nav>`
+
+- ehanlin-footer
+`<footer id="ehanlin-footer"></footer>`
+
+- ehanlin-event-left-side
+- ehanlin-info-left-side
+```
+<section id="ehanlin-event-left-side"></section>
+<section id="ehanlin-info-left-side"></section>
+```
