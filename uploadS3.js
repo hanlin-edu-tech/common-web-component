@@ -114,25 +114,14 @@ var listDestinationPath = (dir, saveDir) => {
           listDestinationPath(entireFilePath, saveDir);
           return;
         }
+        upload(fileName, prefixPath, entireFilePath); //上tag
 
-        var uploadS3CurrentPath = () => {
-          var linkPath = document.getElementById("headerLink");
-          linkPath.forEach(function() {
-            var strLinkPath = linkPath;
-            strLinkPath.replace("current.SNAPSHOT", "current");
-          });
-        };
-
-        uploadS3CurrentPath(function() {
-          upload(fileName, prefixPath, entireFilePath); //上tag
-
-          var currentDir;
-          currentDir = `common_webcomponent/current/`;
-          upload(fileName, currentDir, entireFilePath); //上current
-          var currentSnapshot;
-          currentSnapshot = `common_webcomponent/current.SNAPSHOT/`;
-          upload(fileName, currentSnapshot, entireFilePath); //上current.SNAPSHOT
-        });
+        var currentDir;
+        currentDir = `common_webcomponent/current/`;
+        upload(fileName, currentDir, entireFilePath); //上current
+        var currentSnapshot;
+        currentSnapshot = `common_webcomponent/current.SNAPSHOT/`;
+        upload(fileName, currentSnapshot, entireFilePath); //上current.SNAPSHOT
       }
     }
   });
