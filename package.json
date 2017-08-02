@@ -3,6 +3,8 @@
     "uploadS3": "node uploadS3.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.93.0"
+    "aws-sdk": "^2.93.0",
+    "jQuery": "^1.7.4",
+    "jsdom": "^11.1.0"
   }
 }

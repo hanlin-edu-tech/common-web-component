@@ -115,7 +115,7 @@ var listDestinationPath = (dir, saveDir) => {
           return;
         }
 
-        var uploadS3CurrentPath = strLinkPath => {
+        var uploadS3CurrentPath = () => {
           var linkPath = document.getElementById("headerLink");
           linkPath.forEach(function() {
             var strLinkPath = linkPath;
