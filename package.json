@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "uploadS3": "node uploadS3.js"
+    "uploadS3": "node uploadS3.js",
+    "changeCurrentPath": "node changeCurrentPath.js"
   },
   "dependencies": {
     "aws-sdk": "^2.93.0",
