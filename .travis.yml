@@ -4,5 +4,5 @@ node_js:
 install:
   - npm install aws-sdk
 script:
-  - npm run uploadS3
   - npm run changeCurrentPath
+  - npm run uploadS3
