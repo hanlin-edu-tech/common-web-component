@@ -56,7 +56,7 @@ destination 可以再新增任何子目錄來存不同類別的檔案，
 ## 呼叫元件方式：
 1. 在 platform、平台或相關靜態活動頁引入 ehanlin-loader.js，js 會直接呼叫元件
 ```
-<script type="text/javascript" data-module="ehanlin-header, ehanlin-menu" src="./js/ehanlin-loader.js"></script>
+<script type="text/javascript" data-module="ehanlin-header, ehanlin-menu" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current/js/ehanlin-loader.js"></script>
 ```
 若想要指定呼叫的元件，則在 data-module attribute 指定即可。元件名稱：
 
@@ -80,8 +80,7 @@ destination 可以再新增任何子目錄來存不同類別的檔案，
 `<footer id="ehanlin-footer"></footer>`
 
 - ehanlin-event-left-side
+`<section id="ehanlin-event-left-side"></section>`
+
 - ehanlin-info-left-side
-```
-<section id="ehanlin-event-left-side"></section>
-<section id="ehanlin-info-left-side"></section>
-```
+`<section id="ehanlin-info-left-side"></section>`
