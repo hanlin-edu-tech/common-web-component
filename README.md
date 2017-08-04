@@ -80,8 +80,7 @@ destination 可以再新增任何子目錄來存不同類別的檔案，
 `<footer id="ehanlin-footer"></footer>`
 
 - ehanlin-event-left-side
+`<section id="ehanlin-event-left-side"></section>`
+
 - ehanlin-info-left-side
-```
-<section id="ehanlin-event-left-side"></section>
-<section id="ehanlin-info-left-side"></section>
-```
+`<section id="ehanlin-info-left-side"></section>`
