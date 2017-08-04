@@ -119,9 +119,6 @@ var listDestinationPath = (dir, saveDir) => {
         var currentDir;
         currentDir = `common_webcomponent/current/`;
         upload(fileName, currentDir, entireFilePath); //上current
-        var currentSnapshot;
-        currentSnapshot = `common_webcomponent/current.SNAPSHOT/`;
-        upload(fileName, currentSnapshot, entireFilePath); //上current.SNAPSHOT
       }
     }
   });
