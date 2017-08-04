@@ -1,10 +1,26 @@
 const FS = require("fs");
 const PATH = require("path");
+const AWS = require("aws-sdk");
+
+const EHANLIN_S3_ID = process.env.EHANLIN_S3_ID;
+const EHANLIN_S3_KEY = process.env.EHANLIN_S3_KEY;
 const TRAVIS_TAG = process.env.TRAVIS_TAG;
+
+AWS.config.update({
+  accessKeyId: EHANLIN_S3_ID,
+  secretAccessKey: EHANLIN_S3_KEY
+});
+const AWS_S3 = new AWS.S3();
+
+if (TRAVIS_TAG) {
+  runHTML();
+  runJS();
+}
 
 /**
  * 更改ehanlin html上傳到S3的css路徑
  */
+var runHTML = () => {};
 var cssMapPath = new Map();
 cssMapPath.set("header", "ehanlin_header.html");
 cssMapPath.set("footer", "ehanlin_footer.html");
@@ -58,6 +74,7 @@ cssMapPath.forEach(function(item, key, mapObj) {
 /**
  * 更改ehanlin js上傳到S3的html路徑
  */
+var runJS = () => {};
 var jsMapPath = new Map();
 jsMapPath.set("header", "ehanlin-header.js");
 jsMapPath.set("footer", "ehanlin-footer.js");
