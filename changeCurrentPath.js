@@ -1,7 +1,5 @@
-const READ = require("node-read");
 const FS = require("fs");
 const PATH = require("path");
-var $ = require("jquery");
 
 /**
  * 更改ehanlin html上傳到S3的css路徑
