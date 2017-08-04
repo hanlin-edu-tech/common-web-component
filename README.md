@@ -53,6 +53,20 @@ destination 可以再新增任何子目錄來存不同類別的檔案，
 元件大部分會上傳至 AWS S3，上傳時會再將 destination 的名稱取代為元件名。
 ***
 
+#本機測試：
+1. 改變共用元件庫相依的路徑
+首先執行changeCurrentPath.js  相依的路徑將改變為current.SNAPSHOT
+
+```
+$ node changeCurrentPath.js
+```
+2. 上正式機必須在改變一次路徑
+再執行changeCurrentPath.js  相依的路徑將改變為current
+```
+$ node changeCurrentPath.js
+```
+***
+
 ## 呼叫元件方式：
 1. 在 platform、平台或相關靜態活動頁引入 ehanlin-loader.js，js 會直接呼叫元件
 ```
