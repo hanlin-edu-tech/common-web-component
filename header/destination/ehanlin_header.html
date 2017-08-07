@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <title>ehanlin header</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current/header/ehanlin_header.css">
+  <script src="../../js/destination/require.js" data-main="../../js/destination/main"></script>
 </head>
 
 <body id="ehanlin-header" class="basic">
@@ -49,7 +49,8 @@
       </li>
 
       <li id="loginBotton">
-        <a href="http://www.ehanlin.com.tw/Users/login.html" title="會員登入">會員登入</a>
+        <!-- <a href="http://www.ehanlin.com.tw/Users/login.html" title="會員登入">會員登入</a> -->
+        <a title="會員登入">會員登入</a>
       </li>
 
       <li>
@@ -60,74 +61,6 @@
         <a href="http://line.me/R/ti/p/MtsRQz_Hn5"><i class="fa fa-share-alt-square" style="font-size:24px;color:#00B900"></i></a>
       </li>
   </div>
-
-  <script type="text/javascript">
-    $(function () {
-      get = function (url, success, error) {
-        return $.ajax({
-          type: "GET",
-          contentType: "application/json",
-          dataType: "json",
-          cache: false,
-          crossDomain: true,
-          success: success,
-          error: error,
-          url: url,
-          xhrFields: { withCredentials: true }
-        })
-      }
-
-      $('#loginBotton').click(function () {
-        get("http://test.ehanlin.com.tw/ms-user-status/login?user=" + "521d946be4b0d765448570bd")
-        get("http://test.ehanlin.com.tw/ms-user-status/userStatus", function (data) {
-          if ($("#userStatus").length) {
-            $(".userName").text(`${data.studentCard}  ${data.name}`).append(`    |    <li><a id="logoutButton">登出</a></li>`);
-            $("#loginBotton").remove()
-            $("#register").remove()
-            alert("successful");
-            html();
-          } else {
-            alert("empty data");
-          }
-        })
-
-      })
-
-
-      var html = function () {
-        $('#logoutButton').on('click', function () {
-          logoutPut("http://test.ehanlin.com.tw", null, "Users", "521d946be4b0d765448570bd/!logout", null, null, function (data) {
-            window.location = "./ehanlin_header.html";
-          });
-          return false;
-        });
-      }
-
-      var logoutPut = function (host, filter, resource, attribute, option, body, success, error) {
-        return $.ajax({
-          type: "PUT",
-          contentType: "application/json",
-          dataType: "json",
-          cache: false,
-          crossDomain: true,
-          success: success,
-          error: error,
-          url: "http://test.ehanlin.com.tw/Users/521d946be4b0d765448570bd/!logout",
-          data: bodyVal(body),
-          xhrFields: { withCredentials: true }
-        });
-      };
-
-      var bodyVal = function (body) {
-        var bodyVal = "";
-        if (body != null) {
-          bodyVal = JSON.stringify({ value: body });
-        }
-        return bodyVal;
-      }
-    })
-  </script>
-
 </body>
 
 </html>
