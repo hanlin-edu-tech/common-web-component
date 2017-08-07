@@ -1,6 +1,6 @@
 require.config({
   paths: {
-    jquery: "./jquery-3.2.1.min"
+    jquery: "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min"
   }
 });
 
