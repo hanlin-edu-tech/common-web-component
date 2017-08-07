@@ -24,29 +24,32 @@ common-web-component
 | |____destination
 |   |____ehanlin_menu.css
 |   |____ehanlin_menu.html
-|   |____ehanlin-menu.js
 |
 |____footer
 | |____destination
 |   |____ehanlin_footer.css
 |   |____ehanlin_footer.html
-|   |____ehanlin-footer.js
 |
 |____eventLeftSide
 | |____destination
 |   |____ehanlin_event_left_side.css
 |   |____ehanlin_event_left_side.html
-|   |____ehanlin-event-left-side.js
 |
 |____infoLeftSide
 | |____destination
 |   |____ehanlin_info_left_side.css
 |   |____ehanlin_info_left_side.html
-|   |____ehanlin-info-left-side.js
+|
+|____js
+| |____destination
+|   |____ehanlin.loader.js
+|   |____jquery-3.2.1.min.js
+|   |____require.js
 |
 |____package.json
 |____README.md
 |____uploadS3.js
+|____changeCurrentPath.js
 ```
 
 destination 可以再新增任何子目錄來存不同類別的檔案，
@@ -54,12 +57,12 @@ destination 可以再新增任何子目錄來存不同類別的檔案，
 ***
 
 # 本機測試：
-改變共用元件庫相依的路徑:
+改變共用元件庫相依的路徑：
 1. 首先執行changeCurrentPath.js  元件庫內容的相依的路徑將改變為current.SNAPSHOT
 ```
 $ node changeCurrentPath.js
 ```
-上正式機必須再改變一次路徑:
+上正式機必須再改變一次路徑：
 1. 再執行changeCurrentPath.js  相依的路徑將改變為current
 ```
 $ node changeCurrentPath.js
