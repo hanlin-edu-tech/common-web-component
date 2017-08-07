@@ -54,14 +54,13 @@ destination 可以再新增任何子目錄來存不同類別的檔案，
 ***
 
 # 本機測試：
-1. 改變共用元件庫相依的路徑
-首先執行changeCurrentPath.js  元件庫內容的相依的路徑將改變為current.SNAPSHOT
-
+改變共用元件庫相依的路徑:
+1. 首先執行changeCurrentPath.js  元件庫內容的相依的路徑將改變為current.SNAPSHOT
 ```
 $ node changeCurrentPath.js
 ```
-2. 上正式機必須再改變一次路徑
-再執行changeCurrentPath.js  相依的路徑將改變為current
+上正式機必須再改變一次路徑:
+1. 再執行changeCurrentPath.js  相依的路徑將改變為current
 ```
 $ node changeCurrentPath.js
 ```
