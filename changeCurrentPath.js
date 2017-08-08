@@ -65,11 +65,48 @@ cssMapPath.forEach(function(item, key, mapObj) {
   readHtmlFileAndChangeCurrentPath();
 });
 
-/**
- * 更改ehanlin js上傳到S3的html路徑
- */
+var jsMapPath = new Map();
+jsMapPath.set("js", "ehanlin-loader.js");
+
+jsMapPath.forEach(function(item, key, mapObj) {
+  var folderName = key.toString();
+  var jsFileName = item.toString();
+  var changeFilePath = `./${folderName}/destination/${jsFileName}`; //取得相對的路徑
+  var filePath = PATH.join(__dirname, `${changeFilePath}`); // 取得html的位址
+  var readJsFileAndChangeCurrentPath = () => {
+    FS.readFile(filePath, "UTF-8", function(err, data) {
+      if (!err) {
+        if (data.includes("current.SNAPSHOT")) {
+          var changeCurrentPath = data.replace(/current\.SNAPSHOT/g, "current");
+        } else if (data.includes("current")) {
+          var changeCurrentPath = data.replace(/current/g, "current.SNAPSHOT");
+        }
+        console.log(changeCurrentPath);
+        writeJsFileToFolder(folderName, jsFileName, changeCurrentPath);
+      } else {
+        console.log(err);
+      }
+    });
+  };
+  var writeJsFileToFolder = (folderName, jsFileName, changePath) => {
+    var fileContent = changePath; // changePath content type is String
+    FS.writeFile(
+      `./${folderName}/destination/${jsFileName}`, // 讓data寫進folder
+      fileContent,
+      "UTF-8",
+      err => {
+        if (err) throw err;
+
+        console.log("The js file was succesfully saved!");
+      }
+    );
+  };
+  readJsFileAndChangeCurrentPath();
+});
 
 /**
+ * 更改ehanlin js上傳到S3的html路徑
+ *
 var jsMapPath = new Map();
 jsMapPath.set("header", "ehanlin-header.js");
 jsMapPath.set("footer", "ehanlin-footer.js");
@@ -119,4 +156,5 @@ jsMapPath.forEach(function(item, key, mapObj) {
   };
   readJsFileAndChangeCurrentPath();
 });
+*
 */
