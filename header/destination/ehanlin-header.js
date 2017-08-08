@@ -5,7 +5,7 @@ require.config({
 });
 
 require(["jquery"], function($) {
-  get = function(url, success, error) {
+  var get = function(url, success, error) {
     return $.ajax({
       type: "GET",
       contentType: "application/json",
@@ -18,26 +18,6 @@ require(["jquery"], function($) {
       xhrFields: { withCredentials: true }
     });
   };
-
-  $("#loginBotton").click(function() {
-    get(
-      "http://test.ehanlin.com.tw/ms-user-status/login?user=" +
-        "521d946be4b0d765448570bd"
-    );
-    get("http://test.ehanlin.com.tw/ms-user-status/userStatus", function(data) {
-      if ($("#userStatus").length) {
-        $(".userName")
-          .text(`${data.studentCard}  ${data.name}`)
-          .append(`    |    <li><a id="logoutButton">登出</a></li>`);
-        $("#loginBotton").remove();
-        $("#register").remove();
-        alert("successful");
-        html();
-      } else {
-        alert("empty data");
-      }
-    });
-  });
 
   var html = function() {
     $("#logoutButton").on("click", function() {
@@ -87,4 +67,13 @@ require(["jquery"], function($) {
     }
     return bodyVal;
   };
+
+  get("http://test.ehanlin.com.tw/ms-user-status/userStatus", function(data) {
+    $(".userName").append(
+      `${data.studentCard}  ${data.name} <span style="color:#9B9B9B"> | </span><li><a id="logoutButton">登出</a></li> <span style="color:#9B9B9B"> | </span>`
+    );
+    $("#loginBotton").remove();
+    $("#register").remove();
+    html();
+  });
 });
