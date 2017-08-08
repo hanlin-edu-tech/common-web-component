@@ -68,6 +68,8 @@ cssMapPath.forEach(function(item, key, mapObj) {
 /**
  * 更改ehanlin js上傳到S3的html路徑
  */
+
+/**
 var jsMapPath = new Map();
 jsMapPath.set("header", "ehanlin-header.js");
 jsMapPath.set("footer", "ehanlin-footer.js");
@@ -117,3 +119,4 @@ jsMapPath.forEach(function(item, key, mapObj) {
   };
   readJsFileAndChangeCurrentPath();
 });
+*/
