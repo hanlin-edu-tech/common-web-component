@@ -4,7 +4,7 @@
     "changeCurrentPath": "node changeCurrentPath.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.93.0",
+    "aws-sdk": "^2.95.0",
     "fs": "0.0.1-security",
     "jquery": "^3.2.1",
     "node-read": "^0.1.7",

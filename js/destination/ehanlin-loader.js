@@ -10,13 +10,13 @@
       request.send();
       request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
-          var el = document
-            .createRange()
-            .createContextualFragment(request.responseText);
+          // var el = document
+          //   .createRange()
+          //   .createContextualFragment(request.responseText);
           var parent = document.getElementById(id);
-          parent.insertBefore(el, parent.firstChild);
+          parent.insertAdjacentHTML("beforeend", request.responseText);
         } else {
-          // We reached our target server, but it returned an error
+          console.log("error status = " + request.status);
         }
       };
 
