@@ -29,7 +29,7 @@ require(["jquery"], function($) {
         null,
         null,
         function(data) {
-          window.location = "./ehanlin_header.html";
+          window.location = "http://test.ehanlin.com.tw";
         }
       );
       return false;
