@@ -100,10 +100,10 @@ var listDestinationPath = (dir, saveDir) => {
           listDestinationPath(entireFilePath, saveDir);
           return;
         }
-
+        // upload(fileName, prefixPath, entireFilePath);
         var currentSnapshot;
         currentSnapshot = `common_webcomponent/current.SNAPSHOT/`;
-        upload(fileName, currentSnapshot, entireFilePath); //上current.SNAPSHOT
+        upload(fileName, currentSnapshot, entireFilePath); //upload to current.SNAPSHOT folder
       });
     } else {
       for (var i = 0; i < files.length; i++) {
@@ -114,11 +114,11 @@ var listDestinationPath = (dir, saveDir) => {
           listDestinationPath(entireFilePath, saveDir);
           return;
         }
-        upload(fileName, prefixPath, entireFilePath); //上tag
+        upload(fileName, prefixPath, entireFilePath); //upload to tag folder
 
         var currentDir;
         currentDir = `common_webcomponent/current/`;
-        upload(fileName, currentDir, entireFilePath); //上current
+        upload(fileName, currentDir, entireFilePath); //upload to current folder
       }
     }
   });
