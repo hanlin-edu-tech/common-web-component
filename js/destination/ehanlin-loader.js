@@ -10,11 +10,12 @@
       request.send();
       request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
-          // var el = document
-          //   .createRange()
-          //   .createContextualFragment(request.responseText);
+          var el = document
+            .createRange()
+            .createContextualFragment(request.responseText);
           var parent = document.getElementById(id);
-          parent.insertAdjacentHTML("beforeend", request.responseText);
+          //parent.insertAdjacentHTML("beforeend", request.responseText);
+          parent.insertBefore(el, parent.firstChild);
         } else {
           console.log("error status = " + request.status);
         }
