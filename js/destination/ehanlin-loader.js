@@ -11,9 +11,6 @@
       request.onload = function() {
         var parent, scripts, singleScript;
         if (request.status >= 200 && request.status < 400) {
-          // var el = document
-          //   .createRange()
-          //   .createContextualFragment(request.responseText);
           parent = document.getElementById(id);
           parent.insertAdjacentHTML("beforeend", request.responseText);
           scripts = parent.querySelectorAll("script");
