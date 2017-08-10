@@ -9,22 +9,25 @@
       request.open(httpMethod, url, true);
       request.send();
       request.onload = function() {
+        var parent, scripts, singleScript;
         if (request.status >= 200 && request.status < 400) {
           // var el = document
           //   .createRange()
           //   .createContextualFragment(request.responseText);
-
-          var parent = document.getElementById(id);
+          parent = document.getElementById(id);
           parent.insertAdjacentHTML("beforeend", request.responseText);
-          parent.querySelectorAll("script").forEach(function(singleScript) {
-            var script = document.createElement("script");
-            script.src = singleScript.src;
-            script.setAttribute(
+          scripts = parent.querySelectorAll("script");
+          for (var i = 0; i < scripts.length; i++) {
+            singleScript = scripts[i];
+            var newScript = document.createElement("script");
+            newScript.src = singleScript.src;
+            newScript.setAttribute(
               "data-main",
               singleScript.getAttribute("data-main")
             );
-            document.head.insertAdjacentElement("beforeEnd", script);
-          });
+            singleScript.remove();
+            document.head.insertAdjacentElement("beforeEnd", newScript);
+          }
         } else {
           console.log("error status = " + request.status);
         }
