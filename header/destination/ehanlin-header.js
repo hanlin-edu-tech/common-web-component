@@ -22,14 +22,14 @@ require(["jquery"], function($) {
   var html = function() {
     $("#logoutButton").on("click", function() {
       logoutPut(
-        "http://test.ehanlin.com.tw",
+        "https://test.ehanlin.com.tw",
         null,
         "Users",
         "521d946be4b0d765448570bd/!logout",
         null,
         null,
         function(data) {
-          window.location = "http://test.ehanlin.com.tw";
+          window.location = "https://test.ehanlin.com.tw";
         }
       );
       return false;
@@ -54,7 +54,7 @@ require(["jquery"], function($) {
       crossDomain: true,
       success: success,
       error: error,
-      url: "http://test.ehanlin.com.tw/Users/521d946be4b0d765448570bd/!logout",
+      url: "https://test.ehanlin.com.tw/Users/521d946be4b0d765448570bd/!logout",
       data: bodyVal(body),
       xhrFields: { withCredentials: true }
     });
@@ -68,7 +68,7 @@ require(["jquery"], function($) {
     return bodyVal;
   };
 
-  get("http://test.ehanlin.com.tw/ms-user-status/userStatus", function(data) {
+  get("https://test.ehanlin.com.tw/ms-user-status/userStatus", function(data) {
     $(".userName").append(
       `${data.studentCard}  ${data.name} <span style="color:#9B9B9B"> | </span><li><a id="logoutButton">登出</a></li> <span style="color:#9B9B9B"> | </span>`
     );
