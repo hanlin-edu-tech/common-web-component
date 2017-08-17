@@ -44,31 +44,31 @@
   var ehanlinComponents = {
     "ehanlin-menu": ajaxUtils.retrieveHtml.bind(
       this,
-      "current.SNAPSHOT/menu/ehanlin_menu.html",
+      "current/menu/ehanlin_menu.html",
       "get",
       "ehanlin-menu"
     ),
     "ehanlin-header": ajaxUtils.retrieveHtml.bind(
       this,
-      "current.SNAPSHOT/header/ehanlin_header.html",
+      "current/header/ehanlin_header.html",
       "get",
       "ehanlin-header"
     ),
     "ehanlin-footer": ajaxUtils.retrieveHtml.bind(
       this,
-      "current.SNAPSHOT/footer/ehanlin_footer.html",
+      "current/footer/ehanlin_footer.html",
       "get",
       "ehanlin-footer"
     ),
     "ehanlin-event-left-side": ajaxUtils.retrieveHtml.bind(
       this,
-      "current.SNAPSHOT/eventLeftSide/ehanlin_event_left_side.html",
+      "current/eventLeftSide/ehanlin_event_left_side.html",
       "get",
       "event-left-side"
     ),
     "info-left-side": ajaxUtils.retrieveHtml.bind(
       this,
-      "current.SNAPSHOT/infoLeftSide/ehanlin_info_left_side.html",
+      "current/infoLeftSide/ehanlin_info_left_side.html",
       "get",
       "info-left-side"
     )
