@@ -95,6 +95,8 @@ var listDestinationPath = (dir, saveDir) => {
 
     if (!TRAVIS_TAG) {
       files.forEach(fileName => {
+        if (isMac_DSstore(fileName)) return;
+
         entireFilePath = PATH.join(dir, fileName);
         if (FS.statSync(entireFilePath).isDirectory()) {
           listDestinationPath(entireFilePath, saveDir);
@@ -124,10 +126,23 @@ var listDestinationPath = (dir, saveDir) => {
   });
 };
 
-// 判斷檔案是否為空
+/* 
+ * 判斷檔案是否為空
+ */
 var determineFileEmpty = files => {
   if (!files || files.length === 0) {
     console.log(`${files} is not found or empty...`);
+    return true;
+  }
+
+  return false;
+};
+
+/*
+ * 略過 mac OS 檔案系統下的 DS_Store
+ */
+var isMac_DSstore = fileName => {
+  if (fileName === ".DS_Store") {
     return true;
   }
 

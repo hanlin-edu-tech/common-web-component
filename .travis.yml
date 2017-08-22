@@ -1,8 +1,5 @@
 language: node_js
-node_js:
-  - "7"
-install:
-  - npm install aws-sdk
+node_js: "8"
+install: npm install aws-sdk
 script:
-  - npm run changeCurrentPath
-  - npm run uploadS3
+  sh deploy.sh

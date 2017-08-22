@@ -42,7 +42,7 @@ cssMapPath.forEach(function(item, key, mapObj) {
             "common_webcomponent/current.SNAPSHOT"
           );
         }
-        console.log(changeCurrentPath);
+        //console.log(changeCurrentPath);
         writeHtmlFileToFolder(folderName, htmlFileName, changeCurrentPath);
       } else {
         console.log(err);
@@ -81,7 +81,7 @@ jsMapPath.forEach(function(item, key, mapObj) {
         } else if (data.includes("current")) {
           var changeCurrentPath = data.replace(/current/g, "current.SNAPSHOT");
         }
-        console.log(changeCurrentPath);
+        //console.log(changeCurrentPath);
         writeJsFileToFolder(folderName, jsFileName, changeCurrentPath);
       } else {
         console.log(err);
