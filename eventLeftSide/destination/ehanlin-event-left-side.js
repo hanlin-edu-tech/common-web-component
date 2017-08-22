@@ -1,4 +1,8 @@
-alert("successful");
-$("#test li a").click(function() {
-  $("#test li a").addClass("select");
-});
+(function() {
+  var link = decodeURIComponent(location.pathname);
+  alert(link);
+  var targetAnchor = document.querySelector(
+    ".menu li > a[href*='" + link + "']"
+  );
+  targetAnchor.classList.add("select");
+})();

@@ -9,21 +9,28 @@
       request.open(httpMethod, url, true);
       request.send();
       request.onload = function() {
-        var parent, scripts, singleScript;
+        var parent, scripts, script, newScript;
         if (request.status >= 200 && request.status < 400) {
           parent = document.getElementById(id);
           parent.insertAdjacentHTML("beforeend", request.responseText);
           scripts = parent.querySelectorAll("script");
-          for (var i = 0; i < scripts.length; i++) {
-            singleScript = scripts[i];
-            var newScript = document.createElement("script");
-            newScript.src = singleScript.src;
-            newScript.setAttribute(
-              "data-main",
-              singleScript.getAttribute("data-main")
-            );
-            singleScript.remove();
-            document.head.insertAdjacentElement("beforeEnd", newScript);
+          if (scripts) {
+            for (var i = 0; i < scripts.length; i++) {
+              script = scripts[i];
+              newScript = document.createElement("script");
+              newScript.src = script.src;
+              //newScript.defer = true;
+              if (script.getAttribute("data-main")) {
+                newScript.setAttribute(
+                  "data-main",
+                  script.getAttribute("data-main")
+                );
+              }
+              script.remove();
+              document
+                .getElementById(id)
+                .insertAdjacentElement("afterend", newScript);
+            }
           }
         } else {
           console.log("error status = " + request.status);

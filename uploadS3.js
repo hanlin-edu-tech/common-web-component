@@ -62,7 +62,7 @@ var findDist = dir => {
 var listDestinationPath = (dir, saveDir) => {
   FS.readdir(dir, (err, files) => {
     var upload = (fileName, prefixPath, entireFilePath) => {
-      // 將當前路徑到 dist 的位置，以前一層目錄取代
+      // 將當前路徑到 destination 的位置，以前一層目錄 ${saveDir} 取代
       // firstDir/second/third/destination => firstDir/second/third
       var suffixPath = entireFilePath.replace(/[\w\/-]*(destination)/, saveDir);
       var key = `${prefixPath}${suffixPath}`;
