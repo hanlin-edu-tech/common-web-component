@@ -9,10 +9,11 @@ AWS.config.update({
   accessKeyId: EHANLIN_S3_ID,
   secretAccessKey: EHANLIN_S3_KEY
 });
-
 const AWS_S3 = new AWS.S3();
 
-// 尋找存在於 S3 common_webcomponent 的最新版本目錄
+/*
+ * 尋找存在於 S3 common_webcomponent 的最新版本目錄
+ */
 var findExistedLastVersionDir = () => {
   var params = {
     Bucket: "ehanlin-web-resource",
@@ -33,7 +34,9 @@ var findExistedLastVersionDir = () => {
   AWS_S3.listObjectVersions(params, retrieve);
 };
 
-// 尋找目標資料夾
+/*
+ * 尋找目標資料夾
+ */
 var findDist = dir => {
   FS.readdir(dir, (err, files) => {
     var entireFilePath;
@@ -55,9 +58,9 @@ var findDist = dir => {
   });
 };
 
-/* 
- 一一列舉讀取含有 destination 路徑的所有目錄與檔案
- 並將檔案上傳至 AWS S3
+/*
+ * 一一列舉讀取含有 destination 路徑的所有目錄與檔案
+ * 並將檔案上傳至 AWS S3
  */
 var listDestinationPath = (dir, saveDir) => {
   FS.readdir(dir, (err, files) => {
