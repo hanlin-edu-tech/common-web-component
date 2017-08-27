@@ -43,7 +43,6 @@ cssMapPath.forEach(function(item, key, mapObj) {
             "common_webcomponent/current.SNAPSHOT"
           );
         }
-        //console.log(changeCurrentPath);
         writeHtmlFileToFolder(folderName, htmlFileName, changeCurrentPath);
       } else {
         console.log(err);

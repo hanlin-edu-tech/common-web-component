@@ -42,7 +42,7 @@ common-web-component
 |
 |____js
 | |____destination
-|   |____ehanlin.loader.js
+|   |____ehanlin-loader.js
 |   |____jquery-3.2.1.min.js
 |   |____require.js
 |
