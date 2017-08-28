@@ -20,7 +20,6 @@
   "ga"
 );
 
-config("OK");
 ga("create", "UA-104669522-5", "auto");
 ga("send", "pageview");
 
