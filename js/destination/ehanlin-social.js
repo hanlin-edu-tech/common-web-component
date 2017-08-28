@@ -20,7 +20,8 @@
   "ga"
 );
 
-ga("create", "UA-104669522-4", "auto");
+config("OK");
+ga("create", "UA-104669522-5", "auto");
 ga("send", "pageview");
 
 /**
@@ -43,6 +44,5 @@ ga("send", "pageview");
   s.parentNode.insertBefore(t, s);
 })(window, document, "script", "//connect.facebook.net/en_US/fbevents.js");
 
-//210352019155685
-fbq("init", "5");
+fbq("init", "210352019155685");
 fbq("track", "PageView");
