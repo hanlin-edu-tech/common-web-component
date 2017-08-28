@@ -20,7 +20,7 @@
   "ga"
 );
 
-ga("create", "UA-104669522-5", "auto");
+ga("create", "UA-31662275-1", "auto");
 ga("send", "pageview");
 
 /**

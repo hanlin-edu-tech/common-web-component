@@ -5,5 +5,5 @@ window.ga =
   };
 ga.l = +new Date();
 // UA-31662275-1
-ga("create", "UA-104669522-4", "auto");
+ga("create", "UA-31662275-1", "auto");
 ga("send", "pageview");
