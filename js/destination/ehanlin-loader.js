@@ -6,6 +6,7 @@
         componentPath;
 
       var request = new XMLHttpRequest();
+      if (!id) return;
       request.open(httpMethod, url, true);
       request.send();
       request.onload = function() {
@@ -68,6 +69,12 @@
       "ehanlin-footer"
     ),
     "ehanlin-event-left-side": ajaxUtils.retrieveHtml.bind(
+      this,
+      "current.SNAPSHOT/eventLeftSide/ehanlin_event_left_side.html",
+      "get",
+      "event-left-side"
+    ),
+    "ehanlin-left-side": ajaxUtils.retrieveHtml.bind(
       this,
       "current.SNAPSHOT/eventLeftSide/ehanlin_event_left_side.html",
       "get",
