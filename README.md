@@ -120,7 +120,7 @@ ehanlin-social.js 會執行 Google Analytics 和 Facebook 的行銷 Pageview 統
 $ node changeCurrentPath.js
 ```
 上正式機必須再改變一次路徑：
-1. 再執行changeCurrentPath.js  相依的路徑將改變為current
+1. 再執行 changeCurrentPath.js  相依的路徑將改變為 current
 ```
 $ node changeCurrentPath.js
 ```
