@@ -109,7 +109,7 @@ var replaceToProduction = () => {
     });
   };
 ```
-# 社交工具：
+# 社群元件：
 呼叫 `https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current.SNAPSHOT/js/ehanlin-social.js`    
 ehanlin-social.js 會執行 Google Analytics 和 Facebook 的行銷 Pageview 統計，    
 其中要注意，測試時，呼叫路徑要記得得是 **current.SNAPSHOT**，這樣才不會誤用 GA 和 FB 的正式帳號，造成流量統計錯誤。
