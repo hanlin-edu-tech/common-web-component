@@ -34,7 +34,8 @@ common-web-component
 |
 ```
 
-destination 可以再新增任何子目錄來存不同類別的檔案，元件大部分會上傳至 AWS S3，上傳時會再將 destination 的名稱取代為元件名。
+destination 可以再新增任何子目錄來存不同類別的檔案，元件大部分會上傳至 AWS S3，    
+上傳時會再將 destination 的名稱取代為元件名。
 
 ## 呼叫元件方式：
 1. 在 platform、平台或相關靜態活動頁引入 ehanlin-loader.js，js 會直接呼叫元件
@@ -51,7 +52,8 @@ destination 可以再新增任何子目錄來存不同類別的檔案，元件�
 
 呼叫複數元件時，元件以 ',' 分隔，EX: `data-module="ehanlin-header, ehanlin-menu, ehanlin-footer"`
 
-2. 在 html body 中的 element，給定與元件名稱相同的 id，元件內容就會嵌入在此 element 中；在呼叫相關元件時，期待是能符合 HTML5 的語意化結構，可增加 google 搜尋引擎的分數，EX：
+2. 在 html body 中的 element，給定與元件名稱相同的 id，元件內容就會嵌入在此 element 中；    
+在呼叫相關元件時，期待是能符合 HTML5 的語意化結構，可增加 google 搜尋引擎的分數，EX：
 
 - ehanlin-header
 `<header id="ehanlin-header"></header>`
@@ -74,7 +76,7 @@ destination 可以再新增任何子目錄來存不同類別的檔案，元件�
 
 其中，注意若為本地測試或上傳至測試機時，路徑為 **current.SNAPSHOT**，    
 若是上傳到正式機，則必須使用 **current**，    
-所以當要佈版至正式機時，記得要把路徑改為 **current**，
+所以當要佈版至正式機時，記得要把路徑改為 **current**。
 
 #### 這裡有提供一段 function 可以把 html 呼叫 ehanlin-loader.js 的路徑替換為 current (**檔案路徑自行更改為對應的結構**)
 ```
@@ -109,7 +111,8 @@ var replaceToProduction = () => {
 ```
 # 社交工具：
 呼叫 `https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current.SNAPSHOT/js/ehanlin-social.js`    
-ehanlin-social.js 會執行 Google Analytics 和 Facebook 的行銷 Pageview 統計，其中要注意，測試時，呼叫路徑要記得得是 **current.SNAPSHOT**，這樣才不會誤用 GA 和 FB 的正式帳號，造成流量統計錯誤
+ehanlin-social.js 會執行 Google Analytics 和 Facebook 的行銷 Pageview 統計，    
+其中要注意，測試時，呼叫路徑要記得得是 **current.SNAPSHOT**，這樣才不會誤用 GA 和 FB 的正式帳號，造成流量統計錯誤。
 
 ***
 # 本機開發元件時測試：
