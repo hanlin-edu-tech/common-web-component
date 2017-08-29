@@ -34,8 +34,7 @@ common-web-component
 |
 ```
 
-destination 可以再新增任何子目錄來存不同類別的檔案，
-元件大部分會上傳至 AWS S3，上傳時會再將 destination 的名稱取代為元件名。
+destination 可以再新增任何子目錄來存不同類別的檔案，元件大部分會上傳至 AWS S3，上傳時會再將 destination 的名稱取代為元件名。
 
 ## 呼叫元件方式：
 1. 在 platform、平台或相關靜態活動頁引入 ehanlin-loader.js，js 會直接呼叫元件
@@ -73,7 +72,8 @@ destination 可以再新增任何子目錄來存不同類別的檔案，
 呼叫 ehanlin-loader.js，其原始檔路徑為：    
 `https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current.SNAPSHOT/js/ehanlin-loader.js`
 
-其中，注意到若為本地測試或上傳至測試機時，路徑為 **current.SNAPSHOT** 若是上傳到正式機，則必須使用 **current**，
+其中，注意若為本地測試或上傳至測試機時，路徑為 **current.SNAPSHOT**，    
+若是上傳到正式機，則必須使用 **current**，    
 所以當要佈版至正式機時，記得要把路徑改為 **current**，
 
 #### 這裡有提供一段 function 可以把 html 呼叫 ehanlin-loader.js 的路徑替換為 current (**檔案路徑自行更改為對應的結構**)
