@@ -36,17 +36,17 @@ cssMapPath.forEach(function(item, key, mapObj) {
     FS.readFile(filePath, "UTF-8", function(err, data) {
       if (!err) {
         if (data.includes("current.SNAPSHOT")) {
-          var changeCurrentPath = data.replace(
+          var changeContent = data.replace(
             /common_webcomponent\/current\.SNAPSHOT/g,
             "common_webcomponent/current"
           );
         } else if (data.includes("current")) {
-          var changeCurrentPath = data.replace(
+          var changeContent = data.replace(
             /common_webcomponent\/current/g,
             "common_webcomponent/current.SNAPSHOT"
           );
         }
-        writeHtmlFileToFolder(folderName, htmlFileName, changeCurrentPath);
+        writeHtmlFileToFolder(folderName, htmlFileName, changeContent);
       } else {
         console.log(err);
       }
@@ -88,11 +88,11 @@ jsMapPath.forEach(function(item, key, mapObj) {
     FS.readFile(filePath, "UTF-8", function(err, data) {
       if (!err) {
         if (data.includes("current.SNAPSHOT")) {
-          var changeCurrentPath = data.replace(/current\.SNAPSHOT/g, "current");
+          var changeContent = data.replace(/current\.SNAPSHOT/g, "current");
         } else if (data.includes("current")) {
-          var changeCurrentPath = data.replace(/current/g, "current.SNAPSHOT");
+          var changeContent = data.replace(/current/g, "current.SNAPSHOT");
         }
-        writeJsFileToFolder(folderName, jsFileName, changeCurrentPath);
+        writeJsFileToFolder(folderName, jsFileName, changeContent);
       } else {
         console.log(err);
       }
