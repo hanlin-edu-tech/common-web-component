@@ -27,7 +27,7 @@ var findExistedLastVersionDir = () => {
     else {
       // targetDir = common_webcomponent/vX.X.X
       prefixPath = data.CommonPrefixes[data.CommonPrefixes.length - 1].Prefix;
-      findDist(__dirname);
+      findDist(sourceDir);
     }
   };
 
@@ -153,8 +153,10 @@ var isMac_DSstore = fileName => {
 };
 
 var prefixPath;
+var sourceDir = PATH.join(__dirname, "../");
+
 if (!TRAVIS_TAG) findExistedLastVersionDir();
 else {
   prefixPath = `common_webcomponent/${TRAVIS_TAG}/`;
-  findDist(__dirname);
+  findDist(sourceDir);
 }
