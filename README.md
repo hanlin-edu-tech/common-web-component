@@ -25,54 +25,22 @@ common-web-component
 |   |____ehanlin_menu.css
 |   |____ehanlin_menu.html
 |
-|____footer
-| |____destination
-|   |____ehanlin_footer.css
-|   |____ehanlin_footer.html
-|
-|____eventLeftSide
-| |____destination
-|   |____ehanlin_event_left_side.css
-|   |____ehanlin_event_left_side.html
-|
-|____infoLeftSide
-| |____destination
-|   |____ehanlin_info_left_side.css
-|   |____ehanlin_info_left_side.html
-|
 |____js
 | |____destination
+|   |____ehanlin-social.js
 |   |____ehanlin-loader.js
 |   |____jquery-3.2.1.min.js
 |   |____require.js
 |
-|____package.json
-|____README.md
-|____uploadS3.js
-|____changeCurrentPath.js
 ```
 
 destination 可以再新增任何子目錄來存不同類別的檔案，
 元件大部分會上傳至 AWS S3，上傳時會再將 destination 的名稱取代為元件名。
-***
-
-# 本機測試：
-改變共用元件庫相依的路徑：
-1. 首先執行changeCurrentPath.js  元件庫內容的相依的路徑將改變為current.SNAPSHOT
-```
-$ node changeCurrentPath.js
-```
-上正式機必須再改變一次路徑：
-1. 再執行changeCurrentPath.js  相依的路徑將改變為current
-```
-$ node changeCurrentPath.js
-```
-***
 
 ## 呼叫元件方式：
 1. 在 platform、平台或相關靜態活動頁引入 ehanlin-loader.js，js 會直接呼叫元件
 ```
-<script type="text/javascript" data-module="ehanlin-header, ehanlin-menu" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current/js/ehanlin-loader.js"></script>
+<script type="text/javascript" data-module="ehanlin-header, ehanlin-menu" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current.SNAPSHOT/js/ehanlin-loader.js"></script>
 ```
 若想要指定呼叫的元件，則在 data-module attribute 指定即可。元件名稱：
 
@@ -100,3 +68,59 @@ $ node changeCurrentPath.js
 
 - ehanlin-info-left-side
 `<section id="ehanlin-info-left-side"></section>`
+***
+# 測試套與正式套元件：
+呼叫 ehanlin-loader.js，其原始檔路徑為：    
+`https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current.SNAPSHOT/js/ehanlin-loader.js`
+
+其中，注意到若為本地測試或上傳至測試機時，路徑為 **current.SNAPSHOT** 若是上傳到正式機，則必須使用 **current**，
+所以當要佈版至正式機時，記得要把路徑改為 **current**，
+
+#### 這裡有提供一段 function 可以把 html 呼叫 ehanlin-loader.js 的路徑替換為 current (**檔案路徑自行更改為對應的結構**)
+```
+var replaceToProduction = () => {
+    fs.readdir(destinationDir, (err, files) => {
+      var writeToFile = fileContent => {
+        fs.writeFile(entireFilePath, fileContent, "UTF-8", err => {
+          if (err) throw err;
+          console.log("The html file was succesfully saved!");
+        });
+      };
+
+      var changeToCurrent = () => {
+        fs.readFile(entireFilePath, "UTF-8", function(err, data) {
+          if (err) throw err;
+          if (data.includes("current.SNAPSHOT")) {
+            var fileContent = data.replace(/current\.SNAPSHOT/g, "current");
+            writeToFile(fileContent);
+          }
+        });
+      };
+      var entireFilePath;
+      if (err) throw err;
+      files.forEach(fileName => {
+        if (/(.html)$/.test(fileName)) {
+          entireFilePath = path.join(destinationDir, fileName);
+          changeToCurrent();
+        }
+      });
+    });
+  };
+```
+# 社交工具：
+呼叫    
+`https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current.SNAPSHOT/js/ehanlin-social.js`
+ehanlin-social.js 會執行 Google Analytics 和 Facebook 的行銷 Pageview 統計，其中要注意，測試時，呼叫路徑要記得得是 **current.SNAPSHOT**，這樣才不會誤用 GA 和 FB 的正式帳號，造成流量統計錯誤
+
+***
+# 本機開發元件時測試：
+改變共用元件庫相依的路徑：
+1. 首先執行 changeCurrentPath.js  元件庫內容的相依的路徑將改變為 current.SNAPSHOT
+```
+$ node changeCurrentPath.js
+```
+上正式機必須再改變一次路徑：
+1. 再執行changeCurrentPath.js  相依的路徑將改變為current
+```
+$ node changeCurrentPath.js
+```
