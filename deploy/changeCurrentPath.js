@@ -56,7 +56,7 @@ cssMapPath.forEach(function(item, key, mapObj) {
   var writeHtmlFileToFolder = (folderName, htmlFileName, changePath) => {
     var fileContent = changePath; // changePath content type is String
     FS.writeFile(
-      `../${folderName}/destination/${htmlFileName}`, // 讓data寫進folder
+      `${folderName}/destination/${htmlFileName}`, // 讓data寫進folder
       fileContent,
       "UTF-8",
       err => {
@@ -102,7 +102,7 @@ jsMapPath.forEach(function(item, key, mapObj) {
   var writeJsFileToFolder = (folderName, jsFileName, changePath) => {
     var fileContent = changePath; // changePath content type is String
     FS.writeFile(
-      `../${folderName}/destination/${jsFileName}`, // 讓data寫進folder
+      `${folderName}/destination/${jsFileName}`, // 讓data寫進folder
       fileContent,
       "UTF-8",
       err => {
