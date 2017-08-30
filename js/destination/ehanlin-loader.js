@@ -13,6 +13,7 @@
         var parent, scripts, script, newScript;
         if (request.status >= 200 && request.status < 400) {
           parent = document.getElementById(id);
+          if (!parent) return;
           parent.insertAdjacentHTML("beforeend", request.responseText);
           scripts = parent.querySelectorAll("script");
           if (scripts) {
@@ -28,9 +29,7 @@
                 );
               }
               script.remove();
-              document
-                .getElementById(id)
-                .insertAdjacentElement("afterend", newScript);
+              parent.insertAdjacentElement("afterend", newScript);
             }
           }
         } else {
@@ -90,11 +89,13 @@
 
   var script = document.querySelector("script[data-module]");
   var dataModules = script.getAttribute("data-module");
+  var fn;
 
   if (dataModules) {
     dataModules = dataModules.split(",");
     for (var dataModule of dataModules) {
-      ehanlinComponents[dataModule.trim()]();
+      fn = ehanlinComponents[dataModule.trim()];
+      if (typeof fn === "function") fn();
     }
   }
 })();

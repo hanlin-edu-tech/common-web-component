@@ -39,7 +39,7 @@ var findExistedLastVersionDir = () => {
  */
 var findDist = dir => {
   FS.readdir(dir, (err, files) => {
-    var entireFilePath;
+    var entireFilePath, saveDir;
     if (determineFileEmpty(files)) return;
 
     files.forEach(fileName => {
@@ -51,7 +51,7 @@ var findDist = dir => {
         }
       } else {
         // 讀取路徑含有 destination 的目錄
-        var saveDir = PATH.basename(dir);
+        saveDir = PATH.basename(dir);
         listDestinationPath(dir, saveDir);
       }
     });
@@ -98,6 +98,7 @@ var listDestinationPath = (dir, saveDir) => {
 
     if (!TRAVIS_TAG) {
       files.forEach(fileName => {
+        var currentSnapshotDir;
         if (isMac_DSstore(fileName)) return;
 
         entireFilePath = PATH.join(dir, fileName);
@@ -106,12 +107,12 @@ var listDestinationPath = (dir, saveDir) => {
           return;
         }
         // upload(fileName, prefixPath, entireFilePath);
-        var currentSnapshot;
-        currentSnapshot = `common_webcomponent/current.SNAPSHOT/`;
-        upload(fileName, currentSnapshot, entireFilePath); //upload to current.SNAPSHOT folder
+        currentSnapshotDir = `common_webcomponent/current.SNAPSHOT/`;
+        upload(fileName, currentSnapshotDir, entireFilePath); //upload to current.SNAPSHOT folder
       });
     } else {
       for (var i = 0; i < files.length; i++) {
+        var currentDir;
         var fileName = files[i];
         entireFilePath = PATH.join(dir, fileName);
 
@@ -120,8 +121,6 @@ var listDestinationPath = (dir, saveDir) => {
           return;
         }
         upload(fileName, prefixPath, entireFilePath); //upload to tag folder
-
-        var currentDir;
         currentDir = `common_webcomponent/current/`;
         upload(fileName, currentDir, entireFilePath); //upload to current folder
       }
