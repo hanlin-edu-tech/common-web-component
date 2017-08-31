@@ -6,17 +6,19 @@ const EHANLIN_S3_KEY = process.env.EHANLIN_S3_KEY;
 const TRAVIS_TAG = process.env.TRAVIS_TAG;
 const AWS_S3 = new AWS.S3();
 var obj = JSON.parse(FS.readFileSync("../addFileUsingJson.json", "UTF-8"));
-console.log(obj);
 
 AWS.config.update({
   accessKeyId: EHANLIN_S3_ID,
   secretAccessKey: EHANLIN_S3_KEY
 });
 
+/**
+ * 更改元件內容路徑
+ */
+
 var readFileChangeContent = (filePath, fileName) => {
   FS.readFile(filePath, "UTF-8", function(err, data) {
     if (!err) {
-      console.log(filePath);
       if (data.includes("current.SNAPSHOT")) {
         var changeContent = data.replace(/current\.SNAPSHOT/g, "current");
       } else if (data.includes("current")) {
@@ -36,9 +38,6 @@ var writeFileToFolder = (filePath, changeContent, fileName) => {
   });
 };
 
-/**
- * 更改元件內容路徑
- */
 for (var key in obj) {
   var folderName = key.toString();
   var fileName = obj[key];
