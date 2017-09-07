@@ -5,7 +5,7 @@ const EHANLIN_S3_ID = process.env.EHANLIN_S3_ID;
 const EHANLIN_S3_KEY = process.env.EHANLIN_S3_KEY;
 const TRAVIS_TAG = process.env.TRAVIS_TAG;
 const AWS_S3 = new AWS.S3();
-var obj = JSON.parse(FS.readFileSync("../addFileUsingJson.json", "UTF-8"));
+var obj = JSON.parse(FS.readFileSync("addFileUsingJson.json", "UTF-8"));
 
 AWS.config.update({
   accessKeyId: EHANLIN_S3_ID,
