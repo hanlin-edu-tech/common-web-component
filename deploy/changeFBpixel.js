@@ -14,6 +14,7 @@ var replaceFBpixel = (sourceDir, script) => {
       FS.readFile(entireFilePath, "UTF-8", function(err, data) {
         if (!err) {
           if (data.includes("1640262175986847")) {
+            // 轉正式 FB pixel
             var fileContent = data.replace(
               /1640262175986847/g,
               "210352019155685"
