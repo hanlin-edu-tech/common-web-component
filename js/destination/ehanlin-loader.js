@@ -48,40 +48,48 @@
     }
   };
 
-  var ehanlinComponents = {
+  var currentDir = "current",
+    ehanlinComponents;
+
+  if (location.href.includes("test.ehanlin.com.tw")) {
+    console.log("!!! 目前在測試環境 !!!");
+    currentDir = "current.SNAPSHOT";
+  }
+
+  ehanlinComponents = {
     "ehanlin-menu": ajaxUtils.retrieveHtml.bind(
       this,
-      "current.SNAPSHOT/menu/ehanlin_menu.html",
+      currentDir + "/menu/ehanlin_menu.html",
       "get",
       "ehanlin-menu"
     ),
     "ehanlin-header": ajaxUtils.retrieveHtml.bind(
       this,
-      "current.SNAPSHOT/header/ehanlin_header.html",
+      currentDir + "/header/ehanlin_header.html",
       "get",
       "ehanlin-header"
     ),
     "ehanlin-footer": ajaxUtils.retrieveHtml.bind(
       this,
-      "current.SNAPSHOT/footer/ehanlin_footer.html",
+      currentDir + "/footer/ehanlin_footer.html",
       "get",
       "ehanlin-footer"
     ),
     "ehanlin-event-left-side": ajaxUtils.retrieveHtml.bind(
       this,
-      "current.SNAPSHOT/eventLeftSide/ehanlin_event_left_side.html",
+      currentDir + "/eventLeftSide/ehanlin_event_left_side.html",
       "get",
       "event-left-side"
     ),
     "ehanlin-left-side": ajaxUtils.retrieveHtml.bind(
       this,
-      "current.SNAPSHOT/eventLeftSide/ehanlin_event_left_side.html",
+      currentDir + "/eventLeftSide/ehanlin_event_left_side.html",
       "get",
       "event-left-side"
     ),
     "info-left-side": ajaxUtils.retrieveHtml.bind(
       this,
-      "current.SNAPSHOT/infoLeftSide/ehanlin_info_left_side.html",
+      currentDir + "/infoLeftSide/ehanlin_info_left_side.html",
       "get",
       "info-left-side"
     )
