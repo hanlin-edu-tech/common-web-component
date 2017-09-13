@@ -19,6 +19,7 @@ var replaceFBpixel = (sourceDir, script) => {
     var changePixelInCurrent = entireFilePath => {
       FS.readFile(entireFilePath, "UTF-8", function(err, data) {
         if (!err) {
+          // FB 行銷像素的測試編號
           if (data.includes("1640262175986847")) {
             // 轉正式 FB pixel
             var fileContent = data.replace(
