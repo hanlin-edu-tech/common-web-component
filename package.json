@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "uploadS3": "node uploadS3.js",
+    "uploadS3": "node ./deploy/uploadS3.js",
     "changeCurrentPath": "node ./deploy/changeCurrentPath.js",
     "changeFBpixel": "node ./deploy/changeFBpixel.js"
   },
