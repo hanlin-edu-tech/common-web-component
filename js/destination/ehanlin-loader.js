@@ -97,13 +97,13 @@
 
   var script = document.querySelector("script[data-module]");
   var dataModules = script.getAttribute("data-module");
-  var fn;
+  var execFunction;
 
   if (dataModules) {
     dataModules = dataModules.split(",");
     for (var dataModule of dataModules) {
-      fn = ehanlinComponents[dataModule.trim()];
-      if (typeof fn === "function") fn();
+      execFunction = ehanlinComponents[dataModule.trim()];
+      if (typeof execFunction === "function") execFunction();
     }
   }
 })();
