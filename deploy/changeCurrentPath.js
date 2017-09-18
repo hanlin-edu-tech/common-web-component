@@ -15,7 +15,6 @@ AWS.config.update({
 /**
  * 更改元件內容路徑
  */
-
 var readFileChangeContent = (filePath, fileName) => {
   FS.readFile(filePath, "UTF-8", function(err, data) {
     if (!err) {
@@ -31,6 +30,9 @@ var readFileChangeContent = (filePath, fileName) => {
   });
 };
 
+/**
+ * 替後內容後，重寫入檔案 
+ */
 var writeFileToFolder = (filePath, changeContent, fileName) => {
   FS.writeFile(filePath, changeContent, "UTF-8", err => {
     if (err) throw err;
