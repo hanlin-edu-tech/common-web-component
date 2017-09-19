@@ -1,11 +1,56 @@
-.marquee {
+#ehanlin-header .marquee {
   width: 980px;
   height: 35px;
   overflow: hidden;
+  background-color: #f86767;
+  -webkit-animation-name: example;
+  -webkit-animation-duration: 10s;
+  animation-name: example;
+  animation-duration: 10s;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 2px rgba(20%, 20%, 40%, 0.6),
+    4px 4px 6px rgba(20%, 20%, 40%, 0.4), 6px 6px 12px rgba(20%, 20%, 40%, 0.4);
 }
 
 .marquee-content {
   font-family: "微軟正黑體";
   font-size: 20px;
   display: inline-block;
+  color: #ffffff;
+}
+
+@keyframes example {
+  0% {
+    background-color: #f8f5f5;
+  }
+  10% {
+    background-color: #f8ebeb;
+  }
+  20% {
+    background-color: #f6dede;
+  }
+  30% {
+    background-color: #f6cdcd;
+  }
+  40% {
+    background-color: #f4bdbd;
+  }
+  50% {
+    background-color: #f6a5a5;
+  }
+  60% {
+    background-color: #f49595;
+  }
+  70% {
+    background-color: #f58888;
+  }
+  80% {
+    background-color: #fa7a7a;
+  }
+  90% {
+    background-color: #fa7070;
+  }
+  100% {
+    background-color: #f86767;
+  }
 }

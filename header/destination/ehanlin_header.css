@@ -1,11 +1,11 @@
 #ehanlin-header.basic {
   width: 980px;
-  background: url('https://www.ehanlin.com.tw/images/body_bg.jpg') repeat;
+  background: url("https://www.ehanlin.com.tw/images/body_bg.jpg") repeat;
   color: #898989;
   font-size: 13px;
   text-align: right;
   margin: 0 auto;
-  padding: 0;
+  padding: 0px;
   font-family: "微軟正黑體", Arial, sans-serif;
 }
 
