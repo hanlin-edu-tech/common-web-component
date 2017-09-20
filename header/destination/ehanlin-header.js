@@ -92,11 +92,10 @@ require(["jquery", "marquee"], function($, marquee) {
   $.get(
     "https://test.ehanlin.com.tw/Marquee",
     function(data) {
-      console.log("測試1");
       $.each(data, function(index, element) {
-        console.log("測試2");
         var liText = $("<li></li>")
           .addClass("marquee-content")
+          .css("background-color", element.backgroundColor)
           .css("margin-top", "10px")
           .html(element.text);
         $(".marquee ul").append(liText);
@@ -104,7 +103,6 @@ require(["jquery", "marquee"], function($, marquee) {
     },
     "json"
   ).done(function() {
-    console.log("測試3");
     $mq.marquee({ duration: 15000, direction: "left", duplicated: true });
   });
 });
