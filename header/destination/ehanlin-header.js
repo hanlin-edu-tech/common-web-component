@@ -1,10 +1,19 @@
 require.config({
+  shim: {
+    marquee: {
+      deps: ["jquery"],
+      exports: "marquee"
+    }
+  },
+
   paths: {
-    jquery: "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min"
+    jquery: "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min",
+    marquee: "https://cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min"
   }
 });
 
-require(["jquery"], function($) {
+require(["jquery", "marquee"], function($, marquee) {
+  var $mq = $(".marquee");
   var get = function(url, success, error) {
     return $.ajax({
       type: "GET",
@@ -75,5 +84,27 @@ require(["jquery"], function($) {
     $("#loginBotton").remove();
     $("#register").remove();
     html();
+  });
+
+  /**
+   * marquee 跑馬燈
+   */
+  $.get(
+    "https://test.ehanlin.com.tw/Marquee",
+    function(data) {
+      console.log("測試1");
+      $.each(data, function(index, element) {
+        console.log("測試2");
+        var liText = $("<li></li>")
+          .addClass("marquee-content")
+          .css("margin-top", "10px")
+          .html(element.text);
+        $(".marquee ul").append(liText);
+      });
+    },
+    "json"
+  ).done(function() {
+    console.log("測試3");
+    $mq.marquee({ duration: 15000, direction: "left", duplicated: true });
   });
 });
