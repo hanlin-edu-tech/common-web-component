@@ -1,8 +1,8 @@
 require.config({
   shim: {
-    marquee: {
+    marqueeMin: {
       deps: ["jquery"],
-      exports: "marquee"
+      exports: "marqueeMin"
     }
   },
 
