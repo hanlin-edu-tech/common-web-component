@@ -12,9 +12,9 @@ require.config({
   }
 });
 
-require(["jquery", "marquee"], function($, marquee) {
+require(["jquery", "marquee"], function ($, marquee) {
   var $mq = $(".marquee");
-  var get = function(url, success, error) {
+  var get = function (url, success, error) {
     return $.ajax({
       type: "GET",
       contentType: "application/json",
@@ -24,12 +24,14 @@ require(["jquery", "marquee"], function($, marquee) {
       success: success,
       error: error,
       url: url,
-      xhrFields: { withCredentials: true }
+      xhrFields: {
+        withCredentials: true
+      }
     });
   };
 
-  var html = function() {
-    $("#logoutButton").on("click", function() {
+  var html = function () {
+    $("#logoutButton").on("click", function () {
       logoutPut(
         "https://www.ehanlin.com.tw",
         null,
@@ -37,7 +39,7 @@ require(["jquery", "marquee"], function($, marquee) {
         "521d946be4b0d765448570bd/!logout",
         null,
         null,
-        function(data) {
+        function (data) {
           window.location = "https://www.ehanlin.com.tw";
         }
       );
@@ -45,7 +47,7 @@ require(["jquery", "marquee"], function($, marquee) {
     });
   };
 
-  var logoutPut = function(
+  var logoutPut = function (
     host,
     filter,
     resource,
@@ -65,19 +67,23 @@ require(["jquery", "marquee"], function($, marquee) {
       error: error,
       url: "https://www.ehanlin.com.tw/Users/521d946be4b0d765448570bd/!logout",
       data: bodyVal(body),
-      xhrFields: { withCredentials: true }
+      xhrFields: {
+        withCredentials: true
+      }
     });
   };
 
-  var bodyVal = function(body) {
+  var bodyVal = function (body) {
     var bodyVal = "";
     if (body != null) {
-      bodyVal = JSON.stringify({ value: body });
+      bodyVal = JSON.stringify({
+        value: body
+      });
     }
     return bodyVal;
   };
 
-  get("https://www.ehanlin.com.tw/ms-user-status/userStatus", function(data) {
+  get("https://www.ehanlin.com.tw/ms-user-status/userStatus", function (data) {
     $(".userName").append(
       `<a href="/Users/${data.user}.html">${data.studentCard}  ${data.name}</a><span style="color:#9B9B9B"> | </span><li><a id="logoutButton">登出</a></li> <span style="color:#9B9B9B"> | </span>`
     );
@@ -91,18 +97,23 @@ require(["jquery", "marquee"], function($, marquee) {
    */
   $.get(
     "https://test.ehanlin.com.tw/Marquee",
-    function(data) {
-      $.each(data, function(index, element) {
+    function (data) {
+      $.each(data, function (index, element) {
         var liText = $("<li></li>")
           .addClass("marquee-content")
-          .css("background-color", element.backgroundColor)
-          .css("margin-top", "10px")
+          .css({
+            "background-color": element.backgroundColor
+          })
           .html(element.text);
         $(".marquee ul").append(liText);
       });
     },
     "json"
-  ).done(function() {
-    $mq.marquee({ duration: 15000, direction: "left", duplicated: true });
+  ).done(function () {
+    $mq.marquee({
+      duration: 15000,
+      direction: "left",
+      duplicated: true
+    });
   });
 });
