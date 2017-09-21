@@ -12,7 +12,7 @@ require.config({
   }
 });
 
-require(["ehanlin-marquee", "ehanlin-userstatus"], function(
-  eMarquee,
-  eUserStatus
-) {});
+/**
+ * requireJs 模組化
+ */
+require(["ehanlin-userstatus"], function(eUserStatus) {});
