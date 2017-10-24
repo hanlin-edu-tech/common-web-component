@@ -19,6 +19,6 @@ require(["ehanlin-userstatus", "ehanlin-carts"], function(
   ehanlinUserStatus,
   ehanlinCarts
 ) {
-  ehanlinCarts.retrieveCarts();
   ehanlinUserStatus.retrieveUserStatus();
+  ehanlinCarts.retrieveCarts();
 });
