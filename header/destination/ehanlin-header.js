@@ -15,4 +15,10 @@ require.config({
 /**
  * requireJs 模組化
  */
-require(["ehanlin-userstatus"], function(eUserStatus) {});
+require(["ehanlin-userstatus", "ehanlin-carts"], function(
+  ehanlinUserStatus,
+  ehanlinCarts
+) {
+  ehanlinCarts.retrieveCarts();
+  ehanlinUserStatus.retrieveUserStatus();
+});
