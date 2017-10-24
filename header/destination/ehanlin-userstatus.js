@@ -71,15 +71,12 @@ require(["jquery"], function($) {
     return bodyVal;
   };
 
-  var retrieveUserStatus = function() {
-    get("https://www.ehanlin.com.tw/ms-user-status/userStatus", function(data) {
-      $(".userName").append(
-        `<a href="/Users/${data.user}.html">${data.studentCard}  ${data.name}</a><span style="color:#9B9B9B"> | </span><li><a id="logoutButton">登出</a></li> <span style="color:#9B9B9B"> | </span>`
-      );
-      $("#loginBotton").remove();
-      $("#register").remove();
-      html();
-    });
-  };
-  return retrieveUserStatus;
+  get("https://www.ehanlin.com.tw/ms-user-status/userStatus", function(data) {
+    $(".userName").append(
+      `<a href="/Users/${data.user}.html">${data.studentCard}  ${data.name}</a><span style="color:#9B9B9B"> | </span><li><a id="logoutButton">登出</a></li> <span style="color:#9B9B9B"> | </span>`
+    );
+    $("#loginBotton").remove();
+    $("#register").remove();
+    html();
+  });
 });

@@ -18,7 +18,4 @@ require.config({
 require(["ehanlin-userstatus", "ehanlin-carts"], function(
   ehanlinUserStatus,
   ehanlinCarts
-) {
-  ehanlinUserStatus.retrieveUserStatus();
-  ehanlinCarts.retrieveCarts();
-});
+) {});
