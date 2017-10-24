@@ -15,6 +15,6 @@
   s.parentNode.insertBefore(t, s);
 })(window, document, "script", "//connect.facebook.net/en_US/fbevents.js");
 
-//210352019155685
+// 正式 pixel 帳號 210352019155685
 fbq("init", "1640262175986847");
 fbq("track", "PageView");

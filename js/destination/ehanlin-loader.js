@@ -11,17 +11,20 @@
       request.send();
       request.onload = function() {
         var parent, scripts, script, newScript;
+
         if (request.status >= 200 && request.status < 400) {
           parent = document.getElementById(id);
           if (!parent) return;
+
           parent.insertAdjacentHTML("beforeend", request.responseText);
+
+          // 重新加載 component 頁的 js
           scripts = parent.querySelectorAll("script");
           if (scripts) {
             for (var i = 0; i < scripts.length; i++) {
               script = scripts[i];
               newScript = document.createElement("script");
               newScript.src = script.src;
-              //newScript.defer = true;
               if (script.getAttribute("data-main")) {
                 newScript.setAttribute(
                   "data-main",
