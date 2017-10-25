@@ -6,7 +6,6 @@ require(["jquery"], function($) {
     },
     function(resp) {
       if (resp.success && resp.result) {
-        console.log("no tag commit");
         $("#car_sum").text(resp.result.items.length);
       }
     }
