@@ -28,6 +28,7 @@ header#ehanlin-header {
 }
 
 #ehanlin-header a.logo {
+    float: left;
     display: inline-block;
     width: 304px;
     height: 35px;
