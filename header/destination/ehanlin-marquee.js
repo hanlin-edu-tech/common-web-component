@@ -1,18 +1,21 @@
 /**
  * ehanlin 跑馬燈
  */
-require(["jquery3_2_1", "marquee"], function(jquery3_2_1, marquee) {
-  var $mq = jquery3_2_1(".marquee");
-  jquery3_2_1
+require(["jQuery3_noConflict", "marquee"], function(
+  jQuery3_noConflict,
+  marquee
+) {
+  var $mq = jQuery3_noConflict(".marquee");
+  jQuery3_noConflict
     .get(
       "https://test.ehanlin.com.tw/Marquee",
       function(data) {
-        jquery3_2_1.each(data, function(index, element) {
-          var liText = jquery3_2_1("<li></li>")
+        jQuery3_noConflict.each(data, function(index, element) {
+          var liText = jQuery3_noConflict("<li></li>")
             .addClass("marquee-content")
             .css({ "background-color": element.backgroundColor })
             .html(element.text);
-          jquery3_2_1(".marquee ul").append(liText);
+          jQuery3_noConflict(".marquee ul").append(liText);
         });
       },
       "json"

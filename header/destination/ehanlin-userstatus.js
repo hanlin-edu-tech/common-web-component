@@ -1,9 +1,9 @@
 /**
  * user 微服務
  */
-define(["jquery3_2_1"], function(jquery3_2_1) {
+define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
   var get = function(url, success, error) {
-    return jquery3_2_1.ajax({
+    return jQuery3_noConflict.ajax({
       type: "GET",
       contentType: "application/json",
       dataType: "json",
@@ -19,7 +19,7 @@ define(["jquery3_2_1"], function(jquery3_2_1) {
   };
 
   var html = function() {
-    jquery3_2_1("#logoutButton").on("click", function() {
+    jQuery3_noConflict("#logoutButton").on("click", function() {
       logoutPut(
         "https://www.ehanlin.com.tw",
         null,
@@ -45,7 +45,7 @@ define(["jquery3_2_1"], function(jquery3_2_1) {
     success,
     error
   ) {
-    return jquery3_2_1.ajax({
+    return jQuery3_noConflict.ajax({
       type: "PUT",
       contentType: "application/json",
       dataType: "json",
@@ -72,11 +72,11 @@ define(["jquery3_2_1"], function(jquery3_2_1) {
   };
 
   get("https://www.ehanlin.com.tw/ms-user-status/userStatus", function(data) {
-    jquery3_2_1(".userName").append(
+    jQuery3_noConflict(".userName").append(
       `<a href="/Users/${data.user}.html">${data.studentCard}  ${data.name}</a><span style="color:#9B9B9B"> | </span><li><a id="logoutButton">登出</a></li> <span style="color:#9B9B9B"> | </span>`
     );
-    jquery3_2_1("#loginBotton").remove();
-    jquery3_2_1("#register").remove();
+    jQuery3_noConflict("#loginBotton").remove();
+    jQuery3_noConflict("#register").remove();
     html();
   });
 });
