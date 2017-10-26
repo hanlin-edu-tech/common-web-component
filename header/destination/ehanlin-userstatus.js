@@ -37,7 +37,6 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
       cache: false,
       crossDomain: true,
       success: success,
-      error: error,
       url: url,
       data: bodyVal(body),
       xhrFields: {
