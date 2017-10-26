@@ -20,31 +20,16 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
 
   var html = function() {
     jQuery3_noConflict("#logoutButton").on("click", function() {
-      logoutPut(
-        "https://www.ehanlin.com.tw",
-        null,
-        "Users",
-        "521d946be4b0d765448570bd/!logout",
-        null,
-        null,
-        function(data) {
-          window.location = "https://www.ehanlin.com.tw";
-        }
-      );
+      logoutPut("/Users/521d946be4b0d765448570bd/!logout", null, function(
+        data
+      ) {
+        window.location = location.hostname;
+      });
       return false;
     });
   };
 
-  var logoutPut = function(
-    host,
-    filter,
-    resource,
-    attribute,
-    option,
-    body,
-    success,
-    error
-  ) {
+  var logoutPut = function(url, body, success) {
     return jQuery3_noConflict.ajax({
       type: "PUT",
       contentType: "application/json",
@@ -53,7 +38,7 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
       crossDomain: true,
       success: success,
       error: error,
-      url: "https://www.ehanlin.com.tw/Users/521d946be4b0d765448570bd/!logout",
+      url: url,
       data: bodyVal(body),
       xhrFields: {
         withCredentials: true
@@ -71,7 +56,7 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
     return bodyVal;
   };
 
-  get("https://www.ehanlin.com.tw/ms-user-status/userStatus", function(data) {
+  get("/ms-user-status/userStatus", function(data) {
     jQuery3_noConflict(".userName").append(
       `<a href="/Users/${data.user}.html">${data.studentCard}  ${data.name}</a><span style="color:#9B9B9B"> | </span><li><a id="logoutButton">登出</a></li> <span style="color:#9B9B9B"> | </span>`
     );
