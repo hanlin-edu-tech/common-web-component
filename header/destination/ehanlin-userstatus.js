@@ -23,7 +23,7 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
       logoutPut("/Users/521d946be4b0d765448570bd/!logout", null, function(
         data
       ) {
-        window.location = location.hostname;
+        location.href = location.hostname;
       });
       return false;
     });
