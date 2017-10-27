@@ -104,7 +104,8 @@
 
   if (dataModules) {
     dataModules = dataModules.split(",");
-    for (var dataModule of dataModules) {
+    for (var i = 0; i < dataModules.length; i++) {
+      var dataModule = dataModules[i];
       execFunction = ehanlinComponents[dataModule.trim()];
       if (typeof execFunction === "function") execFunction();
     }
