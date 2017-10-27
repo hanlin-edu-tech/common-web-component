@@ -54,7 +54,7 @@
   var currentDir = "current",
     ehanlinComponents;
 
-  if (location.href.includes("test.ehanlin.com.tw")) {
+  if (location.href.indexOf("test.ehanlin.com.tw") >= 0) {
     console.log("!!! 目前在測試環境 !!!");
     currentDir = "current.SNAPSHOT";
   }
