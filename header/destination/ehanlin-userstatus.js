@@ -60,14 +60,15 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
     var studentCard = data.studentCard;
     var name = data.name;
     var userHref = "<a href='/Users/" + userId + ".html'>";
+    var separateLine = "<span style='color:#9B9B9B'> | </span>";
     var userInfoHtml =
       userHref +
       studentCard +
       name +
       "</a>" +
-      "<span style='color:#9B9B9B'> | </span>" +
+      separateLine +
       "<li><a id='logoutButton'>登出</a></li>" +
-      "<span style='color:#9B9B9B'> | </span>";
+      separateLine;
 
     jQuery3_noConflict("#loginSuccess").append(userInfoHtml);
     jQuery3_noConflict("#loginBotton").remove();
