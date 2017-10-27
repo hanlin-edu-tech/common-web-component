@@ -31,7 +31,7 @@
                   script.getAttribute("data-main")
                 );
               }
-              script.remove();
+              //script.remove();
               parent.insertAdjacentElement("afterend", newScript);
             }
           }
