@@ -56,9 +56,20 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
   };
 
   get("/ms-user-status/userStatus", function(data) {
-    jQuery3_noConflict(".userName").append(
-      `<a href="/Users/${data.user}.html">${data.studentCard}  ${data.name}</a><span style="color:#9B9B9B"> | </span><li><a id="logoutButton">登出</a></li> <span style="color:#9B9B9B"> | </span>`
-    );
+    var userId = data.id;
+    var studentCard = data.studentCard;
+    var name = data.name;
+    var userHref = "<a href='/Users/" + userId + ".html'>";
+    var userInfoHtml =
+      userHref +
+      studentCard +
+      name +
+      "</a>" +
+      "<span style='color:#9B9B9B'> | </span>" +
+      "<li><a id='logoutButton'>登出</a></li>" +
+      "<span style='color:#9B9B9B'> | </span>";
+
+    jQuery3_noConflict("#loginSuccess").append(userInfoHtml);
     jQuery3_noConflict("#loginBotton").remove();
     jQuery3_noConflict("#register").remove();
     html();
