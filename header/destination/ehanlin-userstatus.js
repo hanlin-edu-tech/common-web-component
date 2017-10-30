@@ -2,23 +2,7 @@
  * user 微服務
  */
 define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
-  var get = function(url, success, error) {
-    return jQuery3_noConflict.ajax({
-      type: "GET",
-      contentType: "application/json",
-      dataType: "json",
-      cache: false,
-      crossDomain: true,
-      success: success,
-      error: error,
-      url: url,
-      xhrFields: {
-        withCredentials: true
-      }
-    });
-  };
-
-  var html = function() {
+  var onclickLogout = function() {
     jQuery3_noConflict("#logoutButton").on("click", function() {
       logoutPut("/Users/521d946be4b0d765448570bd/!logout", null, function(
         data
@@ -29,6 +13,7 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
     });
   };
 
+  // 登出
   var logoutPut = function(url, body, success) {
     return jQuery3_noConflict.ajax({
       type: "PUT",
@@ -55,24 +40,42 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
     return bodyVal;
   };
 
-  get("/ms-user-status/userStatus", function(data) {
-    var userId = data.id;
-    var studentCard = data.studentCard;
-    var name = data.name;
-    var userHref = "<a href='/Users/" + userId + ".html'>";
-    var separateLine = "<span style='color:#9B9B9B'> | </span>";
-    var userInfoHtml =
-      userHref +
-      studentCard +
-      name +
-      "</a>" +
-      separateLine +
-      "<li><a id='logoutButton'>登出</a></li>" +
-      separateLine;
+  var determineLogin = jQuery3_noConflict.ajax({
+    url: "/ms-user-status/userStatus",
+    type: "GET",
+    contentType: "application/json",
+    dataType: "json",
+    cache: false,
+    crossDomain: true,
+    success: function(data) {
+      var userId = data.id;
+      var studentCard = data.studentCard;
+      var name = data.name;
+      var userHref = "<a href='/Users/" + userId + ".html'>";
+      var separateLine = "<span style='color:#9B9B9B'> | </span>";
+      var userInfoHtml =
+        userHref +
+        studentCard +
+        name +
+        "</a>" +
+        separateLine +
+        "<li><a id='logoutButton'>登出</a></li>" +
+        separateLine;
 
-    jQuery3_noConflict("#loginSuccess").append(userInfoHtml);
-    jQuery3_noConflict("#loginBotton").remove();
-    jQuery3_noConflict("#register").remove();
-    html();
+      jQuery3_noConflict("#loginSuccess").append(userInfoHtml);
+      jQuery3_noConflict("#loginBotton").remove();
+      jQuery3_noConflict("#register").remove();
+      onclickLogout();
+    },
+    error: function() {
+      jQuery3_noConflict("ul.header-menu").removeAttr("style");
+    },
+    xhrFields: {
+      withCredentials: true
+    }
+  });
+
+  jQuery3_noConflict.when(determineLogin).then(function() {
+    jQuery3_noConflict("ul.header-menu").removeAttr("style");
   });
 });

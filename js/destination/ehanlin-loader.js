@@ -11,6 +11,7 @@
       request.send();
       request.onload = function() {
         var parent, scripts, script, newScript;
+        var timestamp = new Date().getTime();
 
         if (request.status >= 200 && request.status < 400) {
           parent = document.getElementById(id);
@@ -24,14 +25,14 @@
             for (var i = 0; i < scripts.length; i++) {
               script = scripts[i];
               newScript = document.createElement("script");
-              newScript.src = script.src;
+              newScript.src = script.src + "?v=" + timestamp;
               if (script.getAttribute("data-main")) {
                 newScript.setAttribute(
                   "data-main",
                   script.getAttribute("data-main")
                 );
               }
-              //script.remove();
+              parent.removeChild(script);
               parent.insertAdjacentElement("afterend", newScript);
             }
           }
