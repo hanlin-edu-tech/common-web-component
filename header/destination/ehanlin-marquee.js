@@ -5,14 +5,12 @@ define(["jQuery3_noConflict", "marquee"], function(
   jQuery3_noConflict,
   marquee
 ) {
-  var $mq = jQuery(".marquee");
-  console.log(jQuery3_noConflict);
+  var $mq = jQuery3_noConflict(".marquee");
   jQuery3_noConflict
     .get(
       "/Marquee",
       function(data) {
         jQuery3_noConflict("#ehanlin-header div.marquee").removeAttr("style");
-        console.log(data);
         jQuery3_noConflict.each(data, function(index, element) {
           var liText = jQuery3_noConflict("<li></li>")
             .addClass("marquee-content")
