@@ -5,7 +5,6 @@ const EHANLIN_S3_ID = process.env.EHANLIN_S3_ID;
 const EHANLIN_S3_KEY = process.env.EHANLIN_S3_KEY;
 const TRAVIS_TAG = process.env.TRAVIS_TAG;
 const AWS_S3 = new AWS.S3();
-var obj = JSON.parse(FS.readFileSync("addFileUsingJson.json", "UTF-8"));
 
 AWS.config.update({
   accessKeyId: EHANLIN_S3_ID,
@@ -40,9 +39,13 @@ var writeFileToFolder = (filePath, changeContent, fileName) => {
   });
 };
 
-for (var key in obj) {
+// 讀取所有欲更改路徑之設定檔
+var fileMapping = JSON.parse(
+  FS.readFileSync(PATH.join(__dirname, "addFileUsingJson.json"), "UTF-8")
+);
+for (var key in fileMapping) {
   var folderName = key.toString();
-  var fileName = obj[key];
+  var fileName = fileMapping[key];
   var changeFilePath = `${folderName}/destination/${fileName}`;
   var filePath = PATH.join(__dirname, `../${changeFilePath}`);
   readFileChangeContent(filePath, fileName);

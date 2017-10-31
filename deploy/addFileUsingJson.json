@@ -3,6 +3,5 @@
   "footer": "ehanlin_footer.html",
   "eventLeftSide": "ehanlin_event_left_side.html",
   "infoLeftSide": "ehanlin_info_left_side.html",
-  "menu": "ehanlin_menu.html",
-  "js": "ehanlin-loader.js"
+  "menu": "ehanlin_menu.html"
 }
