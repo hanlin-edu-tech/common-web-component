@@ -1,95 +1,101 @@
 header#ehanlin-header {
-    width: 980px;
-    background: url("https://www.ehanlin.com.tw/images/body_bg.jpg") repeat;
-    color: #898989;
-    margin: 0 auto 10px auto;
-    padding: 10px 5px 0 5px;
-    text-align: right;
-    line-height: 1.5em;
-    font-size: 13px;
-    font-weight: 500;
-    font-family: "微軟正黑體", Arial, sans-serif;
+  width: 980px;
+  background: url("https://www.ehanlin.com.tw/images/body_bg.jpg") repeat;
+  color: #898989;
+  margin: 0 auto 10px auto;
+  padding: 10px 5px 0 5px;
+  text-align: right;
+  line-height: 1.5em;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: "微軟正黑體", Arial, sans-serif;
 }
 
 @font-face {
-    font-family: "shoppingcart";
-    src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.eot");
-    src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.eot#iefix") format("embedded-opentype"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.woff") format("woff"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.ttf") format("truetype"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.svg") format("svg");
-    font-weight: normal;
-    font-style: normal;
+  font-family: "shoppingcart";
+  src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.eot");
+  src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.eot#iefix")
+      format("embedded-opentype"),
+    url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.woff")
+      format("woff"),
+    url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.ttf")
+      format("truetype"),
+    url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.svg")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
 
 [class^="shoppingcart-"]:before,
 [class*=" shoppingcart-"]:before,
 [class^="shoppingcart-"]:after,
 [class*=" shoppingcart-"]:after {
-    font-family: shoppingcart;
-    font-size: 20px;
-    font-style: normal;
+  font-family: shoppingcart;
+  font-size: 20px;
+  font-style: normal;
 }
 
 #ehanlin-header a.logo {
-    position: absolute;
-    top: 18px;
-    float: left;
-    display: block;
-    width: 304px;
-    height: 35px;
-    background: url("https://www.ehanlin.com.tw/images/ehanlin_logo.png");
+  top: 18px;
+  float: left;
+  display: block;
+  width: 304px;
+  height: 35px;
+  background: url("https://www.ehanlin.com.tw/images/ehanlin_logo.png");
 }
 
 #ehanlin-header i.fa {
-    color: #3b5998;
-    font-size: 24px;
+  color: #3b5998;
+  font-size: 24px;
 }
 
 #ehanlin-header a {
-    color: #3498db;
-    text-decoration: none;
-    cursor: pointer;
+  color: #3498db;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #ehanlin-header * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 #ehanlin-header div {
-    border: 0;
-    margin: 0;
-    padding: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #ehanlin-header div {
-    display: block;
+  display: block;
 }
 
 #ehanlin-header ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 #ehanlin-header #car_sum {
-    display: inline-block;
-    min-width: 20px;
-    padding: 1px;
-    background: #b52d32;
-    color: #fff;
-    border-radius: 3px;
-    cursor: pointer;
-    text-align: center;
+  display: inline-block;
+  min-width: 20px;
+  padding: 1px;
+  background: #b52d32;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
 }
 
 #ehanlin-header .header-menu li {
-    display: inline-block;
+  display: inline-block;
 }
 
-#ehanlin-header .header-menu li+li:before {
-    content: "|";
-    margin: 0 5px;
+#ehanlin-header .header-menu li + li:before {
+  content: "|";
+  margin: 0 5px;
 }
 
 #ehanlin-header i.shoppingcart-shop20:before {
-    content: "\e000";
+  content: "\e000";
 }
