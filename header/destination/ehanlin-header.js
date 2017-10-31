@@ -1,7 +1,7 @@
 require.config({
   shim: {
     marquee: {
-      deps: ["jQuery3_2_1"],
+      deps: ["jQuery3_noConflict"],
       exports: "marquee"
     }
   },
@@ -24,7 +24,8 @@ require.config({
 /**
  * requireJs 模組化
  */
-require(["ehanlin-userstatus", "ehanlin-carts"], function(
+require(["ehanlin-userstatus", "ehanlin-carts", "ehanlin-marquee"], function(
   ehanlinUserStatus,
-  ehanlinCarts
+  ehanlinCarts,
+  ehanlinMarquee
 ) {});

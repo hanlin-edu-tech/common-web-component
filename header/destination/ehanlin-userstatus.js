@@ -76,6 +76,6 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
   });
 
   jQuery3_noConflict.when(determineLogin).then(function() {
-    jQuery3_noConflict("ul.header-menu").removeAttr("style");
+    jQuery3_noConflict("#ehanlin-header ul.header-menu").removeAttr("style");
   });
 });

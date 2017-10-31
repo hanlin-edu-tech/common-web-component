@@ -29,8 +29,8 @@ header#ehanlin-header {
 }
 
 #ehanlin-header a.logo {
-    position: absolute;
-    top: 18px;
+    position: relative;
+    top: 10px;
     float: left;
     display: block;
     width: 304px;
