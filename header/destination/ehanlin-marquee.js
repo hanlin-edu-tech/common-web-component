@@ -9,7 +9,7 @@ define(["jQuery3_noConflict", "marquee"], function(
   console.log(jQuery3_noConflict);
   jQuery3_noConflict
     .get(
-      "https://test.ehanlin.com.tw/Marquee",
+      "/Marquee",
       function(data) {
         jQuery3_noConflict("#ehanlin-header div.marquee").removeAttr("style");
         console.log(data);

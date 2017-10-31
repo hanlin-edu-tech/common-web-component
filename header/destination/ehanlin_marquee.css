@@ -3,8 +3,7 @@
   height: 34px;
   overflow: hidden;
   margin-bottom: 8px;
-  box-shadow: 2px 2px 2px rgba(20%, 20%, 40%, 0.6),
-    4px 4px 6px rgba(20%, 20%, 40%, 0.4), 6px 6px 12px rgba(20%, 20%, 40%, 0.4);
+  box-shadow: 2px 2px 2px rgba(20%, 20%, 40%, 0.6), 4px 4px 6px rgba(20%, 20%, 40%, 0.4), 6px 6px 12px rgba(20%, 20%, 40%, 0.4);
 }
 
 .marquee-content {
@@ -19,7 +18,8 @@
   color: #130808;
 }
 
-.marquee {
+
+/* .marquee {
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -27,6 +27,14 @@
     from(#3498db),
     to(#3498db)
   );
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-name: breathe;
+  -webkit-animation-duration: 3000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+} */
+
+.marquee {
   -webkit-animation-timing-function: ease-in-out;
   -webkit-animation-name: breathe;
   -webkit-animation-duration: 3000ms;
