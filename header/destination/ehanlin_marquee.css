@@ -15,7 +15,7 @@
   padding: auto;
   font-weight: bold;
   display: inline-block;
-  color: #130808;
+  color: white;
 }
 
 
@@ -44,7 +44,7 @@
 
 @-webkit-keyframes breathe {
   0% {
-    opacity: 0.3;
+    opacity: 0.8;
   }
   100% {
     opacity: 1;

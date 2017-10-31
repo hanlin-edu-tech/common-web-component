@@ -22,6 +22,6 @@ define(["jQuery3_noConflict", "marquee"], function(
       "json"
     )
     .done(function() {
-      $mq.marquee({ duration: 15000, direction: "left", duplicated: true });
+      $mq.marquee({ duration: 10000, direction: "left", duplicated: true });
     });
 });
