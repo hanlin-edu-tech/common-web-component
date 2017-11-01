@@ -1,4 +1,6 @@
 header#ehanlin-header {
+  position: relative;
+  right: 5px;
   width: 980px;
   background: url("https://www.ehanlin.com.tw/images/body_bg.jpg") repeat;
   color: #898989;

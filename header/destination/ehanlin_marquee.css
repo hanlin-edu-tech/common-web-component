@@ -1,4 +1,6 @@
 #ehanlin-header .marquee {
+  position: relative;
+  right: 3px;
   width: 980px;
   height: 34px;
   overflow: hidden;

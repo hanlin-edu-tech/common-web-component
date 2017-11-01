@@ -10,14 +10,16 @@ define(["jQuery3_noConflict", "marquee"], function(
     .get(
       "/Marquee",
       function(data) {
-        jQuery3_noConflict("#ehanlin-header div.marquee").removeAttr("style");
-        jQuery3_noConflict.each(data, function(index, element) {
-          var liText = jQuery3_noConflict("<li></li>")
-            .addClass("marquee-content")
-            .css({ "background-color": element.backgroundColor })
-            .html(element.text);
-          jQuery3_noConflict(".marquee ul").append(liText);
-        });
+        if (data && data.length > 0) {
+          jQuery3_noConflict("#ehanlin-header div.marquee").removeAttr("style");
+          jQuery3_noConflict.each(data, function(index, element) {
+            var liText = jQuery3_noConflict("<li></li>")
+              .addClass("marquee-content")
+              .css({ "background-color": element.backgroundColor })
+              .html(element.text);
+            jQuery3_noConflict(".marquee ul").append(liText);
+          });
+        }
       },
       "json"
     )
