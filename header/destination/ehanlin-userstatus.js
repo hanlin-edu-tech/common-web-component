@@ -40,6 +40,7 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
     return bodyVal;
   };
 
+  // 判斷使用者是否登入
   var determineLogin = jQuery3_noConflict.ajax({
     url: "/ms-user-status/userStatus",
     type: "GET",
