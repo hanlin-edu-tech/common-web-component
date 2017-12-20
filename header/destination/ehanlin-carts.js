@@ -1,12 +1,12 @@
-require(["jQuery3_noConflict"], function(jQuery3_noConflict) {
-  jQuery3_noConflict.get(
+require(["jQueryNoConflict"], function(jQueryNoConflict) {
+  jQueryNoConflict.get(
     "/my/owned/Carts.json",
     {
       ts: new Date().getTime()
     },
-    function(resp) {
-      if (resp.success && resp.result) {
-        jQuery3_noConflict("#car_sum").text(resp.result.items.length);
+    function(response) {
+      if (response.success && response.result) {
+        jQueryNoConflict("#car_sum").text(response.result.items.length);
       }
     }
   );

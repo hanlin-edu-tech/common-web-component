@@ -8,14 +8,14 @@ require.config({
 
   paths: {
     jquery: "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min",
-    jQuery3_noConflict: "jQuery3_noconfilct",
+    jQueryNoConflict: "jQueryNoConfilct",
     marquee: "https://cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min"
   },
 
-  // 讓所有模組引入的 jQuery3_noConflict 都相依於 jQuery3_noConflict
+  // 讓所有模組引入的 jQueryNoConflict 都相依於 jQueryNoConflict
   map: {
     "*": {
-      jQuery3_noConflict: "jQuery3_noConflict"
+      jQueryNoConflict: "jQueryNoConflict"
     }
   }
 });
@@ -23,8 +23,8 @@ require.config({
 /**
  * requireJs 模組化
  */
-require(["ehanlin-userstatus", "ehanlin-carts", "ehanlin-marquee"], function(
-  ehanlinUserStatus,
-  ehanlinCarts,
-  ehanlinMarquee
-) {});
+require(["ehanlin-userstatus", "ehanlin-carts", "ehanlin-marquee"],
+  function (ehanlinUserStatus,
+            ehanlinCarts,
+            ehanlinMarquee) {
+  });

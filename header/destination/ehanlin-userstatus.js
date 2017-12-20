@@ -1,9 +1,9 @@
 /**
  * user 微服務
  */
-define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
+define(["jQueryNoConflict"], function(jQueryNoConflict) {
   var onclickLogout = function() {
-    jQuery3_noConflict("#logoutButton").on("click", function() {
+    jQueryNoConflict("#logoutButton").on("click", function() {
       logoutPut("/Users/521d946be4b0d765448570bd/!logout", null, function(
         data
       ) {
@@ -15,7 +15,7 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
 
   // 登出
   var logoutPut = function(url, body, success) {
-    return jQuery3_noConflict.ajax({
+    return jQueryNoConflict.ajax({
       type: "PUT",
       contentType: "application/json",
       dataType: "json",
@@ -41,7 +41,7 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
   };
 
   // 判斷使用者是否登入
-  var determineLogin = jQuery3_noConflict.ajax({
+  var determineLogin = jQueryNoConflict.ajax({
     url: "/ms-user-status/userStatus",
     type: "GET",
     contentType: "application/json",
@@ -63,20 +63,20 @@ define(["jQuery3_noConflict"], function(jQuery3_noConflict) {
         "<li><a id='logoutButton'>登出</a></li>" +
         separateLine;
 
-      jQuery3_noConflict("#loginSuccess").append(userInfoHtml);
-      jQuery3_noConflict("#loginBotton").remove();
-      jQuery3_noConflict("#register").remove();
+      jQueryNoConflict("#loginSuccess").append(userInfoHtml);
+      jQueryNoConflict("#loginBotton").remove();
+      jQueryNoConflict("#register").remove();
       onclickLogout();
     },
     error: function() {
-      jQuery3_noConflict("ul.header-menu").removeAttr("style");
+      jQueryNoConflict("ul.header-menu").removeAttr("style");
     },
     xhrFields: {
       withCredentials: true
     }
   });
 
-  jQuery3_noConflict.when(determineLogin).then(function() {
-    jQuery3_noConflict("ul.header-menu").removeAttr("style");
+  jQueryNoConflict.when(determineLogin).then(function() {
+    jQueryNoConflict("ul.header-menu").removeAttr("style");
   });
 });
