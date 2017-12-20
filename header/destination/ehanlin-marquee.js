@@ -4,12 +4,12 @@
 define(["jQueryNoConflict"], function(
   jQueryNoConflict
 ) {
-  let marqueeTarget = jQueryNoConflict("#ehanlin-header div.marquee");
+  var marqueeTarget = jQueryNoConflict("#ehanlin-header div.marquee");
   jQueryNoConflict.get("/Marquee", function(data) {
         if (data && data.length > 0) {
           marqueeTarget.removeAttr("style");
           jQueryNoConflict.each(data, function(index, element) {
-            let liText = jQueryNoConflict("<li></li>")
+            var liText = jQueryNoConflict("<li></li>")
               .addClass("marquee-content")
               .css({ "background-color": element.backgroundColor })
               .html(element.text);

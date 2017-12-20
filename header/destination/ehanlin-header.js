@@ -8,7 +8,7 @@ require.config({
 
   paths: {
     jquery: "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min",
-    jQueryNoConflict: "jQueryNoConfilct",
+    jQueryNoConflict: "jQueryNoConflict",
     marquee: "https://cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min"
   },
 
