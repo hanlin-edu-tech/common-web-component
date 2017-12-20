@@ -23,6 +23,6 @@ define(["jQueryNoConflict"], function(
     )
     .done(function() {
       require("marquee");
-      marqueeTarget.marquee();
+      marqueeTarget.marquee({duration: 11000});
     });
 });
