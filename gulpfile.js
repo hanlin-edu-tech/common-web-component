@@ -10,7 +10,6 @@ const rollup = require('rollup')
 const rollupResolve = require('rollup-plugin-node-resolve')
 const rollupCommonjs = require('rollup-plugin-commonjs')
 const rollupBabel = require('rollup-plugin-babel')
-const rollupUglify = require('rollup-plugin-uglify')
 
 const basePath = {
   base: 'src'
@@ -49,7 +48,7 @@ function buildJS () {
   Q.fcall(templateUtil.logStream.bind(null, minifyJS.bind(null, './src/!(js)*/*.js')))
     .then(templateUtil.logStream.bind(null, babelJS.bind(null, './minify-temp/!(header)*/*.js')))
     .then(templateUtil.logPromise.bind(null, rollupBuild))
-    .then(templateUtil.logPromise.bind(null, function () {
+    .then(templateUtil.logStream.bind(null, function () {
       return gulp.src('./dist/header/ehanlin-header.js', {
         base: './'
       }).pipe(debug({title: 'file ->'}))
@@ -75,8 +74,7 @@ let rollupBuild = () => {
       rollupCommonjs({}),
       rollupBabel({
         exclude: 'node_modules/**'
-      }),
-      //rollupUglify({mangle: false})
+      })
     ]
   }).then(function (bundle) {
     bundle.write({

@@ -1,15 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const aws = require('aws-sdk')
-const EHANLIN_S3_ID = process.env.EHANLIN_S3_ID
-const EHANLIN_S3_KEY = process.env.EHANLIN_S3_KEY
 const TRAVIS_TAG = process.env.TRAVIS_TAG
-const awsS3 = new aws.S3()
-
-aws.config.update({
-  accessKeyId: EHANLIN_S3_ID,
-  secretAccessKey: EHANLIN_S3_KEY
-})
 
 /**
  * 更改元件內容路徑

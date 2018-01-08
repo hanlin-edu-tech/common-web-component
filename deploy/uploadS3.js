@@ -12,7 +12,7 @@ aws.config.update({
 })
 const AWS_S3 = new aws.S3()
 
-let sourceDir = path.join(__dirname, '../dist')
+let sourceDir = path.join(__dirname, '../dist/')
 
 /*
  * 尋找存在於 S3 common_webcomponent 的最新版本目錄
