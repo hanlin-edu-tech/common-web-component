@@ -1,0 +1,1 @@
+import{jQueryNoConflict}from"./jquery-no-conflict";let showCart=()=>{jQueryNoConflict.get("/my/owned/Carts.json",{ts:(new Date).getTime()},t=>{t.success&&t.result&&jQueryNoConflict("#car_sum").text(t.result.items.length)})};export{showCart};

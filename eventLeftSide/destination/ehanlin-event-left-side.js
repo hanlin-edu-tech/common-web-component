@@ -1,1 +1,0 @@
-!function(){let link=decodeURIComponent(location.pathname),targetAnchor=document.querySelector(".menu li > a[href*='"+link+"']");targetAnchor&&targetAnchor.classList.add("select")}();

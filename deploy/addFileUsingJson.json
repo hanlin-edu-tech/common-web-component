@@ -1,7 +1,7 @@
 {
-  "header": "ehanlin_header.html",
-  "footer": "ehanlin_footer.html",
-  "eventLeftSide": "ehanlin_event_left_side.html",
-  "infoLeftSide": "ehanlin_info_left_side.html",
-  "menu": "ehanlin_menu.html"
+  "header": "ehanlin-header.html",
+  "footer": "ehanlin-footer.html",
+  "event-left-side": "ehanlin-event-left-side.html",
+  "info-left-side": "ehanlin-info-left-side.html",
+  "menu": "ehanlin-menu.html"
 }
