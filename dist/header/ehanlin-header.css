@@ -65,6 +65,7 @@ header#ehanlin-header {
 #ehanlin-header ul.header-menu {
   padding: 0;
   margin: 0;
+  font-size: 14px;
   list-style: none;
 }
 
@@ -88,6 +89,6 @@ header#ehanlin-header {
   margin: 0 5px;
 }
 
-#ehanlin-header i.shoppingcart-shop20:before {
+#ehanlin-header a.shoppingcart-shop20:before {
   content: "\e000";
 }

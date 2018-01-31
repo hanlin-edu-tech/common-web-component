@@ -28,7 +28,7 @@ var ajaxUtil = function ajaxUtil(o, t, e) {
   });
 }; var logIn = function logIn() {
   ajaxUtil("GET", "/ms-user-status/userStatus").then(function (o) {
-    var t = "<a href='/Users/" + o.id + ".html'> " + o.studentCard + " " + o.name + " </a>\n        <span style='color:#9B9B9B'> | </span>\n        <li><a id='logoutButton'>\u767B\u51FA</a></li>\n        <span style='color:#9B9B9B'> | </span>";jQueryNoConflict("#loginSuccess").append(t), jQueryNoConflict("#loginBotton").remove(), jQueryNoConflict("#register").remove(), onLogOut();
+    var t = "<a href='/Users/" + o.id + ".html'> " + o.studentCard + " &nbsp; " + o.name + " </a>\n        <span style='color:#767676'> | </span>\n        <li><a id='logoutButton'> \u767B\u51FA </a></li>\n        <span style='color:#767676'> | </span>";jQueryNoConflict("#loginSuccess").append(t), jQueryNoConflict("#loginBotton").remove(), jQueryNoConflict("#register").remove(), onLogOut();
   }, function () {
     jQueryNoConflict("ul.header-menu").removeAttr("style");
   }).then(function () {
