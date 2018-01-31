@@ -12,7 +12,8 @@
     "jquery-slim": "^3.0.0",
     "jquery.marquee": "^1.5.0",
     "node-read": "^0.1.7",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "q": "^1.5.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -20,16 +21,16 @@
     "babel-preset-es2015-rollup": "^3.0.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
+    "gulp-babel": "^7.0.1",
     "gulp-debug": "^3.2.0",
     "gulp-replace": "^0.6.1",
     "gulp-template-util": "0.0.2",
-    "gulp-uglify-es": "^0.1.7",
+    "gulp-uglify-es": "^0.1.11",
     "merge-stream": "^1.0.1",
-    "rollup": "^0.53.1",
+    "rollup": "^0.53.4",
     "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-commonjs": "^8.2.6",
-    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-commonjs": "^8.3.0",
+    "rollup-plugin-node-resolve": "^3.0.2",
     "rollup-plugin-uglify": "^2.0.1"
   }
 }
