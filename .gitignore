@@ -1,9 +1,4 @@
 node_modules/
-js-compile/
-js-es6/
 .idea/
-
-
 package-lock.json
-.babelrc
 ajax-refractor.js
