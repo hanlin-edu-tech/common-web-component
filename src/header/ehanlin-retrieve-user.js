@@ -42,7 +42,6 @@ let logIn = () => {
     jQueryNoConflict('#register').remove()
     onLogOut()
   }
-
   let error = () => {
     jQueryNoConflict('ul.header-menu').removeAttr('style')
   }
