@@ -18,7 +18,7 @@ let ajaxUtil = (type, url, data) => {
   })
 }
 
-let logout = () => {
+let onLogOut = () => {
   jQueryNoConflict('#logoutButton').on('click', () => {
     ajaxUtil('PUT', '/Users/521d946be4b0d765448570bd/!logout')
       .then(() => {
@@ -40,7 +40,7 @@ let logIn = () => {
     jQueryNoConflict('#loginSuccess').append(userInfoHtml)
     jQueryNoConflict('#loginBotton').remove()
     jQueryNoConflict('#register').remove()
-    logout()
+    onLogOut()
   }
 
   let error = () => {

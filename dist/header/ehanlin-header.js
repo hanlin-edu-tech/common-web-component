@@ -20,7 +20,7 @@ var jQueryNoConflict = jquery_min.noConflict(!0);
 
 var ajaxUtil = function ajaxUtil(o, t, e) {
   return "GET" !== o && e && (e = JSON.stringify(e)), jQueryNoConflict.ajax({ type: o, cache: !1, crossDomain: !0, url: t, data: e, contentType: "application/json; charset=UTF-8", dataType: "json" });
-}; var logout = function logout() {
+}; var onLogOut = function onLogOut() {
   jQueryNoConflict("#logoutButton").on("click", function () {
     ajaxUtil("PUT", "/Users/521d946be4b0d765448570bd/!logout").then(function () {
       window.location = "https://" + window.location.hostname;
@@ -28,7 +28,7 @@ var ajaxUtil = function ajaxUtil(o, t, e) {
   });
 }; var logIn = function logIn() {
   ajaxUtil("GET", "/ms-user-status/userStatus").then(function (o) {
-    var t = "<a href='/Users/" + o.id + ".html'> " + o.studentCard + " " + o.name + " </a>\n        <span style='color:#9B9B9B'> | </span>\n        <li><a id='logoutButton'>\u767B\u51FA</a></li>\n        <span style='color:#9B9B9B'> | </span>";jQueryNoConflict("#loginSuccess").append(t), jQueryNoConflict("#loginBotton").remove(), jQueryNoConflict("#register").remove(), logout();
+    var t = "<a href='/Users/" + o.id + ".html'> " + o.studentCard + " " + o.name + " </a>\n        <span style='color:#9B9B9B'> | </span>\n        <li><a id='logoutButton'>\u767B\u51FA</a></li>\n        <span style='color:#9B9B9B'> | </span>";jQueryNoConflict("#loginSuccess").append(t), jQueryNoConflict("#loginBotton").remove(), jQueryNoConflict("#register").remove(), onLogOut();
   }, function () {
     jQueryNoConflict("ul.header-menu").removeAttr("style");
   }).then(function () {
