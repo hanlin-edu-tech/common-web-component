@@ -14,8 +14,6 @@ let runMarquee = () => {
     if (data && data.length > 0) {
       let liText
       marqueeTarget.removeAttr('style')
-      marqueeCloseTarget.removeAttr('style')
-
       jQueryNoConflict.each(data, (index, singleMarquee) => {
         if (singleMarquee.type === 'system') {
           isShowMarqueeClose = false
