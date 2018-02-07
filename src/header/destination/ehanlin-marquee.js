@@ -4,13 +4,14 @@
 define(['jQueryNoConflict'], function (jQueryNoConflict) {
   var marqueeTarget = jQueryNoConflict('#ehanlin-header div.marquee')
   var marqueeCloseTarget = jQueryNoConflict('#ehanlin-header i.marquee-close')
-  var isShowMarqueeClose = true
+  var isShowMarqueeClose
 
   jQueryNoConflict
     .get(
       '/Marquee',
       function (data) {
         if (data && data.length > 0) {
+          isShowMarqueeClose = true
           marqueeTarget.removeAttr('style')
 
           jQueryNoConflict.each(data, function (index, singleMarquee) {
