@@ -39,7 +39,7 @@
   display: inline-block;
   width: 10px;
   height: 10px;
-  background: url('../images/l_icons.png') no-repeat -132px -3px;
+  background: url("../images/l_icons.png") no-repeat -132px -3px;
 }
 
 #info-left-side li a {
@@ -58,7 +58,7 @@
 
 #info-left-side.basic {
   width: 980px;
-  background: url('https://www.ehanlin.com.tw/images/body_bg.jpg') repeat;
+  background: url("https://www.ehanlin.com.tw/images/body_bg.jpg") repeat;
   color: #898989;
   font-size: 12px;
   text-align: center;
