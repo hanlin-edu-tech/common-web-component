@@ -13,10 +13,10 @@ let runMarquee = () => {
       dataType: 'json'
     })
     .then(data => {
-      isShowMarqueeClose = true
       if (data && data.length > 0) {
         let liText
         marqueeTarget.removeAttr('style')
+        isShowMarqueeClose = true
         jQueryNoConflict.each(data, (index, singleMarquee) => {
           if (singleMarquee.type === 'system') {
             isShowMarqueeClose = false
