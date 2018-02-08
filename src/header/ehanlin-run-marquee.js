@@ -15,7 +15,6 @@ let runMarquee = () => {
     .then(data => {
       if (data && data.length > 0) {
         let liText
-        marqueeTarget.removeAttr('style')
         isShowMarqueeClose = true
         jQueryNoConflict.each(data, (index, singleMarquee) => {
           if (singleMarquee.type === 'system') {
@@ -38,6 +37,7 @@ let runMarquee = () => {
       jQueryNoConflict('#ehanlin-header li.marquee-content').show()
 
       marqueeTarget.marquee({ duration: 15000 })
+      isShowMarqueeClose = false
       if (isShowMarqueeClose === true) {
         marqueeCloseTarget.removeAttr('style')
       }

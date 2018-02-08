@@ -61,12 +61,12 @@ delayBeforeStart:1E3,direction:"left",duplicated:!1,duration:5E3,gap:20,pauseOnC
 var isShowMarqueeClose = void 0; var marqueeTarget = jQueryNoConflict("#ehanlin-header div.marquee"); var marqueeCloseTarget = jQueryNoConflict("#ehanlin-header i.marquee-close"); var runMarquee = function runMarquee() {
   jQueryNoConflict.ajax({ type: "get", url: "/Marquee", dataType: "json" }).then(function (e) {
     if (e && e.length > 0) {
-      var r = void 0;marqueeTarget.removeAttr("style"), isShowMarqueeClose = !0, jQueryNoConflict.each(e, function (e, o) {
+      var r = void 0;isShowMarqueeClose = !0, jQueryNoConflict.each(e, function (e, o) {
         "system" === o.type && (isShowMarqueeClose = !1), r = jQueryNoConflict('<li style="display: none"></li>').addClass("marquee-content").css({ "background-color": o.backgroundColor }).html(o.text), marqueeTarget.css({ "background-color": o.backgroundColor }), marqueeTarget.find("ul").append(r);
       });
     }
   }).then(function () {
-    jQueryNoConflict("#ehanlin-header li.marquee-content").show(), marqueeTarget.marquee({ duration: 15e3 }), !0 === isShowMarqueeClose && marqueeCloseTarget.removeAttr("style");
+    jQueryNoConflict("#ehanlin-header li.marquee-content").show(), marqueeTarget.marquee({ duration: 15e3 }), !0 === (isShowMarqueeClose = !1) && marqueeCloseTarget.removeAttr("style");
   }).then(function () {
     jQueryNoConflict("#ehanlin-header i.marquee-close").on("click", function (e) {
       jQueryNoConflict(e.currentTarget).parents("#ehanlin-marquee").remove();
