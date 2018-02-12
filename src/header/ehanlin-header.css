@@ -89,6 +89,6 @@ header#ehanlin-header {
   margin: 0 5px;
 }
 
-#ehanlin-header a.shoppingcart-shop20:before {
+#ehanlin-header i.shoppingcart-shop20:before {
   content: "\e000";
 }

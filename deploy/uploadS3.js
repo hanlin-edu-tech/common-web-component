@@ -38,7 +38,7 @@ let findExistedLastVersionDir = () => {
 /*
  * 尋找目標資料夾
  */
-let findDist = (dir) => {
+let findDist = dir => {
   fs.readdir(dir, (err, files) => {
     if (determineFileEmpty(files)) return
 
@@ -57,7 +57,7 @@ let findDist = (dir) => {
  * 準備檔案並上傳至 AWS S3
  */
 let listFileToUpload = (fileName, entireFilePath) => {
-  let upload = (prefixPath) => {
+  let upload = prefixPath => {
     let suffixPath = entireFilePath.replace(/[\w/-]*(dist)[/]/, '')
     let key = `${prefixPath}${suffixPath}`
 
@@ -77,9 +77,11 @@ let listFileToUpload = (fileName, entireFilePath) => {
     AWS_S3.putObject(params)
       .on('httpUploadProgress', function (progress) {
         // 上傳的進程
-        console.log(`upload to ${key}, ${progress.loaded} of ${progress.total} bytes`)
+        console.log(
+          `upload to ${key}, ${progress.loaded} of ${progress.total} bytes`
+        )
       })
-      .send((err) => {
+      .send(err => {
         if (err) console.log('err is ' + err)
       })
   }
