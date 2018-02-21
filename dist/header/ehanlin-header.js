@@ -66,9 +66,9 @@ var marqueeTarget = jQueryNoConflict("#ehanlin-header div.marquee"); var marquee
       });
     }return e;
   }).then(function (e) {
-    isShowMarqueeClose && e && e.length > 0 && (jQueryNoConflict("#ehanlin-header li.marquee-content").show(), marqueeTarget.marquee({ duration: 15e3 }), marqueeCloseTarget.removeAttr("style"), marqueeCloseTarget.on("click", function (e) {
+    e && e.length > 0 && (jQueryNoConflict("#ehanlin-header li.marquee-content").show(), marqueeTarget.marquee({ duration: 15e3 }), isShowMarqueeClose && (marqueeCloseTarget.removeAttr("style"), marqueeCloseTarget.on("click", function (e) {
       jQueryNoConflict(e.currentTarget).parents("#ehanlin-marquee").remove();
-    }));
+    })));
   });
 };
 

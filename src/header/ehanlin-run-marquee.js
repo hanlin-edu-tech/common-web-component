@@ -31,13 +31,16 @@ let runMarquee = () => {
 
     return data
   }).then(data => {
-    if (isShowMarqueeClose && data && data.length > 0) {
+    if (data && data.length > 0) {
       jQueryNoConflict('#ehanlin-header li.marquee-content').show()
       marqueeTarget.marquee({duration: 15000})
-      marqueeCloseTarget.removeAttr('style')
-      marqueeCloseTarget.on('click', event => {
-        jQueryNoConflict(event.currentTarget).parents('#ehanlin-marquee').remove()
-      })
+
+      if (isShowMarqueeClose) {
+        marqueeCloseTarget.removeAttr('style')
+        marqueeCloseTarget.on('click', event => {
+          jQueryNoConflict(event.currentTarget).parents('#ehanlin-marquee').remove()
+        })
+      }
     }
   })
 }
