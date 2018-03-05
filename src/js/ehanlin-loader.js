@@ -91,7 +91,7 @@
       'get',
       'event-left-side'
     ),
-    'info-left-side': ajaxUtils.retrieveHtml.bind(
+    'ehanlin-info-left-side': ajaxUtils.retrieveHtml.bind(
       this,
       componentDir + '/info-left-side/ehanlin-info-left-side.html',
       'get',
