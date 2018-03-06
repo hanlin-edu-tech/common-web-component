@@ -7,7 +7,6 @@
         `.menu ul li > a[href*='${link}${search}']`
     )
 
-  console.log(targetAnchor)
   if (targetAnchor) {
     targetAnchor.classList.add('select')
   }
