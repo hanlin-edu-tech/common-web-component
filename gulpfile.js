@@ -92,7 +92,7 @@ let rollupBuild = () => {
 let copyStaticTask = () => {
   console.log('=======> copyStaticTask <=======')
   return gulp
-    .src(['src/*/*.html', 'src/*/*.css', 'src/js/*.js'],
+    .src(['src/*/*.html', 'src/*/*.css', 'src/*/*.js'],
       {base: 'src'}
     )
     .pipe(gulp.dest(dist))
