@@ -17,8 +17,6 @@ const basePath = {
 const dist = 'dist'
 
 let clean = sourceDir => {
-  console.log(`=======> clean ${sourceDir} <=======`)
-
   return del([sourceDir])
 }
 
@@ -43,8 +41,6 @@ let babelJS = sourceJS => {
 }
 
 function buildJS () {
-  console.log('=======> buildJS <=======')
-
   Q.fcall(templateUtil.logStream.bind(null, minifyJS.bind(null, './src/!(js)*/*.js')))
     .then(templateUtil.logStream.bind(null, babelJS.bind(null, './minify-temp/!(header)*/*.js')))
     .then(templateUtil.logPromise.bind(null, rollupBuild))
@@ -90,7 +86,6 @@ let rollupBuild = () => {
 }
 
 let copyStaticTask = () => {
-  console.log('=======> copyStaticTask <=======')
   return gulp
     .src(['src/*/*.html', 'src/*/*.css', 'src/*/*.js'],
       {base: 'src'}
