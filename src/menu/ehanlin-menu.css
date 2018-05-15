@@ -22,7 +22,7 @@
   font-size: 18px;
 }
 
-#ehanlin-menu.nav li.glyph-icon + li {
+#ehanlin-menu.nav li.glyph-icon+li {
   border-left: #fff dashed 1px;
 }
 

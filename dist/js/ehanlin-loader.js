@@ -44,9 +44,9 @@
       request.onerror = function () {
         console.log(
           'Response error, readyState = ' +
-            this.req.readyState +
-            ', status = ' +
-            this.req.status
+          this.req.readyState +
+          ', status = ' +
+          this.req.status
         )
       }
     }

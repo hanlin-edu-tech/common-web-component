@@ -8,7 +8,7 @@
     function () {
       (i[r].q = i[r].q || []).push(arguments)
     }),
-    (i[r].l = 1 * new Date());
+  (i[r].l = 1 * new Date());
   (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0])
   a.async = 1
   a.src = g
@@ -24,9 +24,9 @@
 ga('create', 'UA-31662275-1', 'auto')
 ga('send', 'pageview')
 
-/**
- * Facebook
- */
+  /**
+   * Facebook
+   */
 !(function (f, b, e, v, n, t, s) {
   if (f.fbq) return
   n = f.fbq = function () {

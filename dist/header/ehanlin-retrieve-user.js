@@ -1,4 +1,6 @@
-import { jQueryNoConflict } from './jquery-no-conflict'
+import {
+  jQueryNoConflict
+} from './jquery-no-conflict'
 
 let ajaxUtil = (type, url, data) => {
   if (type !== 'GET') {
@@ -52,5 +54,9 @@ let logIn = () => {
     })
 }
 
-export { jQueryNoConflict }
-export { logIn }
+export {
+  jQueryNoConflict
+}
+export {
+  logIn
+}
