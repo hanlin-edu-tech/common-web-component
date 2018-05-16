@@ -21,9 +21,8 @@ ehanlin-footer
 ```
 若想要指定要使用的元件，則在 data-module attribute 指定即可。    
 呼叫複數元件時，元件以 ',' 分隔，EX:    
-```javascript
-data-module="ehanlin-header, ehanlin-menu, ehanlin-footer"
-```
+> data-module="ehanlin-header, ehanlin-menu, ehanlin-footer"
+
 2. 在 html body 中的 element，給定與 data-module 相同的元件 id，    
 元件內容就會嵌入在此 element 中，在呼叫相關元件時，    
 若能符合 HTML5 的語意化結構，可增加 google 搜尋引擎的分數，EX：
@@ -55,13 +54,14 @@ data-module="ehanlin-header, ehanlin-menu, ehanlin-footer"
 <!-- 正式環境 -->
 <script type="text/javascript" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current/js/ehanlin-social.js></script>
 ```
-ehanlin-social.js 會執行 Google Analytics 和 Facebook 的行銷 Pageview 統計，    
-其中特別注意，測試時，呼叫路徑記得要改為 **current.SNAPSHOT**，    
-這樣才不會誤用 GA 和 FB 的正式帳號，造成流量統計錯誤。
+> ehanlin-social.js 會執行 Google Analytics 和 Facebook 的行銷 Pageview 統計，    
+> 其中特別注意，測試時，呼叫路徑記得要改為 **current.SNAPSHOT**，   
+> 這樣才不會誤用 GA 和 FB 的正式帳號，造成流量統計錯誤。
 
 ## 環境
 若在本地環境或測試環境時，在引入元件 js 中的 S3 路徑    
-`https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/${env}/js/ehanlin-loader.js`    
+> https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/${env}/js/ehanlin-loader.js
+
 中，如果 `env=current.SNAPSHOT` 為測試；`env=current` 為正式。    
 
 專案內引入時要特別注意，可在專案用 gulp 來替換 html 的 s3 路徑：
