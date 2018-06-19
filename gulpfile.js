@@ -1,20 +1,32 @@
+const Q = require('q')
+const del = require('del')
 const gulp = require('gulp')
+const rollup = require('rollup')
 const debug = require('gulp-debug')
+const babel = require('gulp-babel')
 const replace = require('gulp-replace')
 const uglify = require('gulp-uglify-es').default
-const babel = require('gulp-babel')
+const gcPub = require('gulp-gcloud-publish')
+const Storage = require('@google-cloud/storage')
 const templateUtil = require('gulp-template-util')
-const del = require('del')
-const Q = require('q')
-const rollup = require('rollup')
-const rollupResolve = require('rollup-plugin-node-resolve')
-const rollupCommonjs = require('rollup-plugin-commonjs')
 const rollupBabel = require('rollup-plugin-babel')
+const rollupCommonjs = require('rollup-plugin-commonjs')
+const rollupResolve = require('rollup-plugin-node-resolve')
 
 const basePath = {
   base: 'src'
 }
 const dist = 'dist'
+
+let bucketName = 'tutor-events'
+let projectId = 'tutor-204108'
+let keyFilename = './tutor.json'
+let projectName = 'web-component'
+
+const storage = new Storage({
+  projectId: projectId,
+  keyFilename: keyFilename
+})
 
 let clean = sourceDir => {
   return del([sourceDir])
@@ -23,7 +35,9 @@ let clean = sourceDir => {
 let minifyJS = sourceJS => {
   return gulp
     .src(sourceJS, basePath)
-    .pipe(debug({title: 'minify ->'}))
+    .pipe(debug({
+      title: 'minify ->'
+    }))
     .pipe(
       uglify({}).on('error', function (error) {
         console.log(error)
@@ -34,8 +48,12 @@ let minifyJS = sourceJS => {
 
 let babelJS = sourceJS => {
   return gulp
-    .src(sourceJS, {base: 'minify-temp'})
-    .pipe(debug({title: 'babel ->'}))
+    .src(sourceJS, {
+      base: 'minify-temp'
+    })
+    .pipe(debug({
+      title: 'babel ->'
+    }))
     .pipe(babel())
     .pipe(gulp.dest(dist))
 }
@@ -47,7 +65,9 @@ function buildJS () {
     .then(templateUtil.logStream.bind(null, function () {
       return gulp.src('./dist/header/ehanlin-header.js', {
         base: './'
-      }).pipe(debug({title: 'file ->'}))
+      }).pipe(debug({
+        title: 'file ->'
+      }))
         .pipe(replace(/\(jQuery\)/g, function (match) {
           let jQueryNoConflict = `(jQueryNoConflict)`
           console.log(`from ${match} to ${jQueryNoConflict}`)
@@ -63,7 +83,7 @@ let rollupBuild = () => {
     input: './minify-temp/header/main.js',
     plugins: [
       rollupResolve({
-        jsnext: true,  // Default: false
+        jsnext: true, // Default: false
         main: true,
         browser: true
       }),
@@ -87,11 +107,56 @@ let rollupBuild = () => {
 
 let copyStaticTask = () => {
   return gulp
-    .src(['src/*/*.html', 'src/*/*.css', 'src/*/*.js'],
-      {base: 'src'}
-    )
+    .src(['src/*/*.html', 'src/*/*.css', 'src/*/*.js'], {
+      base: 'src'
+    })
     .pipe(gulp.dest(dist))
 }
+
+let removeEmptyFiles = () => {
+  let array = [
+    'common-css',
+    'event-left-side',
+    'footer',
+    'header',
+    'info-left-side',
+    'js',
+    'menu'
+  ]
+  array.forEach(emptyFiles => {
+    storage
+      .bucket(bucketName)
+      .file(`/event/${projectName}/${emptyFiles}`)
+      .delete()
+      .then(() => {
+        console.log(`gs://${bucketName}/${emptyFiles} deleted.`)
+      })
+      .catch(err => {
+        console.error('ERROR:', err)
+      })
+  })
+}
+
+gulp.task('uploadGcp', () => {
+  return gulp.src(['dist/**/*'])
+    .pipe(gcPub({
+      bucket: bucketName,
+      keyFilename: keyFilename,
+      projectId: projectId,
+      base: `/event/${projectName}`,
+      public: true,
+      transformDestination: path => {
+        return path
+      },
+      metadata: {
+        cacheControl: 'max-age=315360000, no-transform, public'
+      }
+    }))
+})
+
+gulp.task('removeEmptyFiles', () => {
+  removeEmptyFiles()
+})
 
 gulp.task('rollupBuild', rollupBuild)
 gulp.task('package', function () {
