@@ -55,7 +55,7 @@
   var componentDir = 'current',
     ehanlinComponents
 
-  if (window.location.href.indexOf('test.ehanlin.com.tw') >= 0) {
+  if (window.location.href.indexOf('www.tbbt.com.tw') >= 0) {
     console.log('!!! 目前在測試環境 !!!')
     componentDir = 'current.SNAPSHOT'
   }
