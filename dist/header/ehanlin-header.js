@@ -62,7 +62,7 @@ var marqueeTarget = jQueryNoConflict("#ehanlin-header div.marquee"); var marquee
   jQueryNoConflict.ajax({ type: "get", url: "/Marquee", dataType: "json" }).then(function (e) {
     if (e && e.length > 0) {
       var r = void 0;marqueeTarget.removeAttr("style"), jQueryNoConflict.each(e, function (e, o) {
-        "system" === o.type && (isShowMarqueeClose = !1), r = jQueryNoConflict('<li style="display: none"></li>').addClass("marquee-content").css({ "background-color": o.backgroundColor }).html(o.text), marqueeTarget.css({ "background-color": o.backgroundColor }), marqueeTarget.find("ul").append(r);
+        r = jQueryNoConflict('<li style="display: none"></li>').addClass("marquee-content").css({ "background-color": o.backgroundColor }).html(o.text), marqueeTarget.css({ "background-color": o.backgroundColor }), marqueeTarget.find("ul").append(r);
       });
     }return e;
   }).then(function (e) {

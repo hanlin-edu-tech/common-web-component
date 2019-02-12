@@ -17,10 +17,6 @@ let runMarquee = () => {
       let liText
       marqueeTarget.removeAttr('style')
       jQueryNoConflict.each(data, (index, singleMarquee) => {
-        if (singleMarquee.type === 'system') {
-          isShowMarqueeClose = false
-        }
-
         liText = jQueryNoConflict('<li style="display: none"></li>')
           .addClass('marquee-content')
           .css({

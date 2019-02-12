@@ -1,28 +1,29 @@
 #ehanlin-menu.nav {
+  display: block;
   background: #009ac9;
   border: solid 3px #fff;
   border-radius: 6px;
   box-shadow: 1px 1px 4px 1px #ccc;
+  text-align: center;
 }
 
 #ehanlin-menu.nav li.glyph-icon {
-  margin: 0;
-  padding: 10px;
   font-family: "微軟正黑體", Arial, sans-serif;
-  text-align: center;
   color: #ecf0f1;
-  width: 165px;
+  width: 185px !important;
   cursor: pointer;
   display: inline-block;
   vertical-align: middle;
+  padding: 10px 0 !important;
 }
 
 #ehanlin-menu.nav li.glyph-icon a {
   color: #ecf0f1;
   font-size: 18px;
+  display: inline;
 }
 
-#ehanlin-menu.nav li.glyph-icon+li {
+#ehanlin-menu.nav li.glyph-icon + li {
   border-left: #fff dashed 1px;
 }
 
