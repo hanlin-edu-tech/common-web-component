@@ -149,7 +149,7 @@ gulp.task('uploadGcp', () => {
         return path
       },
       metadata: {
-        cacheControl: 'max-age=315360000, no-transform, public'
+        cacheControl: 'no-store'
       }
     }))
 })
