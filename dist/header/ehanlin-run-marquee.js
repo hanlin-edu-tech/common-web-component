@@ -17,17 +17,33 @@ let runMarquee = () => {
       let liText
       marqueeTarget.removeAttr('style')
       jQueryNoConflict.each(data, (index, singleMarquee) => {
+        let marqueeContent = ''
+        if (singleMarquee.link) {
+          marqueeContent += `<a href="${singleMarquee.link}" style="color: white;">`
+          marqueeContent += singleMarquee.text
+          marqueeContent += '</a>'
+        } else {
+          marqueeContent += singleMarquee.text
+        }
+
         liText = jQueryNoConflict('<li style="display: none"></li>')
           .addClass('marquee-content')
           .css({
+            'color': 'white',
+            'padding-left': '15px',
             'background-color': singleMarquee.backgroundColor
           })
-          .html(singleMarquee.text)
+          .html(marqueeContent)
 
-        marqueeTarget.css({
-          'background-color': singleMarquee.backgroundColor
-        })
-        marqueeTarget.find('ul').append(liText)
+        // marqueeTarget.css({
+        //   'background-color': singleMarquee.backgroundColor
+        // })
+        marqueeTarget.find('ul').css(
+          {
+            'border-radius': '2px',
+            'background-color': singleMarquee.backgroundColor
+          }
+        ).append(liText)
       })
     }
 
@@ -36,7 +52,7 @@ let runMarquee = () => {
     if (data && data.length > 0) {
       jQueryNoConflict('#ehanlin-header li.marquee-content').show()
       marqueeTarget.marquee({
-        duration: 15000
+        duration: 12000
       })
 
       if (isShowMarqueeClose) {
