@@ -11,7 +11,7 @@
     targetAnchor.classList.add('select')
   }
 
-  if (pathname.match('106fblive') || pathname.match('105jrhighexam.html') ||
+  if (pathname.match('108cap') || pathname.match('105jrhighexam.html') ||
     pathname.match('12y_edu.html') || pathname.match('hsapp.html')) {
     document.querySelector('.senior').style.display = 'none'
     document.querySelector('.university').style.display = 'none'
