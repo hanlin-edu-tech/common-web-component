@@ -7,4 +7,9 @@
   if (targetAnchor) {
     targetAnchor.classList.add('select')
   }
+
+  $('.irt-btn').on('click', () => {
+    window.localStorage.clear()
+  })
+
 })()

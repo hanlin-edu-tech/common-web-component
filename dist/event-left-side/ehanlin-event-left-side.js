@@ -1,4 +1,6 @@
 !function () {
   var e = decodeURIComponent(window.location.pathname),
-      n = document.querySelector(".menu li > a[href*='" + e + "']");n && n.classList.add("select");
+      o = document.querySelector(".menu li > a[href*='" + e + "']");o && o.classList.add("select"), $(".irt-btn").on("click", function () {
+    window.localStorage.clear();
+  });
 }();
