@@ -1,0 +1,39 @@
+#ehanlin-header .marquee {
+  position: relative;
+  right: 0;
+  width: 980px;
+  height: 35px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+#ehanlin-header .marquee a {
+  color: white;
+}
+
+.marquee-content {
+  font-family: "微軟正黑體";
+  font-size: 1.6em;
+  height: 35px;
+  line-height: 36px;
+  margin: auto;
+  padding-right: 50px;
+  font-weight: bold;
+  display: inline-block;
+  color: white;
+}
+
+.marquee-close {
+  font-size: 24px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.marquee-img-lead {
+  width: 50px;
+  position: absolute;
+  top: -11px;
+  left: -5px;
+  z-index: 10;
+}

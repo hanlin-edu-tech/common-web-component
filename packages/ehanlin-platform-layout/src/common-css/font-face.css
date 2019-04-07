@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "platformIcon";
+  font-style: normal;
+  font-weight: normal;
+  src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/platformIcon.eot?") format("eot"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/platformIcon.woff") format("woff"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/platformIcon.ttf") format("truetype"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/platformIcon.svg#platformIcon") format("svg"); }
+@font-face {
+  font-family: "parentsicon";
+  font-style: normal;
+  font-weight: normal;
+  src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/parentsicon.eot?") format("eot"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/parentsicon.woff") format("woff"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/parentsicon.ttf") format("truetype"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/parentsicon.svg#parentsicon") format("svg"); }
+@font-face {
+  font-family: "shoppingcart";
+  font-style: normal;
+  font-weight: normal;
+  src: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.eot?") format("eot"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.woff") format("woff"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.ttf") format("truetype"), url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/font/shoppingcart.svg#shoppingcart") format("svg"); }
+#ehanlin-menu.nav [class^="platformIcon-"]:before, #ehanlin-menu [class*=" platformIcon-"]:before {
+  font-family: platformIcon;
+  font-size: 20px; }
+
+#ehanlin-menu.nav .platformIcon-header_news:before {
+  content: "\e000"; }
+
+#ehanlin-menu.nav .platformIcon-header_event:before {
+  content: "\e003"; }
+
+#ehanlin-menu.nav .platformIcon-header_mycourses:before {
+  content: "\e006"; }
+
+#ehanlin-menu.nav [class^="parents-"]:before, #ehanlin-menu.nav [class*=" parents-"]:before {
+  font-family: parentsicon;
+  font-size: 20px; }
+
+#ehanlin-menu.nav .parents-5:before {
+  content: "\e000"; }
+
+#ehanlin-menu.nav [class^="shoppingcart-"]:before, #ehanlin-menu.nav [class*=" shoppingcart-"]:before {
+  font-family: shoppingcart;
+  font-size: 20px; }
+
+#ehanlin-menu.nav .shoppingcart-shop20:before {
+  content: "\e000"; }
+
+/*# sourceMappingURL=font-face.css.map */
