@@ -2,4 +2,4 @@ language: node_js
 node_js: "10"
 install: npm install aws-sdk
 script:
-  sh deploy.sh
+  sh ./ehanlin-platform-layout/deploy.sh
