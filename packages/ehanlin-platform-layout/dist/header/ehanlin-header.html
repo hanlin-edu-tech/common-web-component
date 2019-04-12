@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="EXPIRES" CONTENT="0">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <title>ehanlin header</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current/header/ehanlin-header.css?ts=20190221">
+    <link rel="stylesheet"
+          href="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current/header/ehanlin-marquee.css?ts=20190221">
+    <script defer
+            src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current/header/ehanlin-header.js"></script>
+  </head>
+
+  <body id="ehanlin-header" class="basic">
+    <div id="ehanlin-marquee" style="position: relative; right: 3px; top: 0;">
+      <!--<img class="marquee-img-lead"-->
+           <!--src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/img/marquee/albi-christmas-2018.png">-->
+      <div class="marquee" data-gap="0" style="display:none;">
+        <ul></ul>
+      </div>
+      <i class="fa fa-close marquee-close" style="display: none;"></i>
+    </div>
+
+    <div>
+      <a class="logo" href="/index.html" title="ehanlin - 翰林雲端學苑 - 首頁"></a>
+      <ul class="header-menu" style="visibility:hidden;">
+        <i class="fa fa-phone" style="font-size:14px; color:#767676;"></i>
+        免費諮詢專線：0800-0088-11
+        <br>
+        <li>
+          <a href="/my/owned/Carts.html?step=1" title="購物車">
+            <i class="shoppingcart-shop20" style="font-style:normal;"> 購物車 </i>
+            <span id="car_sum">0</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="/inputsn.html" title="課程開通">課程開通</a>
+        </li>
+
+        <li>
+          <a href="/type/TRIAL/SalesPlans.html" title="免費試用">免費試用</a>
+        </li>
+
+        <li>
+          <a href="/qa.html" title="使用幫手">使用幫手</a>
+        </li>
+
+        <li>
+          <iframe src="/ms_message/msgapi_test.html" frameborder="0" allowtransparency="true"
+                  style="width: 20px; height: 22px; margin-bottom: -7px;"></iframe>
+        </li>
+
+        <li id="register">
+          <a href="/Users/register.html" title="會員註冊">立即註冊</a>
+        </li>
+
+        <li id="loginBotton">
+          <a href="/Users/login.html" title="會員登入">會員登入</a>
+        </li>
+
+        <span style="color:#868686">&nbsp;|&nbsp;</span>
+        <a id="loginSuccess" class="userName"></a>
+
+        <li>
+          <a href="https://www.facebook.com/ehanlin.com.tw/">
+            <i class="fa">&nbsp;&#xf082;</i>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://line.me/R/ti/p/MtsRQz_Hn5">
+            <i class="fa fa-share-alt-square" style="font-size:24px;color:#00B900"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </body>
+
+</html>

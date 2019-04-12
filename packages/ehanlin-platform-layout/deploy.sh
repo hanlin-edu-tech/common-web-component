@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ehanlin-platform-layout
+cd ./packages/ehanlin-platform-layout
 npm install aws-sdk
 
 if [ -n "${TRAVIS_TAG}" ]; then
