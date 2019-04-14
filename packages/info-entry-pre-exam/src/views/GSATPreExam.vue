@@ -1,14 +1,12 @@
 <template lang="pug">
   section
     LayoutBanner
-
     .box.right(id='GSAT-pre-exam')
       LayoutTagTitle 歷屆學測解題
       ul.subject-btn
         li(v-for="(subject, index) in subjects" :key="index")
           a(:href="subject.entry")
             img(:class="subject.class ? subject.class : ''"
-
               :src="require(`@/static/img/${subject.img}`)")
 
 </template>
@@ -21,35 +19,45 @@
     name: 'GSAT.vue',
     data () {
       return {
+        preExamUrl: '',
         subjects: [
           {
-            entry: '/gsat/歷屆學測解題/國文',
+            entry: '/info/pre-exam/#/gsat/歷屆學測解題/國文',
             img: 'pc.png'
           },
           {
-            entry: '/gsat/歷屆學測解題/英文',
+            entry: '/info/pre-exam/#/gsat/歷屆學測解題/英文',
             img: 'en.png'
           },
           {
-            entry: '/gsat/歷屆學測解題/數學',
+            entry: '/info/pre-exam/#/gsat/歷屆學測解題/數學',
             img: 'ma.png'
           },
           {
             class: 'big',
-            entry: '/gsat/歷屆學測解題/自然',
+            entry: '/info/pre-exam/#/gsat/歷屆學測解題/自然',
             img: 'na.png'
           },
           {
             class: 'big',
-            entry: '/gsat/歷屆學測解題/社會',
+            entry: '/info/pre-exam/#/gsat/歷屆學測解題/社會',
             img: 'so.png'
           },
         ]
       }
     },
+
     components: {
       LayoutBanner,
       LayoutTagTitle
+    },
+
+    mounted () {
+      document.getElementById('info-left-side').style.display = ''
+    },
+
+    beforeDestroy () {
+      document.getElementById('info-left-side').style.display = 'none'
     }
   }
 </script>

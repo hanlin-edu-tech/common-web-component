@@ -28,7 +28,7 @@ const uploadGCS = bucket => {
     .pipe(gcPub({
       bucket: bucket,
       keyFilename: 'tutor.json',
-      base: 'app/line@chat/',
+      base: 'info/pre-exam/',
       projectId: 'tutor-204108',
       public: true,
       metadata: {
@@ -40,8 +40,8 @@ const uploadGCS = bucket => {
 gulp.task('minifyImage', minifyImage.bind(minifyImage, './src/static/img/**/*.@(jpg|png)'))
 
 /* 上傳 GCS */
-gulp.task('uploadGcsTest', uploadGCS.bind(uploadGCS, 'tutor-apps-test'))
-gulp.task('uploadGcsProduction', uploadGCS.bind(uploadGCS, 'tutor-apps'))
+gulp.task('uploadGcsTest', uploadGCS.bind(uploadGCS, 'tutor-info-test'))
+gulp.task('uploadGcsProduction', uploadGCS.bind(uploadGCS, 'tutor-info'))
 
 /* 部署 */
 gulp.task('deployToTest', ['minifyImage', 'uploadGcsTest'], () => {

@@ -1,12 +1,12 @@
 <template lang="pug">
   #teacher
-    article(v-for='teacher in teachers', :key="teacher.subject")
+    article(v-for="teacher in teachers" :key="teacher.id")
       img.banner(:src="require(`@/static/img/${teacher.img}.png`)")
       a.btn.teacher-more(:href="teacher.link") 更多介紹
 </template>
 
 <script>
-  import { db } from '../modules/firebase-config'
+  import { db } from '@/modules/firebase-config'
 
   export default {
     name: 'Teacher',
@@ -25,7 +25,6 @@
       if (vueModel.subject) {
         vueModel.retrieveTeachers()
       }
-
     },
 
     methods: {
@@ -37,7 +36,10 @@
 
         let teachers = []
         teacherQuerySnapshot.forEach(teacherDoc => {
-          teachers.push(teacherDoc.data())
+          teachers.push({
+            ...{ id: teacherDoc.id },
+            ...teacherDoc.data()
+          })
         })
         vueModel.teachers = teachers
       }

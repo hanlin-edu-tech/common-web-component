@@ -1,7 +1,10 @@
 <template lang="pug">
-  iframe#youtube-player(title="Exam answer youtube player"
-    frameborder="0" allowfullscreen="allowfullscreen" width="640",
-    :src="embeddedYoutubeLink" :class="embeddedYoutubeLink ? 'open' : ''"
+  iframe#youtube-player(
+    title="Exam answer youtube player"
+    frameborder="0"
+    allowfullscreen="allowfullscreen" width="640",
+    :src="embeddedYoutubeLink"
+    :class="embeddedYoutubeLink ? 'open' : ''"
   )
 </template>
 

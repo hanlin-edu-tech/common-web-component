@@ -26,7 +26,7 @@
 
     props: {
       preExamYearInfo: {
-        preExamCategory: String,
+        preExamCategoryDesc: String,
         yearExam: String,
         subject: String
       }
@@ -62,7 +62,7 @@
       async retrieveYoutubeVideos () {
         const vueModel = this
         const preExamYearInfo = vueModel.preExamYearInfo
-        const collectionName = `${preExamYearInfo.preExamCategory}/${preExamYearInfo.yearExam}/YoutubeVideo`
+        const collectionName = `${preExamYearInfo.preExamCategoryDesc}/${preExamYearInfo.yearExam}/YoutubeVideo`
         const youtubeVideoQuerySnapshot = await db.collection(collectionName)
           .where('subject', '==', preExamYearInfo.subject)
           .get()

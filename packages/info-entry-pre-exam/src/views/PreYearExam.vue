@@ -1,68 +1,93 @@
 <template lang="pug">
-  #years-tab
-    ul.tabs-nav
-      li.tab-default(v-for="yearExam in yearExams" :key="yearExam"
-        :ref="retrieveYear (yearExam)" @click="renderYearExam ($event, yearExam)")
-        a(href="#")
-          h2 {{ retrieveYear (yearExam) }}
+  section
+    LayoutLeftSubjectMenu(:preExamCategory="preExamCategory"
+      :preExamCategoryDesc="preExamCategoryDesc")
+    AdvertisementUp
+    #years-tab
+      ul.tabs-nav
+        li.tab-default(v-for="yearExam in yearExams" :key="yearExam"
+          :ref="retrieveYear (yearExam)" @click="renderYearExam ($event, yearExam)")
+          a(href="#")
+            h2 {{ retrieveYear (yearExam) }}
 
-    .box.right.con
-      LayoutTagTitle {{ `${preExamCategory}： ${currentYear} 學年${subject}`}}
-      YearExam(ref="preExamYearInfoRef" :preExamYearInfo="preExamYearInfo" :key="currentYear")
-      Teacher(:subject="subject")
+      .box.right.con
+        LayoutTagTitle {{ `${preExamCategoryDesc}： ${currentYear} 學年${subject}` }}
+        YearExam(ref="preExamYearInfoRef" :preExamYearInfo="preExamYearInfo" :key="preExamYearInfo")
+        Teacher(:subject="subject" :key="subject")
 </template>
 
 <script>
-  import { db } from '../modules/firebase-config'
+  import { db } from '@/modules/firebase-config'
+  import LayoutLeftSubjectMenu from '@/components/layout/LayoutLeftSubjectMenu'
   import LayoutTagTitle from '@/components/layout/LayoutTagTitle'
   import YearExam from '@/components/YearExam'
   import Teacher from '@/components/Teacher'
+  import AdvertisementUp from '../components/AdvertisementUp'
 
   export default {
-    name: 'GSATPreYearExam',
+    name: 'PreYearExam',
     components: {
+      LayoutLeftSubjectMenu,
       LayoutTagTitle,
       YearExam,
-      Teacher
-    },
-
-    props: {
-      subject: String
+      Teacher,
+      AdvertisementUp
     },
 
     data: () => {
       return {
         yearExams: [],
         currentYear: '',
-        preExamCategory: '歷屆學測解題',
         preExamCategorySubtitle: '',
         preExamYearInfo: null
       }
     },
 
+    props: {
+      preExamCategory: String,
+      preExamCategoryDesc: String,
+      subject: String
+    },
+
+    beforeRouteUpdate (to, from, next) {
+      const vueModel = this
+      vueModel.initial()
+      console.log(`====>` + vueModel.subject)
+      next()
+    },
+
     async mounted () {
       const vueModel = this
-      let currentYear
-      await vueModel.retrieveGSATDocIds()
-      currentYear = vueModel.yearExams[0].substring(0, 3)
-
-      vueModel.preExamCategorySubtitle = `${vueModel.preExamCategory}: ${currentYear} 學年${vueModel.subject}`
-      $('#years-tab .tab-active').removeClass('tab-active')
-      $(`#y${currentYear}`).addClass('tab-active')
-      vueModel.$refs[currentYear][0].click()
+      vueModel.initial()
+      console.log(`mounted ` + vueModel.subject)
     },
 
     methods: {
+      async initial () {
+        const vueModel = this
+
+        let currentYear
+        await vueModel.retrieveGSATDocIds()
+        currentYear = vueModel.yearExams[0].substring(0, 3)
+        vueModel.preExamCategorySubtitle =
+          `${vueModel.preExamCategoryDesc}: ${vueModel.currentYear} 學年${vueModel.subject}`
+        $('#years-tab .tab-active').removeClass('tab-active')
+        $(`#y${currentYear}`).addClass('tab-active')
+
+        vueModel.currentYear = currentYear
+        vueModel.$refs[currentYear][0].click()
+      },
+
       async retrieveGSATDocIds () {
         try {
           const vueModel = this
-          const gsatQuerySnapshot = await db.collection(vueModel.preExamCategory)
+          const gsatQuerySnapshot = await db.collection(vueModel.preExamCategoryDesc)
             .orderBy('year', 'desc')
             .get()
 
           vueModel.yearExams = gsatQuerySnapshot
             .docChanges()
-            .filter(gsatDocChange => gsatDocChange.doc && gsatDocChange.doc.id.length > 3)
+            .filter(gsatDocChange => (gsatDocChange.doc && gsatDocChange.doc.id.length > 3))
             .map(gsatDocChange => {
               return gsatDocChange.doc.id
             })
@@ -75,21 +100,16 @@
         return yearExam.substring(0, 3)
       },
 
-      retrieveSubtitle (yearExam) {
-        const vueModel = this
-        console.log(yearExam)
-        return `${vueModel.preExamCategory} ${vueModel.retrieveYear(yearExam)} 學年${vueModel.subject}`
-      },
-
       renderYearExam (event, yearExam) {
         const vueModel = this
         const currentAnchorTarget = $(event.currentTarget)
+        vueModel.yearExam = yearExam
 
         $('#years-tab .tab-active').removeClass('tab-active')
         currentAnchorTarget.addClass('tab-active')
 
         vueModel.preExamYearInfo = {
-          preExamCategory: vueModel.preExamCategory,
+          preExamCategoryDesc: vueModel.preExamCategoryDesc,
           yearExam: yearExam,
           subject: vueModel.subject
         }

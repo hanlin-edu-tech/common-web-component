@@ -7,6 +7,14 @@ let util = {
     }
   },
 
+  registerArrayFirst: () => {
+    if (!Array.prototype.first) {
+      Array.prototype.first = function () {
+        return this[0]
+      }
+    }
+  },
+
   registerObjArrayGroupBy: () => {
     Array.prototype.objGroupBy = function (key) {
       const arraySelf = this
@@ -21,7 +29,6 @@ let util = {
         }
       }, Object.create(null))
     }
-
   }
 }
 

@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
-    "production": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "test": "cross-env NODE_ENV=test && vue-cli-service build && gulp deployToTest",
+    "production": "cross-env NODE_ENV=production && vue-cli-service build && gulp deployToProduction"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "ehanlin-basicss": "0.0.5",
     "firebase": "^5.9.1",
     "jquery": "^3.3.1",
@@ -19,16 +22,18 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-service": "^3.5.0",
+    "cross-env": "^5.2.0",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^1.1.1",
+    "gulp-gcloud-publish": "^2.1.1",
+    "gulp-imagemin": "^5.0.3",
+    "imagemin-pngquant": "^7.0.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "pug": "^2.0.3",
     "pug-html-loader": "^1.1.5",
     "pug-plain-loader": "^1.0.0",
-    "vue-template-compiler": "^2.5.21",
-    "gulp": "^3.9.1",
-    "gulp-cache": "^1.1.1",
-    "gulp-gcloud-publish": "^2.1.1",
-    "gulp-imagemin": "^5.0.3",
-    "imagemin-pngquant": "^7.0.0"
+    "system-sleep": "^1.3.6",
+    "vue-template-compiler": "^2.5.21"
   }
 }
