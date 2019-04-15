@@ -7,4 +7,8 @@
   if (targetAnchor) {
     targetAnchor.classList.add('select')
   }
+
+  document.querySelector('.irt-btn').addEventListener('click', () => {
+    window.localStorage.clear()
+  })
 })()
