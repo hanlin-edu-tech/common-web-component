@@ -42,7 +42,7 @@
       }
 
       request.onerror = function () {
-        console.log(
+        console.error(
           'Response error, readyState = ' +
           this.req.readyState +
           ', status = ' +

@@ -1,6 +1,4 @@
-import {
-  jQueryNoConflict
-} from './jquery-no-conflict'
+import { jQueryNoConflict } from './jquery-no-conflict'
 import 'jquery.marquee'
 
 let marqueeTarget = jQueryNoConflict('#ehanlin-header div.marquee')
@@ -35,9 +33,6 @@ let runMarquee = () => {
           })
           .html(marqueeContent)
 
-        // marqueeTarget.css({
-        //   'background-color': singleMarquee.backgroundColor
-        // })
         marqueeTarget.find('ul').css(
           {
             'border-radius': '2px',

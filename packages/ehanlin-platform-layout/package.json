@@ -7,7 +7,7 @@
     "buildByRollup": "./node_modules/.bin/rollup --config ./header/destination/rollup.config.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.151.0",
+    "aws-sdk": "^2.441.0",
     "ehanlin-basicss": "^0.0.5",
     "fs": "0.0.1-security",
     "gulp-gcloud-publish": "^2.0.0",
