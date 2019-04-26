@@ -1,13 +1,13 @@
 <template lang="pug">
   section
-    LayoutBanner
+    LayoutBanner(:preExamCategory="preExamCategory" :key="preExamCategory")
     .box.right(id='GSAT-pre-exam')
       LayoutTagTitle 歷屆學測解題
       ul.subject-btn
-        li(v-for="(subject, index) in subjects" :key="index")
-          a(:href="subject.entry")
-            img(:class="subject.class ? subject.class : ''"
-              :src="require(`@/static/img/${subject.img}`)")
+        li(v-for="(subjectInfo, index) in subjects" :key="index")
+          div(@click="routeToResolvedVideos(subjectInfo.subject)")
+            img(:class="subjectInfo.class ? subjectInfo.class : ''"
+              :src="require(`@/static/img/${preExamCategory}/${subjectInfo.img}`)")
 
 </template>
 
@@ -16,40 +16,41 @@
   import LayoutTagTitle from '@/components/layout/LayoutTagTitle'
 
   export default {
-    name: 'GSAT.vue',
+    name: 'GSATPreExam',
+    components: {
+      LayoutBanner,
+      LayoutTagTitle
+    },
+
     data () {
       return {
+        preExamCategory: 'gsat',
         preExamUrl: '',
         subjects: [
           {
-            entry: '/info/pre-exam/#/gsat/歷屆學測解題/國文',
+            subject: '國文',
             img: 'pc.png'
           },
           {
-            entry: '/info/pre-exam/#/gsat/歷屆學測解題/英文',
+            subject: '英文',
             img: 'en.png'
           },
           {
-            entry: '/info/pre-exam/#/gsat/歷屆學測解題/數學',
+            subject: '數學',
             img: 'ma.png'
           },
           {
+            subject: '自然',
             class: 'big',
-            entry: '/info/pre-exam/#/gsat/歷屆學測解題/自然',
             img: 'na.png'
           },
           {
+            subject: '社會',
             class: 'big',
-            entry: '/info/pre-exam/#/gsat/歷屆學測解題/社會',
             img: 'so.png'
           },
         ]
       }
-    },
-
-    components: {
-      LayoutBanner,
-      LayoutTagTitle
     },
 
     mounted () {
@@ -58,6 +59,13 @@
 
     beforeDestroy () {
       document.getElementById('info-left-side').style.display = 'none'
+    },
+
+    methods: {
+      routeToResolvedVideos (subject) {
+        const vueModel = this
+        vueModel.$router.replace(`/resolvedVideos/gsat/歷屆學測解題?subject=${subject}`)
+      }
     }
   }
 </script>
@@ -68,14 +76,15 @@
       display: inline-block;
       margin: 10px;
       transition: all 0.3s ease;
-    }
 
-    img {
-      width: 220px;
-    }
+      img {
+        cursor: pointer;
+        width: 220px;
 
-    img.big {
-      width: 100%;
+        &.big {
+          width: 100%;
+        }
+      }
     }
   }
 </style>

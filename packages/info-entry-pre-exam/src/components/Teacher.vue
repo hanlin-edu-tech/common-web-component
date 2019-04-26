@@ -1,8 +1,8 @@
 <template lang="pug">
   #teacher
     article(v-for="teacher in teachers" :key="teacher.id")
-      img.banner(:src="require(`@/static/img/${teacher.img}.png`)")
-      a.btn.teacher-more(:href="teacher.link") 更多介紹
+      img.banner(:src="require(`@/static/img/${preExamCategory}/${teacher.img}`)")
+      a.btn.teacher-more(v-if="teacher.link" :href="teacher.link") 更多介紹
 </template>
 
 <script>
@@ -17,6 +17,7 @@
     },
 
     props: {
+      preExamCategory: String,
       subject: String
     },
 
@@ -31,6 +32,7 @@
       async retrieveTeachers () {
         const vueModel = this
         const teacherQuerySnapshot = await db.collection('Teacher')
+          .where('preExamCategory', '==', vueModel.preExamCategory)
           .where('subject', '==', vueModel.subject)
           .get()
 

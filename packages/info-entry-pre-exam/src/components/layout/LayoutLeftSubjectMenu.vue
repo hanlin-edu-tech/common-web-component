@@ -2,8 +2,8 @@
   #pre-exam-subject-left-side
     ul.menu
       li.left-side-header {{ preExamCategoryDesc }}
-      li(v-for="subject in subjects" :key="subject")
-        a(href="#", @click="routeSubjectLink($event, subject)") {{ subject }}
+      li(v-for="(subject, index) in subjects" :key="subject")
+        a(:id="`ast-${subject}`" @click.prevent="routeSubjectLink($event, subject)") {{ subject }}
 </template>
 
 <script>
@@ -19,7 +19,8 @@
 
     props: {
       preExamCategory: String,
-      preExamCategoryDesc: String
+      preExamCategoryDesc: String,
+      subject: String
     },
 
     async mounted () {
@@ -29,27 +30,18 @@
         .get()
 
       vueModel.subjects = subjectDocSnapshot.data().subjects
+      vueModel.$nextTick(() => {
+        $(`#ast-${vueModel.subject}`).addClass('select')
+      })
     },
 
     methods: {
-      composePreExamContentLink (subject) {
-        const vueModel = this
-        return `/${vueModel.preExamCategory}/${vueModel.preExamCategoryDesc}/${subject}`
-      },
-
       routeSubjectLink (event, subject) {
         const vueModel = this
-        event.preventDefault()
+        $('#pre-exam-subject-left-side ul.menu li > a').removeClass('select')
+        $(event.currentTarget).addClass('select')
         vueModel.$delay(500)
-        console.log(subject)
-        vueModel.$router.replace({
-          name: 'PreYearExam',
-          params: {
-            preExamCategory: vueModel.preExamCategory,
-            preExamCategoryDesc: vueModel.preExamCategoryDesc,
-            subject: subject
-          }
-        })
+        vueModel.$router.replace(`/resolvedVideos/${vueModel.preExamCategory}/${vueModel.preExamCategoryDesc}?subject=${subject}`)
       }
     }
   }
@@ -62,7 +54,7 @@
 
     li.left-side-header {
       font-size: 16px;
-      font-weight : 800;
+      font-weight: 800;
       color: white;
       margin-bottom: 10px;
     }

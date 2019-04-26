@@ -1,18 +1,18 @@
 <template lang="pug">
-  .con
-    #video-panel.con.video-area
+  div
+    #video-panel
       article(v-for="(youtubeVideosByUnit, unit, index) in youtubeVideosGroupByUnit" :key="index")
         p.unit {{ retrieveUnitDesc (youtubeVideosByUnit, unit) }}
         ol.video-list
           li(v-for="youtubeVideos in youtubeVideosByUnit" :key="youtubeVideos.youtubeId")
-            a.active(
-              :data-youtube-id="youtubeVideos.youtubeId" @click="playYoutubeVideo($event)") {{ youtubeVideos.number }}
+            a.active(:data-youtube-id="youtubeVideos.youtubeId"
+              @click="playYoutubeVideo($event)") {{ youtubeVideos.number }}
 
     Youtube(:embeddedYoutubeLink="embeddedYoutubeLink" :key="embeddedYoutubeLink")
 </template>
 
 <script>
-  import { db } from '../modules/firebase-config'
+  import { db } from '@/modules/firebase-config'
   import Youtube from '@/components/Youtube'
 
   export default {
@@ -32,6 +32,10 @@
       }
     },
 
+    components: {
+      Youtube
+    },
+
     async mounted () {
       const vueModel = this
       try {
@@ -41,17 +45,6 @@
       } catch (error) {
         console.error(error)
       }
-    },
-    // watch:{
-    //   preYearExamInfo(currentObject, oldObject){
-    //     if(curVal){
-    //       this.uploadImg=curVal;
-    //     }
-    //   },
-    // }
-
-    components: {
-      Youtube
     },
 
     methods: {
@@ -65,6 +58,7 @@
         const collectionName = `${preExamYearInfo.preExamCategoryDesc}/${preExamYearInfo.yearExam}/YoutubeVideo`
         const youtubeVideoQuerySnapshot = await db.collection(collectionName)
           .where('subject', '==', preExamYearInfo.subject)
+          .orderBy('order', 'asc')
           .get()
 
         const youtubeVideos = []
@@ -93,10 +87,10 @@
       playYoutubeVideo (event) {
         const vueModel = this
         const currentAnchorTarget = $(event.currentTarget)
-        const videoSelected = $('.video-list a.selected')
+        const videoSelectedTarget = $('.video-list a.selected')
         let youtubeId
 
-        videoSelected.removeClass('selected')
+        videoSelectedTarget.removeClass('selected')
         currentAnchorTarget.addClass('selected')
 
         youtubeId = currentAnchorTarget.data('youtube-id')
@@ -109,92 +103,59 @@
 </script>
 
 <style lang="less" scoped>
-  @import '../static/less/ui-tab.less';
+  @import '../static/less/year-tab.less';
 
   p.unit {
     font-size: 2.2em;
     text-indent: 0;
   }
 
-  /*.con > ul {*/
-  /*  text-shadow: none;*/
-  /*  list-style-type: none;*/
-  /*  padding: 0;*/
-  /*  text-align: center;*/
-  /*  transition: all 0.3s ease;*/
-  /*}*/
+  #video-panel {
+    margin-top: 15px;
 
-  /*.con > ul > li {*/
-  /*  display: inline-block;*/
-  /*  margin: 10px;*/
-  /*  transition: all 0.3s ease;*/
-  /*}*/
-
-  /*.con > ul > li > a {*/
-  /*  cursor: pointer;*/
-  /*  display: inline-block;*/
-  /*  color: #bdbdbd;*/
-  /*  background-color: #fafafa;*/
-  /*  transition: all 0.3s ease;*/
-  /*  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);*/
-  /*  padding: 20px 20px 20px 20px;*/
-  /*  width: 80px;*/
-  /*  text-align: center;*/
-  /*  font-size: 20px;*/
-  /*}*/
-
-  /*.con > ul > li > a:hover {*/
-  /*  color: #424242;*/
-  /*  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);*/
-  /*}*/
-
-  /*.con > ul > li > a.selected {*/
-  /*  color: #bdbdbd;*/
-  /*  background-color: #424242;*/
-  /*}*/
-
-  .con > article {
-    & > ol {
-      text-shadow: none;
-      list-style-type: none;
-      padding: 0;
-      margin: 20px 0;
-      transition: all 0.3s ease;
-
-      & > li {
-        display: inline-block;
-        margin: 10px;
+    & > article {
+      & > ol {
+        text-shadow: none;
+        list-style-type: none;
+        padding: 0;
+        margin: 20px 0;
         transition: all 0.3s ease;
-        width: 50px;
-        text-align: center;
 
-        & > a {
-          cursor: pointer;
+        & > li {
           display: inline-block;
-          color: #a7a7a7;
-          background-color: gray;
+          margin: 10px;
           transition: all 0.3s ease;
-          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-          line-height: 40px;
-          border-radius: 20px;
-          width: 40px;
-          height: 40px;
+          width: 50px;
           text-align: center;
-        }
 
-        & > a.active {
-          background-color: #fafafa;
-          font-size: 14px;
-          font-weight: 600;
+          & > a {
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+            color: #a7a7a7;
+            background-color: gray;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            line-height: 40px;
+            border-radius: 20px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
 
-          &:hover {
-            color: #3a3a3a;
-            box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
-          }
+            &.active {
+              background-color: #fafafa;
+              font-weight: 600;
 
-          &.selected {
-            color: #bdbdbd;
-            background-color: #424242;
+              &:hover {
+                color: #3a3a3a;
+                box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
+              }
+
+              &.selected {
+                color: #bdbdbd;
+                background-color: #424242;
+              }
+            }
           }
         }
       }

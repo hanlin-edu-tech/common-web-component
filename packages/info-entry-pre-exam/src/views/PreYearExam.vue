@@ -1,19 +1,22 @@
 <template lang="pug">
   section
     LayoutLeftSubjectMenu(:preExamCategory="preExamCategory"
-      :preExamCategoryDesc="preExamCategoryDesc")
-    AdvertisementUp
+      :preExamCategoryDesc="preExamCategoryDesc" :subject="subject" :key="subject")
+
+    AdvertisementUp(:type="adType" :key="preExamCategory")
+
     #years-tab
       ul.tabs-nav
-        li.tab-default(v-for="yearExam in yearExams" :key="yearExam"
+        li.tab-default(:id="yearExam" v-for="yearExam in yearExams" :key="yearExam"
           :ref="retrieveYear (yearExam)" @click="renderYearExam ($event, yearExam)")
-          a(href="#")
+          div
             h2 {{ retrieveYear (yearExam) }}
 
       .box.right.con
         LayoutTagTitle {{ `${preExamCategoryDesc}： ${currentYear} 學年${subject}` }}
-        YearExam(ref="preExamYearInfoRef" :preExamYearInfo="preExamYearInfo" :key="preExamYearInfo")
-        Teacher(:subject="subject" :key="subject")
+        YearExam(ref="preExamYearInfoRef" :preExamYearInfo="preExamYearInfo" :key="preExamYearInfoKey")
+        Teacher(v-if="preExamCategory !== 'ast'"
+          :preExamCategory="preExamCategory" :subject="subject" :key="`${preExamCategory}${subject}`")
 </template>
 
 <script>
@@ -36,64 +39,120 @@
 
     data: () => {
       return {
+        subject: '',
         yearExams: [],
         currentYear: '',
-        preExamCategorySubtitle: '',
-        preExamYearInfo: null
+        preExamYearInfo: null,
+        preExamYearInfoKey: '',
+        adType: ''
       }
     },
 
     props: {
       preExamCategory: String,
-      preExamCategoryDesc: String,
-      subject: String
+      preExamCategoryDesc: String
     },
 
-    beforeRouteUpdate (to, from, next) {
+    async beforeRouteUpdate (to, from, next) {
       const vueModel = this
-      vueModel.initial()
-      console.log(`====>` + vueModel.subject)
+      vueModel.initial(vueModel.yearExam)
       next()
     },
 
     async mounted () {
       const vueModel = this
       vueModel.initial()
-      console.log(`mounted ` + vueModel.subject)
     },
 
     methods: {
-      async initial () {
-        const vueModel = this
-
-        let currentYear
-        await vueModel.retrieveGSATDocIds()
-        currentYear = vueModel.yearExams[0].substring(0, 3)
-        vueModel.preExamCategorySubtitle =
-          `${vueModel.preExamCategoryDesc}: ${vueModel.currentYear} 學年${vueModel.subject}`
-        $('#years-tab .tab-active').removeClass('tab-active')
-        $(`#y${currentYear}`).addClass('tab-active')
-
-        vueModel.currentYear = currentYear
-        vueModel.$refs[currentYear][0].click()
-      },
-
-      async retrieveGSATDocIds () {
+      async retrievePreExamDocIds () {
         try {
           const vueModel = this
-          const gsatQuerySnapshot = await db.collection(vueModel.preExamCategoryDesc)
+          const preExamQuerySnapshot = await db.collection(vueModel.preExamCategoryDesc)
             .orderBy('year', 'desc')
             .get()
 
-          vueModel.yearExams = gsatQuerySnapshot
+          vueModel.yearExams = preExamQuerySnapshot
             .docChanges()
-            .filter(gsatDocChange => (gsatDocChange.doc && gsatDocChange.doc.id.length > 3))
-            .map(gsatDocChange => {
-              return gsatDocChange.doc.id
+            .filter(preExamDocChange => {
+              return (preExamDocChange.doc && preExamDocChange.doc.id.length >= 3)
             })
+            .map(
+              preExamDocChange => {
+                return preExamDocChange.doc.id
+              }
+            )
         } catch (error) {
           console.error(error)
         }
+      },
+
+      async summarySubject () {
+        const vueModel = this
+        if (vueModel.$route.query) {
+          let subject
+          if (vueModel.$route.query.sj) {
+            const querySubjectCode = vueModel.$route.query.sj
+            const codeDocSnapshot = await db.collection('Subject').doc('code').get()
+            const mapping = codeDocSnapshot.data().mapping
+            const subjectOrder = mapping[querySubjectCode]
+            subject = subjectOrder.split('-')[0]
+          } else if (vueModel.$route.query.subject) {
+            subject = vueModel.$route.query.subject
+          }
+
+          if (vueModel.preExamCategory === 'ast') {
+            if (subject === '數學') {
+              return '數學乙'
+            } else if (subject === '自然') {
+              return '物理'
+            } else if (subject === '社會') {
+              return '歷史'
+            }
+          }
+          return subject
+        } else {
+          return '國文'
+        }
+      },
+
+      initialCurrentYear (yearExam) {
+        const vueModel = this
+        if (yearExam)
+          return parseInt(yearExam.substring(0, 3))
+        else if (vueModel.$route.query && vueModel.$route.query.year) {
+          return vueModel.$route.query.year
+        } else {
+          return parseInt(vueModel.yearExams[0].substring(0, 3))
+        }
+      },
+
+      initialAdType () {
+        const vueModel = this
+        switch (vueModel.preExamCategory) {
+          case 'gsat' : {
+            vueModel.adType = 'hspe'
+            break
+          }
+
+          case 'ast' : {
+            vueModel.adType = 'specify_video'
+            break
+          }
+        }
+      },
+
+      async initial (yearExam) {
+        const vueModel = this
+        await vueModel.retrievePreExamDocIds()
+        vueModel.currentYear = vueModel.initialCurrentYear(yearExam)
+        vueModel.subject = await vueModel.summarySubject()
+        vueModel.initialAdType()
+
+        $('#years-tab .tab-active').removeClass('tab-active')
+        $(`#${vueModel.yearExams[0]}`).addClass('tab-active')
+
+        vueModel.$refs[vueModel.currentYear][0].click()
       },
 
       retrieveYear (yearExam) {
@@ -104,7 +163,6 @@
         const vueModel = this
         const currentAnchorTarget = $(event.currentTarget)
         vueModel.yearExam = yearExam
-
         $('#years-tab .tab-active').removeClass('tab-active')
         currentAnchorTarget.addClass('tab-active')
 
@@ -113,6 +171,7 @@
           yearExam: yearExam,
           subject: vueModel.subject
         }
+        vueModel.preExamYearInfoKey = `${vueModel.preExamCategoryDesc}${yearExam}${vueModel.subject}`
         vueModel.currentYear = vueModel.retrieveYear(yearExam)
       }
     }
@@ -120,42 +179,9 @@
 </script>
 
 <style lang="less">
-  @import '../static/less/ui-tab.less';
+  @import '../static/less/year-tab.less';
 
   #years-tab {
-    ul.tabs-nav {
-      li {
-        white-space: nowrap;
-        display: inline-block;
-      }
-
-      h2 {
-        font-size: 1.1em;
-        padding: 5px 20px;
-      }
-    }
-
-    .tab-default {
-      border: 1px solid #d5d5d5;
-      font-weight: normal;
-      background: linear-gradient(to bottom, rgba(244, 244, 244, 1) 0%, rgba(225, 225, 225, 1) 100%);
-
-      a {
-        color: #aaa;
-      }
-    }
-
-    .tab-active {
-      border: 1px solid #d5d5d5;
-      font-weight: normal;
-      background: linear-gradient(to bottom, rgba(234, 234, 234, 1) 1%, rgba(255, 255, 255, 1) 100%);
-
-      a {
-        color: #000;
-        font-weight: bold;
-      }
-    }
-
     .con {
       padding: 10px 1%;
     }

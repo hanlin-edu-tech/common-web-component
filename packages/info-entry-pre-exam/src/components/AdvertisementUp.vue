@@ -2,9 +2,9 @@
   .box.right
     article(v-if="ad && ad.link")
       a(:href="ad.link")
-        img.banner(:src="`${awsS3Path}${ad.image}`")
+        img.banner(:src="`${adAwsS3Path}${ad.image}`")
     article(v-else-if="ad && !ad.link")
-      img.banner(:src="`${awsS3Path}${ad.image}`")
+      img.banner(:src="`${adAwsS3Path}${ad.image}`")
 </template>
 
 <script>
@@ -13,9 +13,13 @@
     data () {
       return {
         ad: Object,
-        awsS3Path:
+        adAwsS3Path:
           'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/imgs/advertise/'
       }
+    },
+
+    props: {
+      type: String
     },
 
     async mounted () {
@@ -23,14 +27,12 @@
       let response = await vueModel.$axios(
         {
           method: 'get',
-          url: 'https://www.tbbt.com.tw/Advertise?type=hspe',
+          url: `https://www.tbbt.com.tw/Advertise?type=${vueModel.type}`,
         }
       )
       let advertisements = response.data
-      console.log(advertisements)
       advertisements = advertisements.filter(advertisement => advertisement.position === 'up')
       if (advertisements && advertisements.length > 0) {
-        console.log(advertisements)
         vueModel.ad = advertisements.first()
       }
     }

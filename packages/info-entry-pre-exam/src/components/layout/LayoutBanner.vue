@@ -1,14 +1,14 @@
 <template lang="pug">
   .box.right
     .banner-top
-      img.banner(src='../../static/img/banner.png')
+      img.banner(:src="require(`@/static/img/${preExamCategory}/banner.png`)")
 </template>
 
 <script>
   export default {
     name: 'LayoutBanner',
     props: {
-      msg: String
+      preExamCategory: String
     }
   }
 </script>
