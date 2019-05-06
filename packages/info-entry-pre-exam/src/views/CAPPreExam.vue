@@ -102,6 +102,13 @@
                 preExamDocChange => {
                   return preExamDocChange.doc.id
                 }
+              )
+              .sort(
+                (id1, id2) => {
+                  let year1 = /([\d]+).*/g.exec(id1)[1];
+                  let year2 = /([\d]+).*/g.exec(id2)[1];
+                  return parseInt(year2) - parseInt(year1)
+                }
               ),
 
             ['解析下載']
