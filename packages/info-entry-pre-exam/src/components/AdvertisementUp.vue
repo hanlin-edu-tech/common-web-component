@@ -1,10 +1,8 @@
 <template lang="pug">
   .box.right
-    article(v-if="ad && ad.link")
-      a(:href="ad.link")
-        img.banner(:src="`${adAwsS3Path}${ad.image}`")
-    article(v-else-if="ad && !ad.link")
-      img.banner(:src="`${adAwsS3Path}${ad.image}`")
+    article
+      a(:href="adLink")
+        img.banner(:src="require(`@/static/img/ad/${adImg}`)")
 </template>
 
 <script>
@@ -12,28 +10,40 @@
     name: 'AdvertisementUp',
     data () {
       return {
-        ad: Object,
-        adAwsS3Path:
-          'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource/imgs/advertise/'
+        adLink: '',
+        adImg: 'ad-gsat.gif'
       }
     },
 
     props: {
-      type: String
+      preExamCategory: String
     },
 
     async mounted () {
       const vueModel = this
-      let response = await vueModel.$axios(
-        {
-          method: 'get',
-          url: `https://www.tbbt.com.tw/Advertise?type=${vueModel.type}`,
+      console.log('>>>')
+      console.log(vueModel.preExamCategory)
+      vueModel.determineAd()
+    },
+
+    methods: {
+      determineAd () {
+        const vueModel = this
+        switch (vueModel.preExamCategory) {
+          case 'gsat' : {
+            vueModel.adLink =
+              'https://www.ehanlin.com.tw/type/ONLINE/category/%E9%AB%98%E4%B8%AD%E5%AD%B8%E6%B8%AC%E7%B8%BD%E8%A4%87%E7%BF%92e%E5%90%8D%E5%B8%AB/SalesPlans.html'
+            vueModel.adImg = 'ad-gsat.gif'
+            break
+          }
+
+          case 'ast' : {
+            vueModel.adLink =
+              'https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E9%AB%98%E4%B8%AD%E6%8C%87%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html'
+            vueModel.adImg = 'ad-ast.gif'
+            break
+          }
         }
-      )
-      let advertisements = response.data
-      advertisements = advertisements.filter(advertisement => advertisement.position === 'up')
-      if (advertisements && advertisements.length > 0) {
-        vueModel.ad = advertisements.first()
       }
     }
   }

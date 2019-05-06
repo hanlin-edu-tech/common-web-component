@@ -3,7 +3,7 @@
     LayoutLeftSubjectMenu(:preExamCategory="preExamCategory"
       :preExamCategoryDesc="preExamCategoryDesc" :subject="subject" :key="subject")
 
-    AdvertisementUp(:type="adType" :key="preExamCategory")
+    AdvertisementUp(:preExamCategory="preExamCategory" :key="preExamCategory")
 
     #years-tab
       ul.tabs-nav
@@ -127,27 +127,11 @@
         }
       },
 
-      initialAdType () {
-        const vueModel = this
-        switch (vueModel.preExamCategory) {
-          case 'gsat' : {
-            vueModel.adType = 'hspe'
-            break
-          }
-
-          case 'ast' : {
-            vueModel.adType = 'specify_video'
-            break
-          }
-        }
-      },
-
       async initial (yearExam) {
         const vueModel = this
         await vueModel.retrievePreExamDocIds()
         vueModel.currentYear = vueModel.initialCurrentYear(yearExam)
         vueModel.subject = await vueModel.summarySubject()
-        vueModel.initialAdType()
 
         $('#years-tab .tab-active').removeClass('tab-active')
         $(`#${vueModel.yearExams[0]}`).addClass('tab-active')
