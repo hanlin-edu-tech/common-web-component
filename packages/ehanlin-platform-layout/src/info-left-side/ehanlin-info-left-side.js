@@ -1,7 +1,7 @@
 (() => {
   let pathname = window.location.pathname
   let search = decodeURIComponent(window.location.search)
-  let link = decodeURIComponent(window.location.pathname)
+  let link = decodeURIComponent(pathname)
 
   let targetAnchor = document.querySelector(
     `.menu ul li > a[href*='${link}${search}']`
