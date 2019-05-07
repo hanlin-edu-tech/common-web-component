@@ -7,13 +7,15 @@
           th 歷屆題本
           th 精彩解析
       tbody
-        tr(v-for="(subjectOrder, subjectCode) in sortSubjectMapping" :key="subjectCode")
-          td {{ splitSubject(subjectOrder) }}
+        tr(v-for="sortCodeSubject in sortCodeSubjects" :key="sortCodeSubject")
+          td {{ splitSubject(sortCodeSubject) }}
           td
-            a(:href="`${awsS3Path}/file/info/105jrhighexam/${year}_${subjectCode}_q.zip`" target="_blank")
+            a(:href="`${gsatFilesGCSDownload}/題本與解析/${year}_${sortCodeSubject.split('-')[0]}_q.zip`"
+              target="_blank")
               img(:src="require(`@/static/img/cap/download.png`)" width="172")
           td
-            a(:href="`${awsS3Path}/file/info/105jrhighexam/${year}_${subjectCode}_a.zip`" target="_blank")
+            a(:href="`${gsatFilesGCSDownload}/題本與解析/${year}_${sortCodeSubject.split('-')[0]}_a.zip`"
+              target="_blank")
               img(:src="require(`@/static/img/cap/download.png`)" width="172")
 
     img.banner(:src="require(`@/static/img/cap/download-sub-banner.png`)")
@@ -31,30 +33,38 @@
 
     data () {
       return {
-        awsS3Path: 'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/platform/1.0.0/resource',
         years: ['107', '106', '105', '104', '103', '102', '101', '100', '99'],
         preExamCategory: 'cap',
-        sortSubjectMapping: Object
+        sortCodeSubjects: Array,
+        sortCodes: Array,
+        gsatFilesGCSDownload: 'https://storage.googleapis.com/ehanlin-web-resource/tutor-platform/infos/cap/file'
       }
     },
 
     async mounted () {
       const vueModel = this
       const codeDocSnapshot = await db.collection('Subject').doc('code').get()
-      const mapping = codeDocSnapshot.data().mapping
-      vueModel.sortSubjectMapping = Object.values(mapping)
+      const codeSubjectMapping = codeDocSnapshot.data().mapping
+      const codeSubjects = []
+      for (let code in codeSubjectMapping) {
+        const subject = codeSubjectMapping[code]
+        codeSubjects.push(`${code}-${subject}`)
+      }
+
+      vueModel.sortCodeSubjects = codeSubjects
         .sort(
-          (subjectOrder1, subjectOrder2) => {
-            const order1 = subjectOrder1.split('-')[1]
-            const order2 = subjectOrder2.split('-')[1]
+          (sortCodeSubject1, sortCodeSubject2) => {
+            const order1 = sortCodeSubject1.split('-')[2]
+            const order2 = sortCodeSubject2.split('-')[2]
             return order1 - order2
           }
         )
     },
 
     methods: {
+      /* 返回科目名稱 */
       splitSubject (subjectOrder) {
-        return subjectOrder.split('-')[0]
+        return subjectOrder.split('-')[1]
       }
     }
   }
@@ -70,6 +80,10 @@
     & > table {
       width: 100%;
       margin: 15px 0;
+
+      thead th, tbody td {
+        font-size: 13px;
+      }
     }
   }
 </style>

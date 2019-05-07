@@ -13,7 +13,7 @@
           CapDownloadList
         template(v-else)
           LayoutTagTitle {{ preExamCategorySubtitle }}
-          CapSubjectList(:yearExam="yearExam" @retrieve-resolved-videos="retrieveResolvedVideos")
+          CapSubjectList(:yearExam="yearExam" :key="yearExam" @retrieve-resolved-videos="retrieveResolvedVideos")
           Component(:is="componentName" :preExamYearInfo="preExamYearInfo" :key="preExamCategorySubtitle")
           Teacher(:preExamCategory="preExamCategory" :subject="subject" :key="`${preExamCategory}${subject}`")
 </template>
@@ -131,6 +131,7 @@
         $('#years-tab .tab-active').removeClass('tab-active')
         currentAnchorTarget.addClass('tab-active')
         vueModel.currentYear = vueModel.retrieveYear(yearExam)
+        vueModel.isDownloadButton = false
 
         if (yearExam.includes('基測')) {
           vueModel.subject = '數學'

@@ -89,7 +89,7 @@
 
       async summarySubject () {
         const vueModel = this
-        if (vueModel.$route.query) {
+        if (Object.keys(vueModel.$route.query).length > 0) {
           let subject
           if (vueModel.$route.query.sj) {
             const querySubjectCode = vueModel.$route.query.sj

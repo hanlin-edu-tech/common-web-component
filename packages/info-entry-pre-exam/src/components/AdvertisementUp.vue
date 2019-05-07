@@ -21,8 +21,6 @@
 
     async mounted () {
       const vueModel = this
-      console.log('>>>')
-      console.log(vueModel.preExamCategory)
       vueModel.determineAd()
     },
 
