@@ -1,9 +1,8 @@
 const gulp = require('gulp')
+const { Storage } = require('@google-cloud/storage')
 const cache = require('gulp-cache')
 const imageMin = require('gulp-imagemin')
 const pngquant = require('imagemin-pngquant')
-const sleep = require('system-sleep')
-const { Storage } = require('@google-cloud/storage')
 const fs = require('fs').promises
 const path = require('path')
 
@@ -37,9 +36,9 @@ const uploadToGCS = async bucketName => {
       {
         destination: `/infos/pre-exam/${distEntireFilePath.replace(distDir, '')}`,
         metadata: {
-          public: true,
           cacheControl: 'no-cache',
         },
+        public: true
       },
       (err, file) => {
         console.log(`Upload ${file.name} successfully`)
@@ -67,15 +66,9 @@ gulp.task('uploadToGcsProduction', uploadToGCS.bind(uploadToGCS, 'tutor-infos/')
 
 /* 部署 */
 gulp.task('deployToTest',
-  gulp.series('minifyImage', 'uploadToGcsTest'),
-  () => {
-    console.log('Package and upload files to production GCS')
-  }
+  gulp.series('minifyImage', 'uploadToGcsTest')
 )
 
 gulp.task('deployToProduction',
-  gulp.series('minifyImage', 'uploadToGcsProduction'),
-  () => {
-    console.log('Package and upload files to production GCS')
-  }
+  gulp.series('minifyImage', 'uploadToGcsProduction')
 )
