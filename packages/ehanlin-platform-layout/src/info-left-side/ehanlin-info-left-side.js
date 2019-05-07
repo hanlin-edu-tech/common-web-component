@@ -1,11 +1,11 @@
 (() => {
-  let pathname = window.location.pathname
-  let search = decodeURIComponent(window.location.search)
-  let link = decodeURIComponent(pathname)
+  const search = decodeURIComponent(window.location.search)
+  const hash = decodeURIComponent(window.location.hash)
+  const pathname = decodeURIComponent(window.location.pathname)
 
-  let targetAnchor = document.querySelector(
-    `.menu ul li > a[href*='${link}${search}']`
-  )
+  const targetAnchor =
+    document.querySelector(`.menu ul li > a[href*='${pathname}${hash}']`)
+    || document.querySelector(`.menu ul li > a[href*='${pathname}${hash}${search}']`)
 
   if (targetAnchor) {
     targetAnchor.classList.add('select')
