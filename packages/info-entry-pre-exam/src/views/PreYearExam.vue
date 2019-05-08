@@ -59,6 +59,11 @@
       next()
     },
 
+    created () {
+      const vueModel = this
+      vueModel.$ehanlinComponentLoader()
+    },
+
     async mounted () {
       const vueModel = this
       vueModel.initial()

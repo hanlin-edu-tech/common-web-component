@@ -54,6 +54,11 @@
       }
     },
 
+    created () {
+      const vueModel = this
+      vueModel.$ehanlinComponentLoader()
+    },
+
     async mounted () {
       const vueModel = this
       document.getElementById('info-left-side').style.display = ''

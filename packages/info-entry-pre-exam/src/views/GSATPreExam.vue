@@ -53,6 +53,11 @@
       }
     },
 
+    created () {
+      const vueModel = this
+      vueModel.$ehanlinComponentLoader()
+    },
+
     mounted () {
       document.getElementById('info-left-side').style.display = ''
     },
