@@ -2,7 +2,7 @@
   #subject-list
     ul
       li(v-for="(subject, index) in subjects" :key="subject" @click="emitRetrieveResolvedVideos(subject, index)")
-        div(:id="`cap-subject${index}`") {{ subject }}
+        div(:id="`cap-${subject}`") {{ subject }}
 </template>
 
 <script>
@@ -17,38 +17,40 @@
     },
 
     props: {
-      yearExam: String
+      yearExam: String,
+      subject: String
     },
 
     watch: {
-      async yearExam (value) {
+      async yearExam (switchedYearExam) {
         const vueModel = this
-        $('#subject-list > ul > li > div').removeClass('selected')
-        $('#cap-subject0').addClass('selected')
-
         const subjectRef = db.collection('Subject')
         let subjectDocSnapshot
-        if (value.includes('基測')) {
+        if (switchedYearExam.includes('基測')) {
           subjectDocSnapshot = await subjectRef.doc('bct').get()
         } else {
           subjectDocSnapshot = await subjectRef.doc('cap').get()
         }
 
         vueModel.subjects = subjectDocSnapshot.data().subjects
-        vueModel.$nextTick(() => {
-          $('#subject-list > ul > li > div').removeClass('selected')
-          $('#cap-subject0').addClass('selected')
-        })
 
+        vueModel.$nextTick(() => {
+          vueModel.switchCurrentSubject(vueModel.subject)
+        })
       }
     },
 
     methods: {
-      emitRetrieveResolvedVideos (subject, index) {
+      emitRetrieveResolvedVideos (subject) {
         const vueModel = this
         vueModel.$emit('retrieve-resolved-videos', subject)
         $('#subject-list > ul > li > div').removeClass('selected')
-        $(`#cap-subject${index}`).addClass('selected')
+        $(`#cap-${subject}`).addClass('selected')
+      },
+
+      switchCurrentSubject (subject) {
+        $('#subject-list > ul > li > div').removeClass('selected')
+        $(`#cap-${subject}`).addClass('selected')
       }
     }
   }
