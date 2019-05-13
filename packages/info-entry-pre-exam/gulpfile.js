@@ -7,6 +7,25 @@ const fs = require('fs').promises
 const path = require('path')
 
 const distDir = path.join(__dirname, 'dist/')
+const storage = new Storage({
+  projectId: 'tutor-204108',
+  keyFilename: './tutor.json'
+})
+
+const cleanGCS = async bucketName => {
+  const options = {
+    prefix: 'infos/pre-exam/',
+  }
+
+  const [files] = await storage.bucket(bucketName).getFiles(options)
+  for (let file of files) {
+    await storage.bucket(bucketName)
+      .file(file.name)
+      .delete()
+    console.log(`${file.name} is deleted`)
+  }
+}
+
 const findAllUploadFilesPath = async (dir, multiDistEntireFilePath = []) => {
   const files = await fs.readdir(dir)
 
@@ -25,10 +44,7 @@ const findAllUploadFilesPath = async (dir, multiDistEntireFilePath = []) => {
 }
 
 const uploadToGCS = async bucketName => {
-  const storage = new Storage({
-    projectId: 'tutor-204108',
-    keyFilename: './tutor.json'
-  })
+  await cleanGCS(bucketName)
 
   const multiDistEntireFilePath = await findAllUploadFilesPath(distDir)
   multiDistEntireFilePath.forEach(distEntireFilePath => {
