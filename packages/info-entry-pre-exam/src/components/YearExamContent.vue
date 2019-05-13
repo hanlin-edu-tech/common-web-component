@@ -16,7 +16,7 @@
   import Youtube from '@/components/Youtube'
 
   export default {
-    name: 'YearExam',
+    name: 'YearExamContent',
     data () {
       return {
         youtubeVideosGroupByUnit: {},

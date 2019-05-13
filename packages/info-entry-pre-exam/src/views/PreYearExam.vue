@@ -14,7 +14,7 @@
 
       .box.right.con
         LayoutTagTitle {{ `${preExamCategoryDesc}： ${currentYear} 學年${subject}` }}
-        YearExam(ref="preExamYearInfoRef" :preExamYearInfo="preExamYearInfo" :key="preExamYearInfoKey")
+        YearExamContent(ref="preExamYearInfoRef" :preExamYearInfo="preExamYearInfo" :key="preExamYearInfoKey")
         Teacher(v-if="preExamCategory !== 'ast'"
           :preExamCategory="preExamCategory" :subject="subject" :key="`${preExamCategory}${subject}`")
 </template>
@@ -23,7 +23,7 @@
   import { db } from '@/modules/firebase-config'
   import LayoutLeftSubjectMenu from '@/components/layout/LayoutLeftSubjectMenu'
   import LayoutTagTitle from '@/components/layout/LayoutTagTitle'
-  import YearExam from '@/components/YearExam'
+  import YearExamContent from '@/components/YearExamContent'
   import Teacher from '@/components/Teacher'
   import AdvertisementUp from '../components/AdvertisementUp'
 
@@ -32,7 +32,7 @@
     components: {
       LayoutLeftSubjectMenu,
       LayoutTagTitle,
-      YearExam,
+      YearExamContent,
       Teacher,
       AdvertisementUp
     },

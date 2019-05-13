@@ -9,11 +9,11 @@
             h2 {{ yearExam }}
 
       .box.right.con
-        template(v-if="isDownloadButton")
+        article(v-show="isDownloadButton")
           CapDownloadList
-        template(v-else)
+        article(v-show="!isDownloadButton")
           LayoutTagTitle {{ preExamCategorySubtitle }}
-          CapSubjectList(:yearExam="yearExam" :key="yearExam" @retrieve-resolved-videos="retrieveResolvedVideos")
+          CapSubjectList(:yearExam="yearExam" :subject="subject" @retrieve-resolved-videos="retrieveResolvedVideos")
           Component(:is="componentName" :preExamYearInfo="preExamYearInfo" :key="preExamCategorySubtitle")
           Teacher(:preExamCategory="preExamCategory" :subject="subject" :key="`${preExamCategory}${subject}`")
 </template>
@@ -24,7 +24,7 @@
   import LayoutBanner from '@/components/layout/LayoutBanner'
   import CapSubjectList from '@/components/cap/CapSubjectList'
   import CapDownloadList from '@/components/cap/CapDownloadList'
-  import YearExam from '@/components/YearExam'
+  import YearExamContent from '@/components/YearExamContent'
   import BctConcept from '@/components/cap/BctConcept'
   import Teacher from '@/components/Teacher'
 
@@ -35,7 +35,7 @@
       LayoutBanner,
       CapSubjectList,
       CapDownloadList,
-      YearExam,
+      YearExamContent,
       BctConcept,
       Teacher,
     },
@@ -150,7 +150,7 @@
           vueModel.isDownloadButton = true
         } else {
           preExamCategorySubtitle = `精選解題: ${yearExam}${vueModel.subject}`
-          componentName = 'YearExam'
+          componentName = 'YearExamContent'
           preExamYearInfo = {
             preExamCategoryDesc: '歷屆會考解題',
             yearExam: yearExam,
@@ -175,7 +175,7 @@
           }
         } else {
           preExamCategorySubtitle = `精選解題: ${vueModel.yearExam}${vueModel.subject}`
-          componentName = 'YearExam'
+          componentName = 'YearExamContent'
           preExamYearInfo = {
             preExamCategoryDesc: '歷屆會考解題',
             yearExam: vueModel.yearExam,
