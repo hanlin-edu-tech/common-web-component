@@ -25,7 +25,7 @@
   import Youtube from '@/components/Youtube'
 
   export default {
-    name: 'BctConcept',
+    name: 'BCTConcept',
     data () {
       return {
         youtubeVideosGroupByConcept: {},

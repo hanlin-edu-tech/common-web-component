@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import PreYearExam from '@/views/PreYearExam'
 
 Vue.use(Router)
 
@@ -21,6 +20,11 @@ export default new Router({
       path: '/cap/歷屆會考解題',
       name: 'CAPPreExam',
       component: () => import('@/views/CAPPreExam.vue'),
+    },
+    {
+      path: '/cap/歷屆考題下載',
+      name: 'CAPDownloadPage',
+      component: () => import('@/views/CAPDownloadPage.vue'),
     },
     {
       path: '/resolvedVideos/:preExamCategory/:preExamCategoryDesc',

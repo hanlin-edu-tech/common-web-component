@@ -10,11 +10,11 @@
         tr(v-for="sortCodeSubject in sortCodeSubjects" :key="sortCodeSubject")
           td {{ splitSubject(sortCodeSubject) }}
           td
-            a(:href="`${gsatFilesGCSDownload}/題本與解析/${year}_${sortCodeSubject.split('-')[0]}_q.zip`"
+            a(:href="`${gsatFilesGCSDownload}/會考解析/${year}/題本/${year}${sortCodeSubject.split('-')[1]}題本.pdf`"
               target="_blank")
               img(:src="require(`@/static/img/cap/download.png`)" width="172")
           td
-            a(:href="`${gsatFilesGCSDownload}/題本與解析/${year}_${sortCodeSubject.split('-')[0]}_a.zip`"
+            a(:href="`${gsatFilesGCSDownload}/會考解析/${year}/解析/${year}_${sortCodeSubject.split('-')[1]}解析.pdf`"
               target="_blank")
               img(:src="require(`@/static/img/cap/download.png`)" width="172")
 
@@ -26,14 +26,14 @@
   import LayoutBanner from '@/components/layout/LayoutBanner'
 
   export default {
-    name: 'CapDownloadList',
+    name: 'CAPDownloadList',
     components: {
       LayoutBanner
     },
 
     data () {
       return {
-        years: ['107', '106', '105', '104', '103', '102', '101', '100', '99'],
+        years: ['107', '106', '105', '104', '103', '102', '101'],
         preExamCategory: 'cap',
         sortCodeSubjects: Array,
         sortCodes: Array,

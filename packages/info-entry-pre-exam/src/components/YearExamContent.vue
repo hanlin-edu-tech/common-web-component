@@ -114,6 +114,8 @@
     margin-top: 15px;
 
     & > article {
+      margin-left: 10px;
+
       & > ol {
         text-shadow: none;
         list-style-type: none;

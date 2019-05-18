@@ -9,7 +9,7 @@
   import { db } from '@/modules/firebase-config'
 
   export default {
-    name: 'CapSubjectList',
+    name: 'CAPSubjectList',
     data () {
       return {
         subjects: []

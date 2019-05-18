@@ -1,7 +1,7 @@
 <template lang="pug">
   section
     LayoutBanner(:preExamCategory="preExamCategory" :key="preExamCategory")
-    .box.right(id='AST-pre-exam')
+    #AST-pre-exam.box.right
       LayoutTagTitle 歷屆指考解題
       .background
         img.how-to(:src="require(`@/static/img/ast/how-to.png`)")

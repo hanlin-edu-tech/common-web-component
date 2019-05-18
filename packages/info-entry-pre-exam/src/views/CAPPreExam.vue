@@ -9,23 +9,19 @@
             h2 {{ yearExam }}
 
       .box.right.con
-        article(v-show="isDownloadButton")
-          CapDownloadList
-        article(v-show="!isDownloadButton")
-          LayoutTagTitle {{ preExamCategorySubtitle }}
-          CapSubjectList(:yearExam="yearExam" :subject="subject" @retrieve-resolved-videos="retrieveResolvedVideos")
-          Component(:is="componentName" :preExamYearInfo="preExamYearInfo" :key="preExamCategorySubtitle")
-          Teacher(:preExamCategory="preExamCategory" :subject="subject" :key="`${preExamCategory}${subject}`")
+        LayoutTagTitle {{ preExamCategorySubtitle }}
+        CAPSubjectList(:yearExam="yearExam" :subject="subject" @retrieve-resolved-videos="retrieveResolvedVideos")
+        Component(:is="componentName" :preExamYearInfo="preExamYearInfo" :key="preExamCategorySubtitle")
+        Teacher(:preExamCategory="preExamCategory" :subject="subject" :key="`${preExamCategory}${subject}`")
 </template>
 
 <script>
   import { db } from '@/modules/firebase-config'
   import LayoutTagTitle from '@/components/layout/LayoutTagTitle'
   import LayoutBanner from '@/components/layout/LayoutBanner'
-  import CapSubjectList from '@/components/cap/CapSubjectList'
-  import CapDownloadList from '@/components/cap/CapDownloadList'
+  import CAPSubjectList from '@/components/cap/CAPSubjectList'
   import YearExamContent from '@/components/YearExamContent'
-  import BctConcept from '@/components/cap/BctConcept'
+  import BCTConcept from '@/components/cap/BCTConcept'
   import Teacher from '@/components/Teacher'
 
   export default {
@@ -33,11 +29,10 @@
     components: {
       LayoutTagTitle,
       LayoutBanner,
-      CapSubjectList,
-      CapDownloadList,
+      CAPSubjectList,
       YearExamContent,
-      BctConcept,
-      Teacher,
+      BCTConcept,
+      Teacher
     },
 
     data: () => {
@@ -49,8 +44,7 @@
         subject: '國文',
         preExamCategorySubtitle: '',
         componentName: '',
-        preExamYearInfo: {},
-        isDownloadButton: false
+        preExamYearInfo: {}
       }
     },
 
@@ -114,12 +108,10 @@
                   let year2 = /([\d]+).*/g.exec(id2)[1];
                   return parseInt(year2) - parseInt(year1)
                 }
-              ),
-
-            ['解析下載']
+              )
           )
         } catch (error) {
-          console.error(error)
+          console.error(error.message)
         }
       },
 
@@ -130,45 +122,23 @@
       switchComponent (event, yearExam) {
         const vueModel = this
         const currentAnchorTarget = $(event.currentTarget)
-        let preExamCategorySubtitle, componentName, preExamYearInfo
-
+        let subject = yearExam.includes('基測') ? '數學': vueModel.subject
         vueModel.yearExam = yearExam
+
         $('#years-tab .tab-active').removeClass('tab-active')
         currentAnchorTarget.addClass('tab-active')
-        vueModel.currentYear = vueModel.retrieveYear(yearExam)
-        vueModel.isDownloadButton = false
-
-        if (yearExam.includes('基測')) {
-          vueModel.subject = '數學'
-          preExamCategorySubtitle = `精選解題: ${yearExam}${vueModel.subject}`
-          componentName = 'BctConcept'
-          preExamYearInfo = {
-            yearExam: yearExam,
-            subject: vueModel.subject
-          }
-        } else if (yearExam.includes('下載')) {
-          vueModel.isDownloadButton = true
-        } else {
-          preExamCategorySubtitle = `精選解題: ${yearExam}${vueModel.subject}`
-          componentName = 'YearExamContent'
-          preExamYearInfo = {
-            preExamCategoryDesc: '歷屆會考解題',
-            yearExam: yearExam,
-            subject: vueModel.subject
-          }
-        }
-        vueModel.determineResolvedVideos(preExamCategorySubtitle, componentName, preExamYearInfo)
+        vueModel.retrieveResolvedVideos(subject)
       },
 
       retrieveResolvedVideos (subject) {
         const vueModel = this
+        let preExamCategorySubtitle, componentName, preExamYearInfo
         vueModel.subject = subject
         vueModel.currentYear = vueModel.retrieveYear(vueModel.yearExam)
-        let preExamCategorySubtitle, componentName, preExamYearInfo
 
         if (vueModel.yearExam.includes('基測')) {
           preExamCategorySubtitle = `精選解題: ${vueModel.yearExam}${vueModel.subject}`
-          componentName = 'BctConcept'
+          componentName = 'BCTConcept'
           preExamYearInfo = {
             yearExam: vueModel.yearExam,
             subject: vueModel.subject
