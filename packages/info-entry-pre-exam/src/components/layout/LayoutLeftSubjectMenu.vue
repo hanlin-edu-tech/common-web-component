@@ -40,7 +40,6 @@
         const vueModel = this
         $('#pre-exam-subject-left-side ul.menu li > a').removeClass('select')
         $(event.currentTarget).addClass('select')
-        vueModel.$delay(500)
         vueModel.$router.replace(`/resolvedVideos/${vueModel.preExamCategory}/${vueModel.preExamCategoryDesc}?subject=${subject}`)
       }
     }

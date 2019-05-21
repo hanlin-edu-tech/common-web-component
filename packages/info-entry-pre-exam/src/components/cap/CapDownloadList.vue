@@ -7,16 +7,30 @@
           th 歷屆題本
           th 精彩解析
       tbody
-        tr(v-for="sortCodeSubject in sortCodeSubjects" :key="sortCodeSubject")
-          td {{ splitSubject(sortCodeSubject) }}
-          td
-            a(:href="`${gsatFilesGCSDownload}/會考解析/${year}/題本/${year}${sortCodeSubject.split('-')[1]}題本.pdf`"
-              target="_blank")
-              img(:src="require(`@/static/img/cap/download.png`)" width="172")
-          td
-            a(:href="`${gsatFilesGCSDownload}/會考解析/${year}/解析/${year}_${sortCodeSubject.split('-')[1]}解析.pdf`"
-              target="_blank")
-              img(:src="require(`@/static/img/cap/download.png`)" width="172")
+        // 99 100 基測相關下載檔案為 zip 檔
+        template(v-if="(year === 99 || year === 100)")
+          tr(v-for="sortCodeSubject in sortCodeSubjects" :key="sortCodeSubject")
+            td {{ splitSubject(sortCodeSubject) }}
+            td
+              a(:href="`${gsatFilesGCSDownload}/會考解析/${year}/題本/${year}${sortCodeSubject.split('-')[1]}題本.zip`"
+                target="_blank")
+                img(:src="require(`@/static/img/cap/download.png`)" width="172")
+            td
+              a(:href="`${gsatFilesGCSDownload}/會考解析/${year}/解析/${year}${sortCodeSubject.split('-')[1]}解析.zip`"
+                target="_blank")
+                img(:src="require(`@/static/img/cap/download.png`)" width="172")
+
+        template(v-else)
+          tr(v-for="sortCodeSubject in sortCodeSubjects" :key="sortCodeSubject")
+            td {{ splitSubject(sortCodeSubject) }}
+            td
+              a(:href="`${gsatFilesGCSDownload}/會考解析/${year}/題本/${year}${sortCodeSubject.split('-')[1]}題本.pdf`"
+                target="_blank")
+                img(:src="require(`@/static/img/cap/download.png`)" width="172")
+            td
+              a(:href="`${gsatFilesGCSDownload}/會考解析/${year}/解析/${year}${sortCodeSubject.split('-')[1]}解析.pdf`"
+                target="_blank")
+                img(:src="require(`@/static/img/cap/download.png`)" width="172")
 
     img.banner(:src="require(`@/static/img/cap/download-sub-banner.png`)")
 </template>
@@ -33,7 +47,7 @@
 
     data () {
       return {
-        years: ['107', '106', '105', '104', '103', '102', '101'],
+        years: [108, 107, 106, 105, 104, 103, 102, 101, 100, 99],
         preExamCategory: 'cap',
         sortCodeSubjects: Array,
         sortCodes: Array,

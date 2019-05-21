@@ -20,6 +20,14 @@ const clean = sourceDir => {
   return del([sourceDir])
 }
 
+const copyStaticTask = () => {
+  return gulp
+    .src(['./src/*/*.html', './src/*/*.css', './src/*/*.js'], {
+      base: './src'
+    })
+    .pipe(gulp.dest(dist))
+}
+
 const minifyJS = sourceJS => {
   return gulp
     .src(sourceJS, basePath)
@@ -70,29 +78,7 @@ const replaceEnvVersion = buildEnv => {
     .pipe(gulp.dest('./'))
 }
 
-const buildJS = gulpDone => {
-  Q.fcall(templateUtil.logStream.bind(templateUtil.logStream, minifyJS.bind(minifyJS, './src/!(js)*/*.js')))
-    .then(templateUtil.logStream.bind(templateUtil.logStream, babelJS.bind(babelJS, './minify-temp/!(header)*/*.js')))
-    .then(templateUtil.logPromise.bind(templateUtil.logPromise, rollupBuild))
-    .then(templateUtil.logStream.bind(templateUtil.logStream, () => {
-      return gulp.src('./dist/header/ehanlin-header.js', {
-        base: './'
-      })
-        .pipe(debug({ title: 'file ->' }))
-        .pipe(
-          replace(/\(jQuery\)/g,
-            match => {
-              let jQueryNoConflict = `(jQueryNoConflict)`
-              console.log(`from ${match} to ${jQueryNoConflict}`)
-              return jQueryNoConflict
-            }))
-        .pipe(gulp.dest('./'))
-    }))
-    .then(templateUtil.logPromise.bind(templateUtil.logPromise, clean.bind(clean, './minify-temp')))
-    .then(gulpDone)
-}
-
-let rollupBuild = () => {
+const rollupBuild = () => {
   return rollup.rollup({
     input: './minify-temp/header/main.js',
     plugins: [
@@ -120,13 +106,28 @@ let rollupBuild = () => {
     })
 }
 
-let copyStaticTask = () => {
-  return gulp
-    .src(['./src/*/*.html', './src/*/*.css', './src/*/*.js'], {
-      base: './src'
-    })
-    .pipe(gulp.dest(dist))
+const buildJS = gulpDone => {
+  Q.fcall(templateUtil.logStream.bind(templateUtil.logStream, minifyJS.bind(minifyJS, './src/!(js)*/*.js')))
+    .then(templateUtil.logStream.bind(templateUtil.logStream, babelJS.bind(babelJS, './minify-temp/!(header)*/*.js')))
+    .then(templateUtil.logPromise.bind(templateUtil.logPromise, rollupBuild))
+    .then(templateUtil.logStream.bind(templateUtil.logStream, () => {
+      return gulp.src('./dist/header/ehanlin-header.js', {
+        base: './'
+      })
+        .pipe(debug({ title: 'file ->' }))
+        .pipe(
+          replace(/\(jQuery\)/g,
+            match => {
+              let jQueryNoConflict = `(jQueryNoConflict)`
+              console.log(`from ${match} to ${jQueryNoConflict}`)
+              return jQueryNoConflict
+            }))
+        .pipe(gulp.dest('./'))
+    }))
+    .then(templateUtil.logPromise.bind(templateUtil.logPromise, clean.bind(clean, './minify-temp')))
+    .then(gulpDone)
 }
+
 
 gulp.task('rollupBuild', rollupBuild)
 

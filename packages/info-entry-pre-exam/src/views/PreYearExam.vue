@@ -54,8 +54,6 @@
     },
 
     async beforeRouteUpdate (to, from, next) {
-      const vueModel = this
-      vueModel.initial(vueModel.yearExam)
       next()
     },
 
