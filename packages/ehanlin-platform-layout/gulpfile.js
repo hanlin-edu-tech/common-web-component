@@ -131,7 +131,7 @@ const buildJS = gulpDone => {
 
 gulp.task('rollupBuild', rollupBuild)
 
-gulp.task('replaceEnvProduction', replaceEnvVersion.bind(replaceEnvVersion, 'Production'))
+gulp.task('replaceEnvProduction', replaceEnvVersion.bind(replaceEnvVersion, 'production'))
 gulp.task('replaceEnvTest', replaceEnvVersion.bind(replaceEnvVersion, 'test'))
 
 gulp.task('packageToTest', gulpDone => {
