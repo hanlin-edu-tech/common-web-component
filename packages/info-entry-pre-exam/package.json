@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test": "cross-env NODE_ENV=test && vue-cli-service build && gulp deployToTest",
-    "production": "cross-env NODE_ENV=production && vue-cli-service build && gulp deployToProduction"
+    "deployToTest": "cross-env NODE_ENV=test && vue-cli-service build && gulp deployToTest",
+    "deployToProduction": "cross-env NODE_ENV=production && vue-cli-service build && gulp deployToProduction"
   },
   "dependencies": {
     "axios": "^0.18.0",

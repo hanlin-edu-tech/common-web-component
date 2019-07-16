@@ -55,21 +55,25 @@
     border-bottom: 15px solid #3498db;
     position: relative;
 
-    img.banner {
-      display: block;
-      margin: auto;
-      width: 98%;
-    }
+    article {
+      position: relative;
 
-    a.teacher-more {
-      background-color: #E435CB;
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      padding: 10px;
+      img.banner {
+        display: block;
+        margin: auto;
+        width: 98%;
+      }
 
-      &:hover {
-        background-color: #AD0B96;
+      a.teacher-more {
+        background-color: #E435CB;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 10px;
+
+        &:hover {
+          background-color: #AD0B96;
+        }
       }
     }
   }
