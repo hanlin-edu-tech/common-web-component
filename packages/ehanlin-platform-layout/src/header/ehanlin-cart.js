@@ -1,7 +1,7 @@
 import { jQueryNoConflict } from './jquery-no-conflict'
 
 let showCart = () => {
-  jQueryNoConflict.get('/my/owned/Carts.json',
+  jQueryNoConflict.get('/cart/my/owned/Carts.json',
     {
       ts: new Date().getTime()
     },

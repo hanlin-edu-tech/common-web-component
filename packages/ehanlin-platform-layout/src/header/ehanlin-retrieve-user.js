@@ -22,7 +22,7 @@ let ajaxUtil = (type, url, data) => {
 
 let onLogOut = () => {
   jQueryNoConflict('#logoutButton').on('click', () => {
-    ajaxUtil('PUT', '/Users/521d946be4b0d765448570bd/!logout').then(() => {
+    ajaxUtil('PUT', '/user/Users/521d946be4b0d765448570bd/!logout').then(() => {
       window.location = 'https://' + window.location.hostname
     })
   })
@@ -33,7 +33,7 @@ let logIn = () => {
     let userId = data['id']
     let studentCard = data['studentCard']
     let name = data.name
-    let userInfoHtml = `<a href='/Users/${userId}.html'> ${studentCard} &nbsp; ${name} </a>
+    let userInfoHtml = `<a href='/user/Users/${userId}.html'> ${studentCard} &nbsp; ${name} </a>
         <span style='color:#767676'> | </span>
         <li><a id='logoutButton'> 登出 </a></li>
         <span style='color:#767676'> | </span>`

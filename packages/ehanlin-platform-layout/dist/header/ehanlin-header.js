@@ -22,13 +22,13 @@ var ajaxUtil = function ajaxUtil(o, t, e) {
   return "GET" !== o && e && (e = JSON.stringify(e)), jQueryNoConflict.ajax({ type: o, cache: !1, crossDomain: !0, url: t, data: e, contentType: "application/json; charset=UTF-8", dataType: "json" });
 }; var onLogOut = function onLogOut() {
   jQueryNoConflict("#logoutButton").on("click", function () {
-    ajaxUtil("PUT", "/Users/521d946be4b0d765448570bd/!logout").then(function () {
+    ajaxUtil("PUT", "/user/Users/521d946be4b0d765448570bd/!logout").then(function () {
       window.location = "https://" + window.location.hostname;
     });
   });
 }; var logIn = function logIn() {
   ajaxUtil("GET", "/ms-user-status/userStatus").then(function (o) {
-    var t = "<a href='/Users/" + o.id + ".html'> " + o.studentCard + " &nbsp; " + o.name + " </a>\n        <span style='color:#767676'> | </span>\n        <li><a id='logoutButton'> \u767B\u51FA </a></li>\n        <span style='color:#767676'> | </span>";jQueryNoConflict("#loginSuccess").append(t), jQueryNoConflict("#loginBotton").remove(), jQueryNoConflict("#register").remove(), onLogOut();
+    var t = "<a href='/user/Users/" + o.id + ".html'> " + o.studentCard + " &nbsp; " + o.name + " </a>\n        <span style='color:#767676'> | </span>\n        <li><a id='logoutButton'> \u767B\u51FA </a></li>\n        <span style='color:#767676'> | </span>";jQueryNoConflict("#loginSuccess").append(t), jQueryNoConflict("#loginBotton").remove(), jQueryNoConflict("#register").remove(), onLogOut();
   }, function () {
     jQueryNoConflict("ul.header-menu").removeAttr("style");
   }).then(function () {
@@ -37,7 +37,7 @@ var ajaxUtil = function ajaxUtil(o, t, e) {
 };
 
 var showCart = function showCart() {
-  jQueryNoConflict.get("/my/owned/Carts.json", { ts: new Date().getTime() }, function (t) {
+  jQueryNoConflict.get("/cart/my/owned/Carts.json", { ts: new Date().getTime() }, function (t) {
     t.success && t.result && jQueryNoConflict("#car_sum").text(t.result.items.length);
   });
 };
