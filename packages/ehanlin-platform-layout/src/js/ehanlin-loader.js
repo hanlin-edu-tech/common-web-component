@@ -60,6 +60,12 @@
     componentDir = 'current.SNAPSHOT'
   }
 
+  if (window.location.href.indexOf('labs.ehanlin.com.tw') >= 0) {
+    console.log('!!! 目前在重構環境 !!!')
+    componentDir = 'current.SNAPSHOT'
+  }
+
+
   ehanlinComponents = {
     'ehanlin-menu': ajaxUtils.retrieveHtml.bind(
       this,
