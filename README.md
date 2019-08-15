@@ -132,3 +132,20 @@ npm run changeCurrentPath
 # 上傳 S3
 npm run uploadS3
 ```
+
+### 部署歷屆試題相關頁面
+切換至 cd ./packages/info-entry-pre-exam/ 目錄下
+
+修改程式後，直接鍵入
+```bash
+# 測試環境
+npm run deployToTest
+
+# 正式環境
+npm run deployToProduction
+```
+參考 [package.json](https://github.com/hanlin-edu-tech/common-web-component/blob/master/packages/info-entry-pre-exam/package.json#L6-L9)
+
+參考 GCP [firestore 專案位置](https://console.firebase.google.com/u/1/project/entry-pre-exam-info/overview)
+；轉檔部分，寫入 firestore 相關程式碼，則參考[info-entry-pre-exam-google-script Git Repo](https://github.com/hanlin-edu-tech/info-entry-pre-exam-google-script/blob/master/ast/main.js#L12-L23)，是透過 Google Apps Scripts 所引入的 Firestore Library 將 Google Sheet 之資料寫入 Firestore。
+
