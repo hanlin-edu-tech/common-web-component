@@ -22,7 +22,7 @@
   "devDependencies": {
     "@google-cloud/storage": "^2.5.0",
     "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-service": "^3.7.0",
+    "@vue/cli-service": "^3.11.0",
     "cross-env": "^5.2.0",
     "gulp": "^4.0.2",
     "gulp-cache": "^1.1.1",

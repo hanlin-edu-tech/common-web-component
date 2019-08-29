@@ -19,9 +19,9 @@
   import { db } from '@/modules/firebase-config'
   import LayoutTagTitle from '@/components/layout/LayoutTagTitle'
   import LayoutBanner from '@/components/layout/LayoutBanner'
-  import CAPSubjectList from '@/components/cap/CAPSubjectList'
+  import CAPSubjectList from '@/components/cap/CapSubjectList'
   import YearExamContent from '@/components/YearExamContent'
-  import BCTConcept from '@/components/cap/BCTConcept'
+  import BCTConcept from '@/components/cap/BctConcept'
   import Teacher from '@/components/Teacher'
 
   export default {

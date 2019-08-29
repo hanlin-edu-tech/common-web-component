@@ -9,7 +9,7 @@
 <script>
   import LayoutBanner from '@/components/layout/LayoutBanner'
   import LayoutTagTitle from '@/components/layout/LayoutTagTitle'
-  import CAPDownloadList from '@/components/cap/CAPDownloadList'
+  import CAPDownloadList from '@/components/cap/CapDownloadList'
 
   export default {
     name: 'CAPDownloadPage',

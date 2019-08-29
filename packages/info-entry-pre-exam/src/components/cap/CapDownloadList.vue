@@ -32,7 +32,8 @@
                 target="_blank")
                 img(:src="require(`@/static/img/cap/download.png`)" width="172")
 
-    img.banner(:src="require(`@/static/img/cap/download-sub-banner.png`)")
+    a(:href="`https://www.ehanlin.com.tw/type/TRIAL/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E9%AB%98%E4%B8%AD%E5%85%88%E4%BF%AE/SalesPlans.html`")
+      img.banner(:src="require(`@/static/img/cap/download-sub-banner.png`)")
 </template>
 
 <script>
