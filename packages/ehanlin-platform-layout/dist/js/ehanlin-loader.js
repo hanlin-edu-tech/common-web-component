@@ -1,7 +1,7 @@
 (function() {
     var ajaxUtils = {
         retrieveHtml: function(componentPath, httpMethod, id, envComponentDir) {
-            var url = "https://storage.cloud.google.com/" + envComponentDir + "/app/web-component" + componentPath + "?authuser=1&folder=true&organizationId=true";
+            var url = "https://www.tbbt.com.tw/app/web-component" + componentPath + "?authuser=1&folder=true&organizationId=true";
             var request = new XMLHttpRequest();
 
             console.log(url);
