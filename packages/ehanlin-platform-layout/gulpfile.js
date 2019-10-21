@@ -11,6 +11,54 @@ const rollupBabel = require('rollup-plugin-babel')
 const rollupCommonjs = require('rollup-plugin-commonjs')
 const rollupResolve = require('rollup-plugin-node-resolve')
 
+const gcPub = require("gulp-gcloud-publish");
+
+const bucketNameForTest = "tutor-test-apps";
+const bucketNameForProd = "tutor-apps";
+const projectId = "tutor-204108";
+const projectIdTest = "tutor-test-238709";
+const keyFileName = "tutor.json";
+const keyFileNameTest = "tutor-test.json";
+const projectName = "app/web-component/";
+
+const uploadGCSProd = bucketName => {
+  return gulp
+      .src(["dist/**/*"], {
+          base: `${__dirname}/dist/`
+      })
+      .pipe(
+          gcPub({
+              bucket: bucketName,
+              keyFilename: keyFileName,
+              base: projectName,
+              projectId: projectId,
+              public: true,
+              metadata: {
+                  cacheControl: "no-store, no-transform"
+              }
+          })
+      );
+};
+
+const uploadGCSTest = bucketName => {
+  return gulp
+      .src(["dist/**/*"], {
+          base: `${__dirname}/dist/`
+      })
+      .pipe(
+          gcPub({
+              bucket: bucketName,
+              keyFilename: keyFileNameTest,
+              base: projectName,
+              projectId: projectIdTest,
+              public: true,
+              metadata: {
+                  cacheControl: "no-store, no-transform"
+              }
+          })
+      );
+};
+
 const basePath = {
   base: 'src'
 }
@@ -146,5 +194,8 @@ gulp.task('packageToProduction', gulpDone => {
     .then(templateUtil.logPromise.bind(templateUtil.logPromise, buildJS.bind(buildJS, gulpDone)))
 })
 
-gulp.task('deployToProduction', gulp.series('packageToProduction', 'replaceEnvProduction'))
-gulp.task('deployToTest', gulp.series('packageToTest', 'replaceEnvTest'))
+// gulp.task('deployToProduction', gulp.series('packageToProduction', 'replaceEnvProduction'))
+// gulp.task('deployToTest', gulp.series('packageToTest', 'replaceEnvTest'))
+
+gulp.task("uploadGcsTest", uploadGCSTest.bind(uploadGCSTest, bucketNameForTest));
+gulp.task("uploadGcsProd", uploadGCSProd.bind(uploadGCSProd, bucketNameForProd));
