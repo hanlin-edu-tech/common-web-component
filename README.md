@@ -51,11 +51,8 @@ ehanlin-footer
 1. 在相關 APP 的 html 引入：
 
 ```html
-<!-- 測試環境 -->
-<script type="text/javascript" crossorigin="anonymous" data-module="ehanlin-header,ehanlin-menu,ehanlin-footer,ehanlin-event-left-side" src="https://www.tbbt.com.tw/app/web-component/js/ehanlin-social.js?authuser=1&folder=true&organizationId=true"></script>
-
-<!-- 正式環境 -->
-<script type="text/javascript" crossorigin="anonymous" data-module="ehanlin-header,ehanlin-menu,ehanlin-footer,ehanlin-event-left-side" src="https://www.ehanlin.com.tw/app/web-component/js/ehanlin-social.js?authuser=1&folder=true&organizationId=true"></script>
+<!-- 測試環境 與 正式環境-->
+<script type="text/javascript" crossorigin="anonymous" data-module="ehanlin-header,ehanlin-menu,ehanlin-footer,ehanlin-event-left-side" src="/app/web-component/js/ehanlin-social.js"></script>
 ```
 
 ## 建置元件與部署
