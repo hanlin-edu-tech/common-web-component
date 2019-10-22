@@ -1,10 +1,8 @@
 (function() {
     var ajaxUtils = {
-        retrieveHtml: function(componentPath, httpMethod, id, envComponentDir) {
+        retrieveHtml: function(componentPath, httpMethod, id) {
             var url = "https://www.tbbt.com.tw/app/web-component" + componentPath + "?authuser=1&folder=true&organizationId=true";
             var request = new XMLHttpRequest();
-
-            console.log(url);
 
             if (!id) return;
 
@@ -39,13 +37,6 @@
                 }
             };
 
-            if (request.readyState === request.DONE) {
-                console.log("一切 ok, 繼續解析");
-            } else {
-                console.log(request.status);
-                console.log("還沒完成");
-            }
-
             request.onerror = function() {
                 console.error("Response error, readyState = " + this.req.readyState + ", status = " + this.req.status);
             };
@@ -66,12 +57,12 @@
     }
 
     ehanlinComponents = {
-        "ehanlin-menu": ajaxUtils.retrieveHtml.bind(this, "/menu/ehanlin-menu.html", "GET", "ehanlin-menu", envComponentDir),
-        "ehanlin-header": ajaxUtils.retrieveHtml.bind(this, "/header/ehanlin-header.html", "GET", "ehanlin-header", envComponentDir),
-        "ehanlin-footer": ajaxUtils.retrieveHtml.bind(this, "/footer/ehanlin-footer.html", "GET", "ehanlin-footer", envComponentDir),
-        "ehanlin-event-left-side": ajaxUtils.retrieveHtml.bind(this, "/event-left-side/ehanlin-event-left-side.html", "GET", "event-left-side", envComponentDir),
-        "ehanlin-left-side": ajaxUtils.retrieveHtml.bind(this, "/event-left-side/ehanlin-event-left-side.html", "GET", "event-left-side", envComponentDir),
-        "ehanlin-info-left-side": ajaxUtils.retrieveHtml.bind(this, "/info-left-side/ehanlin-info-left-side.html", "GET", "info-left-side", envComponentDir)
+        "ehanlin-menu": ajaxUtils.retrieveHtml.bind(this, "/menu/ehanlin-menu.html", "GET", "ehanlin-menu"),
+        "ehanlin-header": ajaxUtils.retrieveHtml.bind(this, "/header/ehanlin-header.html", "GET", "ehanlin-header"),
+        "ehanlin-footer": ajaxUtils.retrieveHtml.bind(this, "/footer/ehanlin-footer.html", "GET", "ehanlin-footer"),
+        "ehanlin-event-left-side": ajaxUtils.retrieveHtml.bind(this, "/event-left-side/ehanlin-event-left-side.html", "GET", "event-left-side"),
+        "ehanlin-left-side": ajaxUtils.retrieveHtml.bind(this, "/event-left-side/ehanlin-event-left-side.html", "GET", "event-left-side"),
+        "ehanlin-info-left-side": ajaxUtils.retrieveHtml.bind(this, "/info-left-side/ehanlin-info-left-side.html", "GET", "info-left-side")
     };
 
     var script = document.querySelector("script[data-module]");
