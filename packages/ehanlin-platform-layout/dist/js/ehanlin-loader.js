@@ -1,7 +1,7 @@
 (function() {
     var ajaxUtils = {
         retrieveHtml: function(componentPath, httpMethod, id) {
-            var url = "https://www.tbbt.com.tw/app/web-component" + componentPath + "?authuser=1&folder=true&organizationId=true";
+            var url = "/app/web-component" + componentPath + "?authuser=1&folder=true&organizationId=true";
             var request = new XMLHttpRequest();
 
             if (!id) return;
