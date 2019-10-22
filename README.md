@@ -68,7 +68,7 @@ ehanlin-footer
 -   社群元件
     [參考 ehanlin-social.js](https://github.com/eHanlin/common-web-component/blob/master/src/js/ehanlin-social.js)
 
-## 部署
+## 部署及upload
 
 #### 測試機
 ```html
