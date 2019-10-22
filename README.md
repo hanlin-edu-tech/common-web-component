@@ -17,11 +17,8 @@ ehanlin-footer
 1. 在 platform、平台或 APP 中的 html 引入 ehanlin-loader.js
 
 ```html
-<!-- 測試環境 -->
-<script type="text/javascript" crossorigin="anonymous" data-module="ehanlin-header,ehanlin-menu,ehanlin-footer,ehanlin-event-left-side" src="https://www.tbbt.com.tw/app/web-component/js/ehanlin-loader.js?authuser=1&folder=true&organizationId=true"></script>
-
-<!-- 正式環境 -->
-<script type="text/javascript" crossorigin="anonymous" data-module="ehanlin-header,ehanlin-menu,ehanlin-footer,ehanlin-event-left-side" src="https://www.ehanlin.com.tw/app/web-component/js/ehanlin-loader.js?authuser=1&folder=true&organizationId=true"></script>
+<!-- 測試環境 與 正式環境 -->
+<script type="text/javascript" crossorigin="anonymous" data-module="ehanlin-header,ehanlin-menu,ehanlin-footer,ehanlin-event-left-side" src="/app/web-component/js/ehanlin-loader.js"></script>
 ```
 
 若想要指定要使用的元件，則在 data-module attribute 指定即可。呼叫複數元件時，元件以 ',' 分隔，
