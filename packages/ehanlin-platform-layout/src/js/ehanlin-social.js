@@ -25,25 +25,26 @@ ga('create', 'UA-31662275-1', 'auto')
 ga('send', 'pageview')
 
 /**
- * Facebook
+ * Facebook Pixel Code
  */
-!(function (f, b, e, v, n, t, s) {
-  if (f.fbq) return
-  n = f.fbq = function () {
-    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-  }
-  if (!f._fbq) f._fbq = n
-  n.push = n
-  n.loaded = !0
-  n.version = '2.0'
-  n.queue = []
-  t = b.createElement(e)
-  t.async = !0
-  t.src = v
-  s = b.getElementsByTagName(e)[0]
+let id;
+if (window.location.hostname === "www.ehanlin.com.tw") {
+  id = "473813769998998"
+}else{
+  id = "477550739618411"
+}
+!function (f, b, e, v, n, t, s) {
+  if (f.fbq) return; n = f.fbq = function () {
+    n.callMethod ?
+    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+  };
+  if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+  n.queue = []; t = b.createElement(e); t.async = !0;
+  t.src = v; s = b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t, s)
-})(window, document, 'script', '//connect.facebook.net/en_US/fbevents.js')
+}(window, document, 'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', id);
+fbq('track', 'PageView');
 
-// 210352019155685
-fbq('init', '1640262175986847')
-fbq('track', 'PageView')
+
