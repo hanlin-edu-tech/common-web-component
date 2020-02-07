@@ -25,11 +25,11 @@ ga('create', 'UA-31662275-1', 'auto')
 ga('send', 'pageview')
 
 /**
- * Facebook Pixel Code
+ * Facebook Pixel Code (ㄑㄧ)
  */
 let id;
 if (window.location.hostname === "www.ehanlin.com.tw") {
-  id = "473813769998998"
+  id = "173626790647861"
 }else{
   id = "477550739618411"
 }
@@ -46,5 +46,3 @@ if (window.location.hostname === "www.ehanlin.com.tw") {
   'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', id);
 fbq('track', 'PageView');
-
-
