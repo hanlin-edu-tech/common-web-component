@@ -22,11 +22,11 @@
   display: inline-block;
   width: 22px;
   height: 22px;
-  background: url(https://www.ehanlin.com.tw/images/l_icons.png) no-repeat 0 0;
+  background: url(https://ehanlin-web-public-resource.s3-ap-northeast-1.amazonaws.com/web/eh-footer/l_icons.png) no-repeat 0 0;
   margin: 0 2px -3px 0;
 }
 
-#ehanlin-footer .footer .browser .ie {
+#ehanlin-footer .footer .browser .edge {
   background-position: -500px 0;
 }
 
