@@ -61,8 +61,8 @@ delayBeforeStart:1E3,direction:"left",duplicated:!1,duration:5E3,gap:20,pauseOnC
 var marqueeTarget = jQueryNoConflict("#ehanlin-header div.marquee"); var marqueeCloseTarget = jQueryNoConflict("#ehanlin-header i.marquee-close"); var isShowMarqueeClose = !0; var runMarquee = function runMarquee() {
   jQueryNoConflict.ajax({ type: "get", url: "/Marquee", dataType: "json" }).then(function (e) {
     if (e && e.length > 0) {
-      var r = void 0;marqueeTarget.removeAttr("style"), jQueryNoConflict.each(e, function (e, o) {
-        var t = "";o.link ? (t += "<a href=\"" + o.link + "\" style=\"color: white;\">", t += o.text, t += "</a>") : t += o.text, r = jQueryNoConflict('<li style="display: none"></li>').addClass("marquee-content").css({ color: "white", "padding-left": "15px", "background-color": o.backgroundColor }).html(t), marqueeTarget.find("ul").css({ "border-radius": "2px", "background-color": o.backgroundColor }).append(r);
+      var r = void 0;marqueeTarget.removeAttr("style"), jQueryNoConflict.each(e, function (e, t) {
+        var a = "";t.link ? (a += "<a href=\"" + t.link + "\" style=\"color: #454545;\">", a += t.text, a += "</a>") : a += t.text, r = jQueryNoConflict('<li style="display: none"></li>').addClass("marquee-content").css({ color: "#454545", "padding-left": "15px", "background-color": "#EDF7FF" }).html(a), marqueeTarget.find("ul").css({ "border-radius": "2px", "background-color": "#EDF7FF" }).append(r);
       });
     }return e;
   }).then(function (e) {

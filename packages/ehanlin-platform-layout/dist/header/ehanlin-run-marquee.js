@@ -17,7 +17,7 @@ let runMarquee = () => {
       jQueryNoConflict.each(data, (index, singleMarquee) => {
         let marqueeContent = ''
         if (singleMarquee.link) {
-          marqueeContent += `<a href="${singleMarquee.link}" style="color: white;">`
+          marqueeContent += `<a href="${singleMarquee.link}" style="color: #454545;">`
           marqueeContent += singleMarquee.text
           marqueeContent += '</a>'
         } else {
@@ -27,16 +27,16 @@ let runMarquee = () => {
         liText = jQueryNoConflict('<li style="display: none"></li>')
           .addClass('marquee-content')
           .css({
-            'color': 'white',
+            'color': '#454545',
             'padding-left': '15px',
-            'background-color': singleMarquee.backgroundColor
+            'background-color': "#EDF7FF"
           })
           .html(marqueeContent)
 
         marqueeTarget.find('ul').css(
           {
             'border-radius': '2px',
-            'background-color': singleMarquee.backgroundColor
+            'background-color': "#EDF7FF"
           }
         ).append(liText)
       })
