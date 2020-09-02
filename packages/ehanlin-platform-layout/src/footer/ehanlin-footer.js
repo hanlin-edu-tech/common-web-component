@@ -4,7 +4,7 @@
 
         ehNoviceBoardToggle.hidden = true;
 
-        customElements.whenDefined('eh-novice-board').then(async () => {
+        customElements.whenDefined('eh-novice-board').then(() => {
             let ehNoviceBoardEl = document.querySelector('eh-novice-board');
 
             const ehNoviceBoard = customElements.get('eh-novice-board');
@@ -30,19 +30,19 @@
                 toggleHidden(!ehNoviceBoardExisted);
 
                 bindToggleEvent();
-            }     
-        });
-
-        function toggleHidden(hidden) {
-            ehNoviceBoardToggle.hidden = hidden;
-        }
-
-        function bindToggleEvent () {
-            ehNoviceBoardToggle.querySelector('a').onclick = () => {
-                EHNoviceBoard.setNoviceDisplay(true);
-                ehNoviceBoardEl.dispatchEvent(new Event('open'));
+            }  
+            
+            function toggleHidden(hidden) {
+                ehNoviceBoardToggle.hidden = hidden;
             }
-        }
+    
+            function bindToggleEvent () {
+                ehNoviceBoardToggle.querySelector('a').onclick = () => {
+                    EHNoviceBoard.setNoviceDisplay(true);
+                    ehNoviceBoardEl.dispatchEvent(new Event('open'));
+                }
+            }
+        });
     }
 
     ehNoviceBoardInitial();
