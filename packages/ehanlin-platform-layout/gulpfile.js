@@ -70,7 +70,7 @@ const clean = sourceDir => {
 
 const copyStaticTask = () => {
     return gulp
-        .src(["./src/*/*.html", "./src/*/*.css", "./src/*/*.js"], {
+        .src(["./src/**/*.html", "./src/**/*.css", "./src/**/*.js"], {
             base: "./src"
         })
         .pipe(gulp.dest(dist));
@@ -108,7 +108,7 @@ const babelJS = sourceJS => {
 
 const replaceEnvVersion = buildEnv => {
     return gulp
-        .src(["./dist/*/*.html"], {
+        .src(["./dist/**/*.html"], {
             base: "./"
         })
         .pipe(
