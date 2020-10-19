@@ -33,7 +33,7 @@ let logIn = () => {
     let userId = data['id']
     let studentCard = data['studentCard']
     let name = data.name
-    let userInfoHtml = `<a href='/user/Users/${userId}.html'> ${studentCard} &nbsp; ${name} </a>
+    let userInfoHtml = `<a href='/app/member-center/user-setting.html'> ${studentCard} &nbsp; ${name} </a>
         <span style='color:#767676'> | </span>
         <li><a id='logoutButton'> 登出 </a></li>
         <span style='color:#767676'> | </span>`
