@@ -22,10 +22,17 @@ let ajaxUtil = (type, url, data) => {
 
 let onLogOut = () => {
   jQueryNoConflict('#logoutButton').on('click', () => {
-    ajaxUtil('PUT', '/user/Users/521d946be4b0d765448570bd/!logout').then(() => {
-      window.location = 'https://' + window.location.hostname
+      fetch(`/user-bg/member-center/logout`,{
+        method: "PUT",
+        headers: { "content-type": "application/json"},
+      }).then(res => {
+        if(res.ok) {
+          window.location.href = res.headers.get("Location");
+        }
+      }).catch(err => {
+        console.log(err)
+      })
     })
-  })
 }
 
 let logIn = () => {

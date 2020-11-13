@@ -22,10 +22,17 @@ let ajaxUtil = (type, url, data) => {
 
 let onLogOut = () => {
   jQueryNoConflict('#logoutButton').on('click', () => {
-    ajaxUtil('PUT', '/user/Users/521d946be4b0d765448570bd/!logout').then(() => {
-      window.location = 'https://' + window.location.hostname
+      fetch(`/user-bg/member-center/logout`,{
+        method: "PUT",
+        headers: { "content-type": "application/json"},
+      }).then(res => {
+        if(res.ok) {
+          window.location.href = res.headers.get("Location");
+        }
+      }).catch(err => {
+        console.log(err)
+      })
     })
-  })
 }
 
 let logIn = () => {
@@ -33,7 +40,7 @@ let logIn = () => {
     let userId = data['id']
     let studentCard = data['studentCard']
     let name = data.name
-    let userInfoHtml = `<a href='/user/Users/${userId}.html'> ${studentCard} &nbsp; ${name} </a>
+    let userInfoHtml = `<a href='/app/member-center/user-setting.html'> ${studentCard} &nbsp; ${name} </a>
         <span style='color:#767676'> | </span>
         <li><a id='logoutButton'> 登出 </a></li>
         <span style='color:#767676'> | </span>`

@@ -18,17 +18,19 @@ var jquery_min = createCommonjsModule(function (module) {
 
 var jQueryNoConflict = jquery_min.noConflict(!0);
 
-var ajaxUtil = function ajaxUtil(o, t, e) {
-  return "GET" !== o && e && (e = JSON.stringify(e)), jQueryNoConflict.ajax({ type: o, cache: !1, crossDomain: !0, url: t, data: e, contentType: "application/json; charset=UTF-8", dataType: "json" });
+var ajaxUtil = function ajaxUtil(e, o, t) {
+  return "GET" !== e && t && (t = JSON.stringify(t)), jQueryNoConflict.ajax({ type: e, cache: !1, crossDomain: !0, url: o, data: t, contentType: "application/json; charset=UTF-8", dataType: "json" });
 }; var onLogOut = function onLogOut() {
   jQueryNoConflict("#logoutButton").on("click", function () {
-    ajaxUtil("PUT", "/user/Users/521d946be4b0d765448570bd/!logout").then(function () {
-      window.location = "https://" + window.location.hostname;
+    fetch("/user-bg/member-center/logout", { method: "PUT", headers: { "content-type": "application/json" } }).then(function (e) {
+      e.ok && (window.location.href = e.headers.get("Location"));
+    }).catch(function (e) {
+      console.log(e);
     });
   });
 }; var logIn = function logIn() {
-  ajaxUtil("GET", "/ms-user-status/userStatus").then(function (o) {
-    var t = "<a href='/user/Users/" + o.id + ".html'> " + o.studentCard + " &nbsp; " + o.name + " </a>\n        <span style='color:#767676'> | </span>\n        <li><a id='logoutButton'> \u767B\u51FA </a></li>\n        <span style='color:#767676'> | </span>";jQueryNoConflict("#loginSuccess").append(t), jQueryNoConflict("#loginBotton").remove(), jQueryNoConflict("#register").remove(), onLogOut();
+  ajaxUtil("GET", "/ms-user-status/userStatus").then(function (e) {
+    e.id;var o = "<a href='/app/member-center/user-setting.html'> " + e.studentCard + " &nbsp; " + e.name + " </a>\n        <span style='color:#767676'> | </span>\n        <li><a id='logoutButton'> \u767B\u51FA </a></li>\n        <span style='color:#767676'> | </span>";jQueryNoConflict("#loginSuccess").append(o), jQueryNoConflict("#loginBotton").remove(), jQueryNoConflict("#register").remove(), onLogOut();
   }, function () {
     jQueryNoConflict("ul.header-menu").removeAttr("style");
   }).then(function () {
@@ -37,8 +39,8 @@ var ajaxUtil = function ajaxUtil(o, t, e) {
 };
 
 var showCart = function showCart() {
-  jQueryNoConflict.get("/cart/my/owned/Carts.json", { ts: new Date().getTime() }, function (t) {
-    t.success && t.result && jQueryNoConflict("#car_sum").text(t.result.items.length);
+  jQueryNoConflict.get("/shop/order/current", { ts: new Date().getTime() }, function (t) {
+    t.success && t.result && jQueryNoConflict("#car_sum").text(t.result.cart.items.length);
   });
 };
 

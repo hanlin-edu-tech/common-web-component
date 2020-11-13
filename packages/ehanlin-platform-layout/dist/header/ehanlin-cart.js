@@ -1,13 +1,13 @@
 import { jQueryNoConflict } from './jquery-no-conflict'
 
 let showCart = () => {
-  jQueryNoConflict.get('/cart/my/owned/Carts.json',
+  jQueryNoConflict.get('/shop/order/current',
     {
       ts: new Date().getTime()
     },
     response => {
       if (response.success && response.result) {
-        jQueryNoConflict('#car_sum').text(response.result.items.length)
+        jQueryNoConflict('#car_sum').text(response.result.cart.items.length)
       }
     }
   )
