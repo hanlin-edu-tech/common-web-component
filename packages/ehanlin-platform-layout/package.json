@@ -9,7 +9,7 @@
     "uploadGcpProd": "gulp packageToProduction && gulp uploadGcsProd"
   },
   "dependencies": {
-    "aws-sdk": "^2.441.0",
+    "aws-sdk": "^2.814.0",
     "ehanlin-basicss": "^0.0.5",
     "fs": "0.0.1-security",
     "gulp-gcloud-publish": "^2.1.1",
