@@ -1,3 +1,25 @@
+## 使用情況調查（2026-11-09）
+
+> 本節為 hanlin-edu-tech repo 清理作業的調查紀錄，待負責人確認後決定封存或刪除。
+
+- 調查結論：仍在使用
+- 建議處置：保留，理由：本 repo 產出的 ehanlin-loader.js 與頁首、頁尾元件仍由正式站提供，並被正式機運行中的 tutor-cashflow、tutor-nu-ehanlin、tutor-platform-root、tutor-guardian_104 頁面載入。
+- 最後更新：pushedAt 2026-10-28；最後 commit `3408ccc` 2026-10-28 hotdog929 chore: 升級 Node.js 至 26（CVE-2026-111497） (#45)
+- 用途：eHanlin 個人版網站共用 Web Component（ehanlin-header、ehanlin-menu、ehanlin-footer、ehanlin-event-left-side、ehanlin-info-left-side 與載入器 ehanlin-loader.js），以 lerna 管理，原始碼在 `packages/ehanlin-platform-layout`；以 gulp 上傳到 GCS，正式站路徑 `/app/web-component/`；舊版以 Travis 上傳到 S3 `common_webcomponent/`。
+
+### 檢查結果
+
+| 檢查項目 | 結果 | 依據 |
+|---|---|---|
+| GitHub 活動 | 最後實質 commit `cff85f9` 2022-04-11 tzhau（舊皮訊息中心按鈕改為僅導向歷史訊息中心 [sc-14615]），2022-05-04 合併；2026-10-28 `3408ccc` 屬 org 內 120 個 repo 的「升級 Node.js 至 26」批次修改，不列為實質開發。分支 36 個（dependabot 34 個、master、test 最後 2022-01-07）；open PR 34 筆皆為 dependabot；issue 0；只有 Dependabot Updates workflow；tag 27 個，最新 v1.1.5；release 0；非 fork | 已查核，細節記錄於內部調查報告 |
+| org 內程式碼引用 | 正式機運行中的服務頁面載入本 repo 產物 | 已查核，細節記錄於內部調查報告（關鍵字：common-web-component、ehanlin-loader.js、common_webcomponent、ehanlin-platform-layout、app/web-component；命中 tutor-cashflow、tutor-nu-ehanlin、tutor-platform-root、tutor-platform-user、tutor-platform-keys、tutor-platform-cart、tutor-platform-products、tutor-guardian_104 等） |
+| GCP 部署 | 正式站 `/app/web-component/` 由本 repo 產物提供，最後上傳 2022-05-04；查無 Cloud Build trigger、Cloud Run、Cloud Functions、GKE workload 以本 repo 為來源 | 已查核，細節記錄於內部調查報告 |
+| AWS 部署 | S3 `common_webcomponent/` 存有本 repo 舊版產物（最後上傳 2020-12-02），仍可公開讀取；查無 Lambda、API Gateway（REST／HTTP）、ECR、ECS | 已查核，細節記錄於內部調查報告 |
+
+### 待確認事項
+- 部署方式無 CI：`.travis.yml` 指向的 Travis CI 已無執行紀錄，GCS 上傳靠手動執行 gulp；日後修改需由負責人確認部署流程。
+- 殘留 webhook 與 34 筆未處理的 dependabot PR，細節記錄於內部調查報告。
+
 # 網站的共用元件庫
 
 ## 使用方式
